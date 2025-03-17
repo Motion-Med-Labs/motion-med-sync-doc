@@ -7,13 +7,14 @@
     <style>
         :root {
             --primary: #2470e0;
-            --secondary: #edf2fa;
+            --primary-light: #ebf2ff;
+            --primary-dark: #1a5bc0;
+            --secondary: #50b9ff;
             --text: #333333;
+            --text-light: #666666;
             --light-bg: #f8f9fd;
             --border: #e6e6e6;
             --success: #00c875;
-            --completed: #8254ff;
-            --table-header: #f5f7fa;
         }
 
         * {
@@ -25,30 +26,41 @@
 
         body {
             background-color: var(--light-bg);
+            background-image: linear-gradient(135deg, #f8f9fd 0%, #e9effd 100%);
             color: var(--text);
             line-height: 1.5;
-            padding: 20px;
+            padding: 30px;
+            min-height: 100vh;
         }
 
         .main-content {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
             overflow: hidden;
         }
 
         .header {
-            padding: 20px 30px;
-            background-color: white;
-            border-bottom: 1px solid var(--border);
+            padding: 30px;
+            background: linear-gradient(120deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
         }
 
         .page-title {
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 600;
-            color: var(--text);
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .requirements-list {
@@ -56,60 +68,117 @@
         }
 
         .requirement-item {
-            padding: 16px 20px;
+            padding: 24px 30px;
             border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .requirement-item:last-child {
+            border-bottom: none;
         }
 
         .requirement-item:hover {
-            background-color: rgba(0, 0, 0, 0.02);
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(36, 112, 224, 0.1);
         }
 
         .requirement-header {
             display: flex;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
 
         .requirement-number {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 28px;
-            height: 28px;
-            background-color: var(--primary);
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
             border-radius: 50%;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            margin-right: 12px;
+            margin-right: 15px;
             flex-shrink: 0;
+            box-shadow: 0 3px 8px rgba(36, 112, 224, 0.2);
         }
 
         .requirement-title {
             font-weight: 600;
-            font-size: 1.05rem;
+            font-size: 1.2rem;
+            color: var(--primary-dark);
         }
 
         .requirement-description {
-            margin-left: 40px;
-            color: #666;
-            font-size: 0.95rem;
+            margin-left: 50px;
+            color: var(--text-light);
+        }
+
+        .description-bullets {
+            list-style: none;
+            margin-top: 5px;
+        }
+
+        .description-bullet {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .description-bullet:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 8px;
+            height: 8px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+            background-color: #f5f7fa;
+        }
+
+        .divider-text {
+            padding: 12px 0;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .footer {
             text-align: center;
-            padding: 20px;
+            padding: 25px;
             font-size: 0.9rem;
             color: #6f7880;
+            background-color: #f5f7fa;
+            border-top: 1px solid var(--border);
         }
 
         @media (max-width: 768px) {
             body {
-                padding: 10px;
+                padding: 15px;
             }
 
             .requirement-description {
                 margin-left: 30px;
+            }
+
+            .page-title {
+                font-size: 1.6rem;
+            }
+
+            .requirement-header {
+                flex-wrap: wrap;
             }
         }
     </style>
@@ -117,7 +186,12 @@
 <body>
     <div class="main-content">
         <div class="header">
-            <div class="page-title">Motion Med Sync Requirements</div>
+            <div class="page-title">Motion Med Sync</div>
+            <div class="page-subtitle">A modern platform designed to streamline patient data management, integrate with Garmin services, and provide comprehensive analytics tools for healthcare professionals.</div>
+        </div>
+
+        <div class="section-divider">
+            <div class="divider-text">Core Requirements</div>
         </div>
 
         <ul class="requirements-list">
@@ -127,7 +201,12 @@
                     <div class="requirement-title">User Accounts – Create / Deactivate</div>
                 </div>
                 <div class="requirement-description">
-                    Allows administrators to set up new users or remove existing accounts to maintain proper access control. This ensures only authorized individuals can manage and view patient data.
+                    <ul class="description-bullets">
+                        <li class="description-bullet">Allows administrators to set up new users in the system</li>
+                        <li class="description-bullet">Enables deactivation of existing accounts when needed</li>
+                        <li class="description-bullet">Maintains proper access control through user management</li>
+                        <li class="description-bullet">Ensures only authorized individuals can access patient data</li>
+                    </ul>
                 </div>
             </li>
 
@@ -137,7 +216,12 @@
                     <div class="requirement-title">Login / Forgot Password</div>
                 </div>
                 <div class="requirement-description">
-                    Provides a secure login flow for users, along with a password reset mechanism to easily recover access if credentials are lost.
+                    <ul class="description-bullets">
+                        <li class="description-bullet">Provides a secure authentication system for users</li>
+                        <li class="description-bullet">Includes password reset functionality via email</li>
+                        <li class="description-bullet">Helps users recover access when credentials are lost</li>
+                        <li class="description-bullet">Ensures system security while maintaining accessibility</li>
+                    </ul>
                 </div>
             </li>
 
@@ -147,7 +231,12 @@
                     <div class="requirement-title">Create Study – Edit / Disable</div>
                 </div>
                 <div class="requirement-description">
-                    Enables the creation of research studies or clinical trials within the system. Administrators can update study details and disable them when they are no longer active.
+                    <ul class="description-bullets">
+                        <li class="description-bullet">Enables creation of research studies within the system</li>
+                        <li class="description-bullet">Allows administrators to update study details as needed</li>
+                        <li class="description-bullet">Provides option to disable studies when no longer active</li>
+                        <li class="description-bullet">Helps maintain organized clinical trials and research</li>
+                    </ul>
                 </div>
             </li>
 
@@ -157,7 +246,12 @@
                     <div class="requirement-title">CSV Download</div>
                 </div>
                 <div class="requirement-description">
-                    Allows exporting patient or study data in CSV format for external analysis, reporting, or backup purposes.
+                    <ul class="description-bullets">
+                        <li class="description-bullet">Allows exporting patient data in CSV format</li>
+                        <li class="description-bullet">Enables researchers to download study results</li>
+                        <li class="description-bullet">Supports external analysis and reporting needs</li>
+                        <li class="description-bullet">Provides data backup functionality for critical information</li>
+                    </ul>
                 </div>
             </li>
 
@@ -167,7 +261,12 @@
                     <div class="requirement-title">Create Patient</div>
                 </div>
                 <div class="requirement-description">
-                    Facilitates adding new patients to the system, capturing essential demographic and medical information required for monitoring and analysis.
+                    <ul class="description-bullets">
+                        <li class="description-bullet">Facilitates adding new patients to the system</li>
+                        <li class="description-bullet">Captures essential demographic information</li>
+                        <li class="description-bullet">Records relevant medical history and conditions</li>
+                        <li class="description-bullet">Establishes patient records for monitoring and analysis</li>
+                    </ul>
                 </div>
             </li>
 
@@ -177,7 +276,12 @@
                     <div class="requirement-title">Connect Patient to Garmin Account</div>
                 </div>
                 <div class="requirement-description">
-                    Links a patient's Garmin account to Motion Med Sync, enabling automatic data retrieval from Garmin's platform for seamless health and fitness tracking.
+                    <ul class="description-bullets">
+                        <li class="description-bullet">Links patient profiles with their Garmin accounts</li>
+                        <li class="description-bullet">Enables automatic data retrieval from Garmin's platform</li>
+                        <li class="description-bullet">Facilitates seamless health and fitness tracking</li>
+                        <li class="description-bullet">Provides real-time activity monitoring capabilities</li>
+                    </ul>
                 </div>
             </li>
 
@@ -187,17 +291,33 @@
                     <div class="requirement-title">View Patient Data</div>
                 </div>
                 <div class="requirement-description">
-                    Displays all relevant patient metrics and historical trends, providing healthcare professionals with actionable insights at a glance.
+                    <ul class="description-bullets">
+                        <li class="description-bullet">Displays comprehensive patient metrics in an intuitive interface</li>
+                        <li class="description-bullet">Shows historical trends and patterns over time</li>
+                        <li class="description-bullet">Provides healthcare professionals with actionable insights</li>
+                        <li class="description-bullet">Enables informed clinical decision-making</li>
+                    </ul>
                 </div>
             </li>
+        </ul>
 
+        <div class="section-divider">
+            <div class="divider-text">Analytics & Data Management</div>
+        </div>
+
+        <ul class="requirements-list">
             <li class="requirement-item">
                 <div class="requirement-header">
                     <div class="requirement-number">8</div>
                     <div class="requirement-title">High-Level Dashboard of Data</div>
                 </div>
                 <div class="requirement-description">
-                    Offers an overview of aggregated statistics, such as total studies, active patients, and key performance metrics, to give a quick snapshot of overall system health.
+                    <ul class="description-bullets">
+                        <li class="description-bullet">Offers an overview of aggregated statistics</li>
+                        <li class="description-bullet">Displays total studies and active patients</li>
+                        <li class="description-bullet">Shows key performance metrics at a glance</li>
+                        <li class="description-bullet">Provides snapshot of overall system health</li>
+                    </ul>
                 </div>
             </li>
 
@@ -207,7 +327,12 @@
                     <div class="requirement-title">Pull Data from Garmin API</div>
                 </div>
                 <div class="requirement-description">
-                    Automates the process of retrieving updated activity and health data from Garmin's servers, ensuring Motion Med Sync stays in sync with real-time information.
+                    <ul class="description-bullets">
+                        <li class="description-bullet">Automates retrieval of activity data from Garmin</li>
+                        <li class="description-bullet">Synchronizes health metrics with the platform</li>
+                        <li class="description-bullet">Ensures up-to-date patient information</li>
+                        <li class="description-bullet">Maintains real-time data accuracy</li>
+                    </ul>
                 </div>
             </li>
 
@@ -217,7 +342,12 @@
                     <div class="requirement-title">Backup Raw Data</div>
                 </div>
                 <div class="requirement-description">
-                    Implements a reliable backup process for preserving raw patient information and collected metrics, minimizing data loss risks.
+                    <ul class="description-bullets">
+                        <li class="description-bullet">Implements reliable backup processes</li>
+                        <li class="description-bullet">Preserves raw patient information securely</li>
+                        <li class="description-bullet">Safeguards collected metrics from loss</li>
+                        <li class="description-bullet">Minimizes data integrity risks</li>
+                    </ul>
                 </div>
             </li>
 
@@ -227,7 +357,12 @@
                     <div class="requirement-title">Store Data into Database</div>
                 </div>
                 <div class="requirement-description">
-                    Ensures all incoming data is stored securely in a structured database, providing the backbone for analytics and record-keeping.
+                    <ul class="description-bullets">
+                        <li class="description-bullet">Securely stores all incoming patient data</li>
+                        <li class="description-bullet">Maintains structured database organization</li>
+                        <li class="description-bullet">Provides foundation for analytics capabilities</li>
+                        <li class="description-bullet">Ensures reliable record-keeping</li>
+                    </ul>
                 </div>
             </li>
 
@@ -237,7 +372,12 @@
                     <div class="requirement-title">Create Calendar of Patient Activities</div>
                 </div>
                 <div class="requirement-description">
-                    Generates a visual schedule of patient workouts, treatments, or relevant activities, helping healthcare providers to track and manage patient engagement.
+                    <ul class="description-bullets">
+                        <li class="description-bullet">Generates visual schedule of patient workouts</li>
+                        <li class="description-bullet">Tracks treatment regimens and therapies</li>
+                        <li class="description-bullet">Helps healthcare providers monitor engagement</li>
+                        <li class="description-bullet">Supports adherence to care plans</li>
+                    </ul>
                 </div>
             </li>
 
@@ -247,7 +387,12 @@
                     <div class="requirement-title">CSV Processing – Summaries, Time Series</div>
                 </div>
                 <div class="requirement-description">
-                    Processes CSV files to create summary statistics and time-series data, enabling trend analysis and comprehensive reporting within the platform.
+                    <ul class="description-bullets">
+                        <li class="description-bullet">Processes uploaded CSV files for analysis</li>
+                        <li class="description-bullet">Creates statistical summaries of patient data</li>
+                        <li class="description-bullet">Generates time-series visualizations</li>
+                        <li class="description-bullet">Enables trend analysis and reporting</li>
+                    </ul>
                 </div>
             </li>
 
@@ -257,13 +402,18 @@
                     <div class="requirement-title">Set Power Min and Max per Patient</div>
                 </div>
                 <div class="requirement-description">
-                    Allows clinicians or administrators to define individualized power thresholds for patients, tailoring exercise and training guidelines to each person's needs.
+                    <ul class="description-bullets">
+                        <li class="description-bullet">Allows defining individualized power thresholds</li>
+                        <li class="description-bullet">Customizes exercise parameters for each patient</li>
+                        <li class="description-bullet">Tailors training guidelines to specific needs</li>
+                        <li class="description-bullet">Supports personalized care approaches</li>
+                    </ul>
                 </div>
             </li>
         </ul>
 
         <div class="footer">
-            © 2025 Motion Med Sync
+            © 2025 Motion Med Sync | A modern healthcare data management platform
         </div>
     </div>
 </body>
