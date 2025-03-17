@@ -6,569 +6,742 @@
     <title>Motion Med Sync - Requirements Documentation</title>
     <style>
         :root {
-            --primary: #2c6fb8;
-            --secondary: #4a90e2;
-            --accent: #1e88e5;
+            --primary: #2470e0;
+            --secondary: #edf2fa;
             --text: #333333;
-            --light-bg: #f5f9ff;
+            --light-bg: #f8f9fd;
             --border: #e6e6e6;
-            --success: #4caf50;
+            --success: #00c875;
+            --completed: #8254ff;
+            --sidebar: #ffffff;
+            --header: #ffffff;
+            --table-header: #f5f7fa;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            background-color: var(--light-bg);
             color: var(--text);
-            background-color: #f8f8f8;
-            margin: 0;
-            padding: 0;
+            line-height: 1.5;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 2rem 0;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        header .container {
+        .layout {
             display: flex;
-            justify-content: space-between;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background-color: var(--sidebar);
+            border-right: 1px solid var(--border);
+            padding: 20px 0;
+            flex-shrink: 0;
+        }
+
+        .sidebar-header {
+            padding: 0 20px 20px;
+            display: flex;
             align-items: center;
         }
 
         .logo {
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
-
-        .logo span {
-            color: #a5d6ff;
-        }
-
-        .header-buttons a {
-            background-color: white;
-            color: var(--primary);
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
+            display: flex;
+            align-items: center;
             font-weight: 600;
-            margin-left: 1rem;
-            transition: all 0.3s ease;
+            font-size: 1.25rem;
+            color: var(--text);
         }
 
-        .header-buttons a:hover {
-            background-color: var(--accent);
-            color: white;
-        }
-
-        .hero {
-            background-color: var(--light-bg);
-            padding: 3rem 0;
-            margin-bottom: 2rem;
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background-color: var(--primary);
             border-radius: 8px;
+            margin-right: 10px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team-info {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        .team-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #1c3879;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 12px;
+        }
+
+        .team-details {
+            flex-grow: 1;
+        }
+
+        .team-name {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .team-email {
+            font-size: 0.8rem;
+            color: #6f7880;
+        }
+
+        .menu-label {
+            padding: 0 20px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #6f7880;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .menu-items {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            border-radius: 0 4px 4px 0;
+            margin-bottom: 2px;
+        }
+
+        .menu-item:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+
+        .menu-item.active {
+            background-color: rgba(36, 112, 224, 0.1);
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .menu-item i {
+            margin-right: 10px;
+            color: #6f7880;
+            font-size: 1.1rem;
+            width: 20px;
             text-align: center;
         }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        .menu-item.active i {
             color: var(--primary);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 1.5rem;
-            color: #555;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: var(--accent);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .main-content {
-            background-color: white;
-            border-radius: 8px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        h2 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--border);
-        }
-
-        .requirements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .requirement-card {
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-            background-color: white;
-            height: 100%;
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
 
-        .requirement-card:hover {
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transform: translateY(-5px);
-            border-color: var(--secondary);
+        .header {
+            padding: 15px 30px;
+            background-color: var(--header);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .requirement-card h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .header-right {
             display: flex;
             align-items: center;
         }
 
-        .requirement-card h3 span.number {
-            background-color: var(--primary);
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: inline-flex;
-            justify-content: center;
+        .search-bar {
+            background-color: #f5f6f8;
+            border-radius: 20px;
+            padding: 8px 15px;
+            display: flex;
             align-items: center;
-            margin-right: 10px;
+            width: 300px;
+            margin-right: 20px;
+        }
+
+        .search-bar input {
+            background: transparent;
+            border: none;
+            outline: none;
+            flex-grow: 1;
+            margin-left: 8px;
             font-size: 0.9rem;
         }
 
-        .requirement-card p {
-            color: #666;
-            margin-bottom: 1rem;
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #7c55df;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .content {
+            padding: 20px 30px;
             flex-grow: 1;
         }
 
-        .requirement-card .details {
-            background-color: var(--light-bg);
-            border-radius: 4px;
-            padding: 1rem;
-            margin-top: auto;
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
         }
 
-        .requirement-card .details h4 {
-            font-size: 0.9rem;
+        .tab {
+            padding: 10px 15px;
+            cursor: pointer;
+            color: #6f7880;
+            border-bottom: 2px solid transparent;
+            margin-right: 15px;
+            font-size: 0.95rem;
+        }
+
+        .tab.active {
             color: var(--primary);
-            margin-bottom: 0.5rem;
+            border-bottom-color: var(--primary);
+            font-weight: 500;
         }
 
-        .requirement-card .details ul {
-            padding-left: 1.5rem;
+        .docs-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .doc-count {
+            font-size: 0.9rem;
+            color: #6f7880;
+        }
+
+        .search-filter {
+            display: flex;
+            align-items: center;
+        }
+
+        .filter-search {
+            background-color: white;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            width: 250px;
+            margin-right: 10px;
+        }
+
+        .filter-search input {
+            background: transparent;
+            border: none;
+            outline: none;
+            flex-grow: 1;
+            margin-left: 8px;
             font-size: 0.9rem;
         }
 
-        .requirement-card .tag {
-            display: inline-block;
-            background-color: #e1f5fe;
-            color: #0288d1;
-            font-size: 0.8rem;
-            padding: 0.2rem 0.5rem;
-            border-radius: 20px;
-            margin-right: 5px;
-            margin-bottom: 5px;
+        .filter-type {
+            background-color: white;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
         }
 
-        .footer {
+        .filter-type span {
+            margin-left: 8px;
+            font-size: 0.9rem;
+        }
+
+        .requirements-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .requirements-table th {
+            background-color: var(--table-header);
+            padding: 12px 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #6f7880;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .requirements-table td {
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+        }
+
+        .requirements-table tr:hover {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+
+        .icon-cell {
+            width: 40px;
+        }
+
+        .requirement-icon {
+            width: 24px;
+            height: 24px;
+            background-color: #e44332;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7rem;
+        }
+
+        .requirement-icon.blue {
+            background-color: #2470e0;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .status-active {
+            background-color: rgba(0, 200, 117, 0.1);
+            color: var(--success);
+        }
+
+        .status-completed {
+            background-color: rgba(130, 84, 255, 0.1);
+            color: var(--completed);
+        }
+
+        .actions {
+            color: #6f7880;
+            cursor: pointer;
+        }
+
+        .description-column {
+            max-width: 400px;
+        }
+
+        .create-button {
             background-color: var(--primary);
             color: white;
-            padding: 2rem 0;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+
+        .create-button i {
+            margin-left: 8px;
+        }
+
+        /* Icons */
+        .fas {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
             text-align: center;
         }
 
-        .footer a {
-            color: white;
-            text-decoration: underline;
-        }
-
-        .footer a:hover {
-            color: #a5d6ff;
-        }
-
         @media (max-width: 768px) {
-            .requirements-grid {
-                grid-template-columns: 1fr;
-            }
-
-            header .container {
+            .layout {
                 flex-direction: column;
-                text-align: center;
             }
 
-            .header-buttons {
-                margin-top: 1rem;
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
             }
 
-            .header-buttons a {
-                display: inline-block;
-                margin: 0.5rem;
+            .filter-search {
+                width: 150px;
             }
         }
-
-        /* Additional utility classes */
-        .mb-1 { margin-bottom: 1rem; }
-        .mb-2 { margin-bottom: 2rem; }
-        .text-center { text-align: center; }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">Motion<span>MedSync</span></div>
-            <div class="header-buttons">
-                <a href="#requirements">Requirements</a>
-                <a href="#contact">Contact</a>
-                <a href="https://github.com/" target="_blank">GitHub</a>
+    <div class="layout">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <span>MotionMedSync</span>
+                </div>
+            </div>
+
+            <div class="team-info">
+                <div class="team-avatar">M</div>
+                <div class="team-details">
+                    <div class="team-name">Med Team</div>
+                    <div class="team-email">support@motionmedsync.com</div>
+                </div>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+
+            <div class="menu-label">MENU</div>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </div>
+
+                <div class="menu-item">
+                    <i class="fas fa-file-signature"></i>
+                    <span>Create Requirements</span>
+                </div>
+
+                <div class="menu-item">
+                    <i class="fas fa-book-medical"></i>
+                    <span>Studies</span>
+                </div>
+
+                <div class="menu-item">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Payment</span>
+                </div>
+
+                <div class="menu-item active">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Requirements</span>
+                </div>
+
+                <div class="menu-item">
+                    <i class="fas fa-receipt"></i>
+                    <span>Reports</span>
+                </div>
+
+                <div class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </div>
+            </div>
+
+            <div class="menu-label">ORGANIZATION</div>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <i class="fas fa-puzzle-piece"></i>
+                    <span>Apps & Integrations</span>
+                </div>
+
+                <div class="menu-item">
+                    <i class="fas fa-file-invoice"></i>
+                    <span>Documentation</span>
+                </div>
+
+                <div class="menu-item">
+                    <i class="fas fa-building"></i>
+                    <span>Organization Settings</span>
+                </div>
             </div>
         </div>
-    </header>
 
-    <div class="container">
-        <section class="hero">
-            <h1>Motion Med Sync</h1>
-            <p>A modern platform designed to streamline patient data management, integrate with Garmin services, and provide comprehensive analytics tools for healthcare professionals.</p>
-            <a href="#requirements" class="cta-button">View Requirements</a>
-        </section>
+        <div class="main-content">
+            <div class="header">
+                <div class="page-title">Requirements Documents</div>
 
-        <section class="main-content" id="requirements">
-            <h2>System Requirements</h2>
-            <p>The following requirements outline the core functionality of the Motion Med Sync platform. These specifications serve as a guide for development and implementation to ensure the system meets the needs of healthcare providers and researchers.</p>
-
-            <div class="requirements-grid">
-                <!-- Requirement 1 -->
-                <div class="requirement-card">
-                    <h3><span class="number">1</span> User Accounts – Create / Deactivate</h3>
-                    <p>Allows administrators to set up new users or remove existing accounts to maintain proper access control. This ensures only authorized individuals can manage and view patient data.</p>
-                    <div class="details">
-                        <h4>Implementation Details:</h4>
-                        <ul>
-                            <li>Role-based access control system with admin, clinician, and researcher roles</li>
-                            <li>Bulk user import via CSV for organizational onboarding</li>
-                            <li>User activity logs for account creation and deactivation events</li>
-                            <li>Automatic account deactivation after prolonged inactivity (configurable)</li>
-                        </ul>
-                        <div class="mb-1"></div>
-                        <span class="tag">Security</span>
-                        <span class="tag">Admin</span>
-                        <span class="tag">High Priority</span>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search here...">
                     </div>
-                </div>
 
-                <!-- Requirement 2 -->
-                <div class="requirement-card">
-                    <h3><span class="number">2</span> Login / Forgot Password</h3>
-                    <p>Provides a secure login flow for users, along with a password reset mechanism to easily recover access if credentials are lost.</p>
-                    <div class="details">
-                        <h4>Implementation Details:</h4>
-                        <ul>
-                            <li>Multi-factor authentication support</li>
-                            <li>Secure password reset via email with time-limited tokens</li>
-                            <li>Account lockout after multiple failed attempts</li>
-                            <li>Password strength requirements enforcement</li>
-                            <li>Session timeout management for security</li>
-                        </ul>
-                        <div class="mb-1"></div>
-                        <span class="tag">Security</span>
-                        <span class="tag">User Experience</span>
-                        <span class="tag">High Priority</span>
-                    </div>
-                </div>
-
-                <!-- Requirement 3 -->
-                <div class="requirement-card">
-                    <h3><span class="number">3</span> Create Study – Edit / Disable</h3>
-                    <p>Enables the creation of research studies or clinical trials within the system. Administrators can update study details and disable them when they are no longer active.</p>
-                    <div class="details">
-                        <h4>Implementation Details:</h4>
-                        <ul>
-                            <li>Study templates for quick setup of common protocols</li>
-                            <li>Customizable data fields per study</li>
-                            <li>Automated study phase transitions based on timeline</li>
-                            <li>Study statistics dashboard for real-time monitoring</li>
-                            <li>Historical archives for completed studies</li>
-                        </ul>
-                        <div class="mb-1"></div>
-                        <span class="tag">Research</span>
-                        <span class="tag">Admin</span>
-                        <span class="tag">Medium Priority</span>
-                    </div>
-                </div>
-
-                <!-- Requirement 4 -->
-                <div class="requirement-card">
-                    <h3><span class="number">4</span> CSV Download</h3>
-                    <p>Allows exporting patient or study data in CSV format for external analysis, reporting, or backup purposes.</p>
-                    <div class="details">
-                        <h4>Implementation Details:</h4>
-                        <ul>
-                            <li>Customizable data field selection for exports</li>
-                            <li>Scheduled automated exports via email</li>
-                            <li>Data anonymization options for research purposes</li>
-                            <li>Export history tracking for audit purposes</li>
-                            <li>Support for additional export formats (Excel, JSON)</li>
-                        </ul>
-                        <div class="mb-1"></div>
-                        <span class="tag">Data Management</span>
-                        <span class="tag">Reporting</span>
-                        <span class="tag">Medium Priority</span>
-                    </div>
-                </div>
-
-                <!-- Requirement 5 -->
-                <div class="requirement-card">
-                    <h3><span class="number">5</span> Create Patient</h3>
-                    <p>Facilitates adding new patients to the system, capturing essential demographic and medical information required for monitoring and analysis.</p>
-                    <div class="details">
-                        <h4>Implementation Details:</h4>
-                        <ul>
-                            <li>HIPAA-compliant patient record management</li>
-                            <li>Customizable intake forms per study protocol</li>
-                            <li>Patient photo and document attachment functionality</li>
-                            <li>Duplicate detection and prevention</li>
-                            <li>Batch import capabilities for clinic transitions</li>
-                        </ul>
-                        <div class="mb-1"></div>
-                        <span class="tag">Patient Management</span>
-                        <span class="tag">Clinical</span>
-                        <span class="tag">High Priority</span>
-                    </div>
-                </div>
-
-                <!-- Requirement 6 -->
-                <div class="requirement-card">
-                    <h3><span class="number">6</span> Connect Patient to Garmin Account</h3>
-                    <p>Links a patient's Garmin account to Motion Med Sync, enabling automatic data retrieval from Garmin's platform for seamless health and fitness tracking.</p>
-                    <div class="details">
-                        <h4>Implementation Details:</h4>
-                        <ul>
-                            <li>OAuth 2.0 secure authorization flow</li>
-                            <li>QR code generation for easy patient device pairing</li>
-                            <li>Connection status monitoring dashboard</li>
-                            <li>Automatic reconnection attempts for disrupted links</li>
-                            <li>Data sync frequency customization</li>
-                        </ul>
-                        <div class="mb-1"></div>
-                        <span class="tag">Integration</span>
-                        <span class="tag">Garmin</span>
-                        <span class="tag">High Priority</span>
-                    </div>
-                </div>
-
-                <!-- Requirement 7 -->
-                <div class="requirement-card">
-                    <h3><span class="number">7</span> View Patient Data</h3>
-                    <p>Displays all relevant patient metrics and historical trends, providing healthcare professionals with actionable insights at a glance.</p>
-                    <div class="details">
-                        <h4>Implementation Details:</h4>
-                        <ul>
-                            <li>Interactive graphs and visualization tools</li>
-                            <li>Customizable metrics dashboard per provider</li>
-                            <li>Comparative analysis against population averages</li>
-                            <li>Anomaly detection and highlighting</li>
-                            <li>Period-over-period comparison views</li>
-                        </ul>
-                        <div class="mb-1"></div>
-                        <span class="tag">Data Visualization</span>
-                        <span class="tag">Clinical</span>
-                        <span class="tag">High Priority</span>
-                    </div>
-                </div>
-
-                <!-- Requirement 8 -->
-                <div class="requirement-card">
-                    <h3><span class="number">8</span> High-Level Dashboard of Data</h3>
-                    <p>Offers an overview of aggregated statistics, such as total studies, active patients, and key performance metrics, to give a quick snapshot of overall system health.</p>
-                    <div class="details">
-                        <h4>Implementation Details:</h4>
-                        <ul>
-                            <li>Customizable KPI cards and visualization widgets</li>
-                            <li>Real-time data updates with refresh options</li>
-                            <li>Multi-level drill-down capabilities</li>
-                            <li>Exportable dashboard reports as PDF/PNG</li>
-                            <li>Alert thresholds for critical metrics</li>
-                        </ul>
-                        <div class="mb-1"></div>
-                        <span class="tag">Analytics</span>
-                        <span class="tag">Reporting</span>
-                        <span class="tag">Medium Priority</span>
-                    </div>
-                </div>
-
-                <!-- Requirement 9 -->
-                <div class="requirement-card">
-                    <h3><span class="number">9</span> Pull Data from Garmin API</h3>
-                    <p>Automates the process of retrieving updated activity and health data from Garmin's servers, ensuring Motion Med Sync stays in sync with real-time information.</p>
-                    <div class="details">
-                        <h4>Implementation Details:</h4>
-                        <ul>
-                            <li>Scheduled background sync jobs</li>
-                            <li>API rate limit management and optimization</li>
-                            <li>Incremental data retrieval to minimize bandwidth</li>
-                            <li>Error handling and retry mechanisms</li>
-                            <li>Sync status monitoring and notification system</li>
-                        </ul>
-                        <div class="mb-1"></div>
-                        <span class="tag">Integration</span>
-                        <span class="tag">Garmin</span>
-                        <span class="tag">High Priority</span>
-                    </div>
-                </div>
-
-                <!-- Requirement 10 -->
-                <div class="requirement-card">
-                    <h3><span class="number">10</span> Backup Raw Data</h3>
-                    <p>Implements a reliable backup process for preserving raw patient information and collected metrics, minimizing data loss risks.</p>
-                    <div class="details">
-                        <h4>Implementation Details:</h4>
-                        <ul>
-                            <li>Automated daily incremental backups</li>
-                            <li>Weekly full system backups</li>
-                            <li>Encrypted backup storage with versioning</li>
-                            <li>Geo-redundant backup storage options</li>
-                            <li>One-click restoration interface for admins</li>
-                        </ul>
-                        <div class="mb-1"></div>
-                        <span class="tag">Security</span>
-                        <span class="tag">Data Management</span>
-                        <span class="tag">High Priority</span>
-                    </div>
-                </div>
-
-                <!-- Requirement 11 -->
-                <div class="requirement-card">
-                    <h3><span class="number">11</span> Store Data into Database</h3>
-                    <p>Ensures all incoming data is stored securely in a structured database, providing the backbone for analytics and record-keeping.</p>
-                    <div class="details">
-                        <h4>Implementation Details:</h4>
-                        <ul>
-                            <li>HIPAA-compliant database encryption</li>
-                            <li>Optimized schema for high-performance queries</li>
-                            <li>Data partitioning for scalability</li>
-                            <li>Audit logging for all data modifications</li>
-                            <li>Database health monitoring and maintenance tools</li>
-                        </ul>
-                        <div class="mb-1"></div>
-                        <span class="tag">Data Storage</span>
-                        <span class="tag">Security</span>
-                        <span class="tag">High Priority</span>
-                    </div>
-                </div>
-
-                <!-- Requirement 12 -->
-                <div class="requirement-card">
-                    <h3><span class="number">12</span> Create Calendar of Patient Activities</h3>
-                    <p>Generates a visual schedule of patient workouts, treatments, or relevant activities, helping healthcare providers to track and manage patient engagement.</p>
-                    <div class="details">
-                        <h4>Implementation Details:</h4>
-                        <ul>
-                            <li>Interactive calendar interface with drag-and-drop</li>
-                            <li>Recurring activity scheduling capabilities</li>
-                            <li>Patient notification and reminder system</li>
-                            <li>Calendar export to iCal/Google Calendar</li>
-                            <li>Activity completion tracking and visualization</li>
-                        </ul>
-                        <div class="mb-1"></div>
-                        <span class="tag">Patient Management</span>
-                        <span class="tag">User Experience</span>
-                        <span class="tag">Medium Priority</span>
-                    </div>
-                </div>
-
-                <!-- Requirement 13 -->
-                <div class="requirement-card">
-                    <h3><span class="number">13</span> CSV Processing – Summaries, Time Series</h3>
-                    <p>Processes CSV files to create summary statistics and time-series data, enabling trend analysis and comprehensive reporting within the platform.</p>
-                    <div class="details">
-                        <h4>Implementation Details:</h4>
-                        <ul>
-                            <li>Automated statistical analysis of imported data</li>
-                            <li>Customizable time-series visualization tools</li>
-                            <li>Outlier detection algorithms</li>
-                            <li>Correlation analysis between different metrics</li>
-                            <li>Export of processed data in multiple formats</li>
-                        </ul>
-                        <div class="mb-1"></div>
-                        <span class="tag">Data Processing</span>
-                        <span class="tag">Analytics</span>
-                        <span class="tag">Medium Priority</span>
-                    </div>
-                </div>
-
-                <!-- Requirement 14 -->
-                <div class="requirement-card">
-                    <h3><span class="number">14</span> Set Power Min and Max per Patient</h3>
-                    <p>Allows clinicians or administrators to define individualized power thresholds for patients, tailoring exercise and training guidelines to each person's needs.</p>
-                    <div class="details">
-                        <h4>Implementation Details:</h4>
-                        <ul>
-                            <li>Customizable threshold settings interface</li>
-                            <li>Automatic calculations based on assessment data</li>
-                            <li>Visual indicators for out-of-range activities</li>
-                            <li>Historical tracking of threshold adjustments</li>
-                            <li>Alert system for consistent threshold violations</li>
-                        </ul>
-                        <div class="mb-1"></div>
-                        <span class="tag">Patient Management</span>
-                        <span class="tag">Clinical</span>
-                        <span class="tag">Medium Priority</span>
+                    <div class="user-avatar">
+                        M
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section class="main-content" id="contact">
-            <h2>Contact Information</h2>
-            <p class="mb-1">Please reach out to our development team for further customization or clarifications regarding these requirements.</p>
-            <p class="mb-1">You can submit issues, feature requests, or contribute to the project directly through our GitHub repository.</p>
-            <p class="text-center mb-2">
-                <a href="https://github.com/" class="cta-button">View on GitHub</a>
-            </p>
-        </section>
+            <div class="content">
+                <div class="tabs">
+                    <div class="tab active">All</div>
+                    <div class="tab">Active</div>
+                    <div class="tab">Completed</div>
+                    <div class="tab">Studies</div>
+                </div>
+
+                <div class="docs-header">
+                    <div class="doc-count">14 requirements</div>
+
+                    <div class="search-filter">
+                        <div class="filter-search">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search requirement...">
+                        </div>
+
+                        <div class="filter-type">
+                            <span>Type</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="requirements-table">
+                    <thead>
+                        <tr>
+                            <th class="icon-cell"></th>
+                            <th>Requirement Name</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="icon-cell">
+                                <div class="requirement-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                            </td>
+                            <td>User Accounts – Create / Deactivate</td>
+                            <td class="description-column">Allows administrators to set up new users or remove existing accounts to maintain proper access control.</td>
+                            <td>Admin</td>
+                            <td>High</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+
+                        <tr>
+                            <td class="icon-cell">
+                                <div class="requirement-icon">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                            </td>
+                            <td>Login / Forgot Password</td>
+                            <td class="description-column">Provides a secure login flow for users, along with a password reset mechanism to easily recover access if credentials are lost.</td>
+                            <td>Security</td>
+                            <td>High</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+
+                        <tr>
+                            <td class="icon-cell">
+                                <div class="requirement-icon blue">
+                                    <i class="fas fa-flask"></i>
+                                </div>
+                            </td>
+                            <td>Create Study – Edit / Disable</td>
+                            <td class="description-column">Enables the creation of research studies or clinical trials within the system. Administrators can update study details and disable them when they are no longer active.</td>
+                            <td>Research</td>
+                            <td>Medium</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+
+                        <tr>
+                            <td class="icon-cell">
+                                <div class="requirement-icon">
+                                    <i class="fas fa-file-csv"></i>
+                                </div>
+                            </td>
+                            <td>CSV Download</td>
+                            <td class="description-column">Allows exporting patient or study data in CSV format for external analysis, reporting, or backup purposes.</td>
+                            <td>Data</td>
+                            <td>Medium</td>
+                            <td><span class="status-badge status-completed">Completed</span></td>
+                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+
+                        <tr>
+                            <td class="icon-cell">
+                                <div class="requirement-icon blue">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                            </td>
+                            <td>Create Patient</td>
+                            <td class="description-column">Facilitates adding new patients to the system, capturing essential demographic and medical information required for monitoring and analysis.</td>
+                            <td>Clinical</td>
+                            <td>High</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+
+                        <tr>
+                            <td class="icon-cell">
+                                <div class="requirement-icon blue">
+                                    <i class="fas fa-link"></i>
+                                </div>
+                            </td>
+                            <td>Connect Patient to Garmin Account</td>
+                            <td class="description-column">Links a patient's Garmin account to Motion Med Sync, enabling automatic data retrieval from Garmin's platform for seamless health and fitness tracking.</td>
+                            <td>Integration</td>
+                            <td>High</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+
+                        <tr>
+                            <td class="icon-cell">
+                                <div class="requirement-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                            </td>
+                            <td>View Patient Data</td>
+                            <td class="description-column">Displays all relevant patient metrics and historical trends, providing healthcare professionals with actionable insights at a glance.</td>
+                            <td>Analytics</td>
+                            <td>High</td>
+                            <td><span class="status-badge status-completed">Completed</span></td>
+                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+
+                        <tr>
+                            <td class="icon-cell">
+                                <div class="requirement-icon">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                            </td>
+                            <td>High-Level Dashboard of Data</td>
+                            <td class="description-column">Offers an overview of aggregated statistics, such as total studies, active patients, and key performance metrics.</td>
+                            <td>Analytics</td>
+                            <td>Medium</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+
+                        <tr>
+                            <td class="icon-cell">
+                                <div class="requirement-icon blue">
+                                    <i class="fas fa-download"></i>
+                                </div>
+                            </td>
+                            <td>Pull Data from Garmin API</td>
+                            <td class="description-column">Automates the process of retrieving updated activity and health data from Garmin's servers, ensuring Motion Med Sync stays in sync with real-time information.</td>
+                            <td>Integration</td>
+                            <td>High</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+
+                        <tr>
+                            <td class="icon-cell">
+                                <div class="requirement-icon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                            </td>
+                            <td>Backup Raw Data</td>
+                            <td class="description-column">Implements a reliable backup process for preserving raw patient information and collected metrics, minimizing data loss risks.</td>
+                            <td>Security</td>
+                            <td>High</td>
+                            <td><span class="status-badge status-completed">Completed</span></td>
+                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+
+                        <tr>
+                            <td class="icon-cell">
+                                <div class="requirement-icon">
+                                    <i class="fas fa-save"></i>
+                                </div>
+                            </td>
+                            <td>Store Data into Database</td>
+                            <td class="description-column">Ensures all incoming data is stored securely in a structured database, providing the backbone for analytics and record-keeping.</td>
+                            <td>Data</td>
+                            <td>High</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+
+                        <tr>
+                            <td class="icon-cell">
+                                <div class="requirement-icon blue">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                            </td>
+                            <td>Create Calendar of Patient Activities</td>
+                            <td class="description-column">Generates a visual schedule of patient workouts, treatments, or relevant activities, helping healthcare providers to track and manage patient engagement.</td>
+                            <td>UX</td>
+                            <td>Medium</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+
+                        <tr>
+                            <td class="icon-cell">
+                                <div class="requirement-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                            </td>
+                            <td>CSV Processing – Summaries, Time Series</td>
+                            <td class="description-column">Processes CSV files to create summary statistics and time-series data, enabling trend analysis and comprehensive reporting within the platform.</td>
+                            <td>Data</td>
+                            <td>Medium</td>
+                            <td><span class="status-badge status-completed">Completed</span></td>
+                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+
+                        <tr>
+                            <td class="icon-cell">
+                                <div class="requirement-icon blue">
+                                    <i class="fas fa-sliders-h"></i>
+                                </div>
+                            </td>
+                            <td>Set Power Min and Max per Patient</td>
+                            <td class="description-column">Allows clinicians or administrators to define individualized power thresholds for patients, tailoring exercise and training guidelines to each person's needs.</td>
+                            <td>Clinical</td>
+                            <td>Medium</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button class="create-button">
+                    Create Requirement <i class="fas fa-plus"></i>
+                </button>
+            </div>
+        </div>
     </div>
-
-    <footer class="footer">
-        <div class="container">
-            <p>© 2025 Motion Med Sync. All rights reserved.</p>
-            <p>A modern healthcare data management platform</p>
-        </div>
-    </footer>
 </body>
 </html>
