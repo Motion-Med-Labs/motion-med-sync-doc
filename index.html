@@ -13,8 +13,6 @@
             --border: #e6e6e6;
             --success: #00c875;
             --completed: #8254ff;
-            --sidebar: #ffffff;
-            --header: #ffffff;
             --table-header: #f5f7fa;
         }
 
@@ -29,142 +27,22 @@
             background-color: var(--light-bg);
             color: var(--text);
             line-height: 1.5;
-        }
-
-        .layout {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        .sidebar {
-            width: 280px;
-            background-color: var(--sidebar);
-            border-right: 1px solid var(--border);
-            padding: 20px 0;
-            flex-shrink: 0;
-        }
-
-        .sidebar-header {
-            padding: 0 20px 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            font-weight: 600;
-            font-size: 1.25rem;
-            color: var(--text);
-        }
-
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            background-color: var(--primary);
-            border-radius: 8px;
-            margin-right: 10px;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .team-info {
-            display: flex;
-            align-items: center;
-            padding: 15px 20px;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 20px;
-        }
-
-        .team-avatar {
-            width: 40px;
-            height: 40px;
-            background-color: #1c3879;
-            border-radius: 50%;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin-right: 12px;
-        }
-
-        .team-details {
-            flex-grow: 1;
-        }
-
-        .team-name {
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-
-        .team-email {
-            font-size: 0.8rem;
-            color: #6f7880;
-        }
-
-        .menu-label {
-            padding: 0 20px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            color: #6f7880;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .menu-items {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-
-        .menu-item {
-            display: flex;
-            align-items: center;
-            padding: 10px 20px;
-            color: var(--text);
-            text-decoration: none;
-            font-size: 0.95rem;
-            border-radius: 0 4px 4px 0;
-            margin-bottom: 2px;
-        }
-
-        .menu-item:hover {
-            background-color: rgba(0, 0, 0, 0.04);
-        }
-
-        .menu-item.active {
-            background-color: rgba(36, 112, 224, 0.1);
-            color: var(--primary);
-            font-weight: 500;
-        }
-
-        .menu-item i {
-            margin-right: 10px;
-            color: #6f7880;
-            font-size: 1.1rem;
-            width: 20px;
-            text-align: center;
-        }
-
-        .menu-item.active i {
-            color: var(--primary);
+            padding: 20px;
         }
 
         .main-content {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
         }
 
         .header {
-            padding: 15px 30px;
-            background-color: var(--header);
+            padding: 20px 30px;
+            background-color: white;
             border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
         }
 
         .page-title {
@@ -173,128 +51,9 @@
             color: var(--text);
         }
 
-        .header-right {
-            display: flex;
-            align-items: center;
-        }
-
-        .search-bar {
-            background-color: #f5f6f8;
-            border-radius: 20px;
-            padding: 8px 15px;
-            display: flex;
-            align-items: center;
-            width: 300px;
-            margin-right: 20px;
-        }
-
-        .search-bar input {
-            background: transparent;
-            border: none;
-            outline: none;
-            flex-grow: 1;
-            margin-left: 8px;
-            font-size: 0.9rem;
-        }
-
-        .user-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background-color: #7c55df;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .content {
-            padding: 20px 30px;
-            flex-grow: 1;
-        }
-
-        .tabs {
-            display: flex;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 20px;
-        }
-
-        .tab {
-            padding: 10px 15px;
-            cursor: pointer;
-            color: #6f7880;
-            border-bottom: 2px solid transparent;
-            margin-right: 15px;
-            font-size: 0.95rem;
-        }
-
-        .tab.active {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
-            font-weight: 500;
-        }
-
-        .docs-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .doc-count {
-            font-size: 0.9rem;
-            color: #6f7880;
-        }
-
-        .search-filter {
-            display: flex;
-            align-items: center;
-        }
-
-        .filter-search {
-            background-color: white;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            padding: 8px 15px;
-            display: flex;
-            align-items: center;
-            width: 250px;
-            margin-right: 10px;
-        }
-
-        .filter-search input {
-            background: transparent;
-            border: none;
-            outline: none;
-            flex-grow: 1;
-            margin-left: 8px;
-            font-size: 0.9rem;
-        }
-
-        .filter-type {
-            background-color: white;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            padding: 8px 15px;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .filter-type span {
-            margin-left: 8px;
-            font-size: 0.9rem;
-        }
-
         .requirements-table {
             width: 100%;
             border-collapse: collapse;
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
         .requirements-table th {
@@ -337,410 +96,189 @@
             background-color: #2470e0;
         }
 
-        .status-badge {
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            display: inline-block;
-        }
-
-        .status-active {
-            background-color: rgba(0, 200, 117, 0.1);
-            color: var(--success);
-        }
-
-        .status-completed {
-            background-color: rgba(130, 84, 255, 0.1);
-            color: var(--completed);
-        }
-
-        .actions {
-            color: #6f7880;
-            cursor: pointer;
-        }
-
         .description-column {
-            max-width: 400px;
+            color: #666;
         }
 
-        .create-button {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            font-weight: 500;
-            cursor: pointer;
-            margin-top: 20px;
-            font-size: 0.95rem;
-        }
-
-        .create-button i {
-            margin-left: 8px;
-        }
-
-        /* Icons */
-        .fas {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
+        .footer {
             text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #6f7880;
         }
 
         @media (max-width: 768px) {
-            .layout {
-                flex-direction: column;
+            body {
+                padding: 10px;
             }
 
-            .sidebar {
-                width: 100%;
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-            }
-
-            .filter-search {
-                width: 150px;
+            .requirements-table th:nth-child(1),
+            .requirements-table td:nth-child(1) {
+                display: none;
             }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="layout">
-        <div class="sidebar">
-            <div class="sidebar-header">
-                <div class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <span>MotionMedSync</span>
-                </div>
-            </div>
-
-            <div class="team-info">
-                <div class="team-avatar">M</div>
-                <div class="team-details">
-                    <div class="team-name">Med Team</div>
-                    <div class="team-email">support@motionmedsync.com</div>
-                </div>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-
-            <div class="menu-label">MENU</div>
-            <div class="menu-items">
-                <div class="menu-item">
-                    <i class="fas fa-home"></i>
-                    <span>Home</span>
-                </div>
-
-                <div class="menu-item">
-                    <i class="fas fa-file-signature"></i>
-                    <span>Create Requirements</span>
-                </div>
-
-                <div class="menu-item">
-                    <i class="fas fa-book-medical"></i>
-                    <span>Studies</span>
-                </div>
-
-                <div class="menu-item">
-                    <i class="fas fa-credit-card"></i>
-                    <span>Payment</span>
-                </div>
-
-                <div class="menu-item active">
-                    <i class="fas fa-file-alt"></i>
-                    <span>Requirements</span>
-                </div>
-
-                <div class="menu-item">
-                    <i class="fas fa-receipt"></i>
-                    <span>Reports</span>
-                </div>
-
-                <div class="menu-item">
-                    <i class="fas fa-cog"></i>
-                    <span>Settings</span>
-                </div>
-            </div>
-
-            <div class="menu-label">ORGANIZATION</div>
-            <div class="menu-items">
-                <div class="menu-item">
-                    <i class="fas fa-puzzle-piece"></i>
-                    <span>Apps & Integrations</span>
-                </div>
-
-                <div class="menu-item">
-                    <i class="fas fa-file-invoice"></i>
-                    <span>Documentation</span>
-                </div>
-
-                <div class="menu-item">
-                    <i class="fas fa-building"></i>
-                    <span>Organization Settings</span>
-                </div>
-            </div>
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">Motion Med Sync Requirements</div>
         </div>
 
-        <div class="main-content">
-            <div class="header">
-                <div class="page-title">Requirements Documents</div>
-
-                <div class="header-right">
-                    <div class="search-bar">
-                        <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Search here...">
-                    </div>
-
-                    <div class="user-avatar">
-                        M
-                    </div>
-                </div>
-            </div>
-
-            <div class="content">
-                <div class="tabs">
-                    <div class="tab active">All</div>
-                    <div class="tab">Active</div>
-                    <div class="tab">Completed</div>
-                    <div class="tab">Studies</div>
-                </div>
-
-                <div class="docs-header">
-                    <div class="doc-count">14 requirements</div>
-
-                    <div class="search-filter">
-                        <div class="filter-search">
-                            <i class="fas fa-search"></i>
-                            <input type="text" placeholder="Search requirement...">
+        <table class="requirements-table">
+            <thead>
+                <tr>
+                    <th class="icon-cell"></th>
+                    <th>Requirement</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="icon-cell">
+                        <div class="requirement-icon">
+                            <i class="fas fa-user"></i>
                         </div>
+                    </td>
+                    <td>User Accounts – Create / Deactivate</td>
+                    <td class="description-column">Allows administrators to set up new users or remove existing accounts to maintain proper access control. This ensures only authorized individuals can manage and view patient data.</td>
+                </tr>
 
-                        <div class="filter-type">
-                            <span>Type</span>
-                            <i class="fas fa-chevron-down"></i>
+                <tr>
+                    <td class="icon-cell">
+                        <div class="requirement-icon">
+                            <i class="fas fa-lock"></i>
                         </div>
-                    </div>
-                </div>
+                    </td>
+                    <td>Login / Forgot Password</td>
+                    <td class="description-column">Provides a secure login flow for users, along with a password reset mechanism to easily recover access if credentials are lost.</td>
+                </tr>
 
-                <table class="requirements-table">
-                    <thead>
-                        <tr>
-                            <th class="icon-cell"></th>
-                            <th>Requirement Name</th>
-                            <th>Description</th>
-                            <th>Type</th>
-                            <th>Priority</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="icon-cell">
-                                <div class="requirement-icon">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                            </td>
-                            <td>User Accounts – Create / Deactivate</td>
-                            <td class="description-column">Allows administrators to set up new users or remove existing accounts to maintain proper access control.</td>
-                            <td>Admin</td>
-                            <td>High</td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
+                <tr>
+                    <td class="icon-cell">
+                        <div class="requirement-icon blue">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                    </td>
+                    <td>Create Study – Edit / Disable</td>
+                    <td class="description-column">Enables the creation of research studies or clinical trials within the system. Administrators can update study details and disable them when they are no longer active.</td>
+                </tr>
 
-                        <tr>
-                            <td class="icon-cell">
-                                <div class="requirement-icon">
-                                    <i class="fas fa-lock"></i>
-                                </div>
-                            </td>
-                            <td>Login / Forgot Password</td>
-                            <td class="description-column">Provides a secure login flow for users, along with a password reset mechanism to easily recover access if credentials are lost.</td>
-                            <td>Security</td>
-                            <td>High</td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
+                <tr>
+                    <td class="icon-cell">
+                        <div class="requirement-icon">
+                            <i class="fas fa-file-csv"></i>
+                        </div>
+                    </td>
+                    <td>CSV Download</td>
+                    <td class="description-column">Allows exporting patient or study data in CSV format for external analysis, reporting, or backup purposes.</td>
+                </tr>
 
-                        <tr>
-                            <td class="icon-cell">
-                                <div class="requirement-icon blue">
-                                    <i class="fas fa-flask"></i>
-                                </div>
-                            </td>
-                            <td>Create Study – Edit / Disable</td>
-                            <td class="description-column">Enables the creation of research studies or clinical trials within the system. Administrators can update study details and disable them when they are no longer active.</td>
-                            <td>Research</td>
-                            <td>Medium</td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
+                <tr>
+                    <td class="icon-cell">
+                        <div class="requirement-icon blue">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                    </td>
+                    <td>Create Patient</td>
+                    <td class="description-column">Facilitates adding new patients to the system, capturing essential demographic and medical information required for monitoring and analysis.</td>
+                </tr>
 
-                        <tr>
-                            <td class="icon-cell">
-                                <div class="requirement-icon">
-                                    <i class="fas fa-file-csv"></i>
-                                </div>
-                            </td>
-                            <td>CSV Download</td>
-                            <td class="description-column">Allows exporting patient or study data in CSV format for external analysis, reporting, or backup purposes.</td>
-                            <td>Data</td>
-                            <td>Medium</td>
-                            <td><span class="status-badge status-completed">Completed</span></td>
-                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
+                <tr>
+                    <td class="icon-cell">
+                        <div class="requirement-icon blue">
+                            <i class="fas fa-link"></i>
+                        </div>
+                    </td>
+                    <td>Connect Patient to Garmin Account</td>
+                    <td class="description-column">Links a patient's Garmin account to Motion Med Sync, enabling automatic data retrieval from Garmin's platform for seamless health and fitness tracking.</td>
+                </tr>
 
-                        <tr>
-                            <td class="icon-cell">
-                                <div class="requirement-icon blue">
-                                    <i class="fas fa-user-plus"></i>
-                                </div>
-                            </td>
-                            <td>Create Patient</td>
-                            <td class="description-column">Facilitates adding new patients to the system, capturing essential demographic and medical information required for monitoring and analysis.</td>
-                            <td>Clinical</td>
-                            <td>High</td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
+                <tr>
+                    <td class="icon-cell">
+                        <div class="requirement-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </td>
+                    <td>View Patient Data</td>
+                    <td class="description-column">Displays all relevant patient metrics and historical trends, providing healthcare professionals with actionable insights at a glance.</td>
+                </tr>
 
-                        <tr>
-                            <td class="icon-cell">
-                                <div class="requirement-icon blue">
-                                    <i class="fas fa-link"></i>
-                                </div>
-                            </td>
-                            <td>Connect Patient to Garmin Account</td>
-                            <td class="description-column">Links a patient's Garmin account to Motion Med Sync, enabling automatic data retrieval from Garmin's platform for seamless health and fitness tracking.</td>
-                            <td>Integration</td>
-                            <td>High</td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
+                <tr>
+                    <td class="icon-cell">
+                        <div class="requirement-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                    </td>
+                    <td>High-Level Dashboard of Data</td>
+                    <td class="description-column">Offers an overview of aggregated statistics, such as total studies, active patients, and key performance metrics, to give a quick snapshot of overall system health.</td>
+                </tr>
 
-                        <tr>
-                            <td class="icon-cell">
-                                <div class="requirement-icon">
-                                    <i class="fas fa-chart-line"></i>
-                                </div>
-                            </td>
-                            <td>View Patient Data</td>
-                            <td class="description-column">Displays all relevant patient metrics and historical trends, providing healthcare professionals with actionable insights at a glance.</td>
-                            <td>Analytics</td>
-                            <td>High</td>
-                            <td><span class="status-badge status-completed">Completed</span></td>
-                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
+                <tr>
+                    <td class="icon-cell">
+                        <div class="requirement-icon blue">
+                            <i class="fas fa-download"></i>
+                        </div>
+                    </td>
+                    <td>Pull Data from Garmin API</td>
+                    <td class="description-column">Automates the process of retrieving updated activity and health data from Garmin's servers, ensuring Motion Med Sync stays in sync with real-time information.</td>
+                </tr>
 
-                        <tr>
-                            <td class="icon-cell">
-                                <div class="requirement-icon">
-                                    <i class="fas fa-tachometer-alt"></i>
-                                </div>
-                            </td>
-                            <td>High-Level Dashboard of Data</td>
-                            <td class="description-column">Offers an overview of aggregated statistics, such as total studies, active patients, and key performance metrics.</td>
-                            <td>Analytics</td>
-                            <td>Medium</td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
+                <tr>
+                    <td class="icon-cell">
+                        <div class="requirement-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                    </td>
+                    <td>Backup Raw Data</td>
+                    <td class="description-column">Implements a reliable backup process for preserving raw patient information and collected metrics, minimizing data loss risks.</td>
+                </tr>
 
-                        <tr>
-                            <td class="icon-cell">
-                                <div class="requirement-icon blue">
-                                    <i class="fas fa-download"></i>
-                                </div>
-                            </td>
-                            <td>Pull Data from Garmin API</td>
-                            <td class="description-column">Automates the process of retrieving updated activity and health data from Garmin's servers, ensuring Motion Med Sync stays in sync with real-time information.</td>
-                            <td>Integration</td>
-                            <td>High</td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
+                <tr>
+                    <td class="icon-cell">
+                        <div class="requirement-icon">
+                            <i class="fas fa-save"></i>
+                        </div>
+                    </td>
+                    <td>Store Data into Database</td>
+                    <td class="description-column">Ensures all incoming data is stored securely in a structured database, providing the backbone for analytics and record-keeping.</td>
+                </tr>
 
-                        <tr>
-                            <td class="icon-cell">
-                                <div class="requirement-icon">
-                                    <i class="fas fa-database"></i>
-                                </div>
-                            </td>
-                            <td>Backup Raw Data</td>
-                            <td class="description-column">Implements a reliable backup process for preserving raw patient information and collected metrics, minimizing data loss risks.</td>
-                            <td>Security</td>
-                            <td>High</td>
-                            <td><span class="status-badge status-completed">Completed</span></td>
-                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
+                <tr>
+                    <td class="icon-cell">
+                        <div class="requirement-icon blue">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    </td>
+                    <td>Create Calendar of Patient Activities</td>
+                    <td class="description-column">Generates a visual schedule of patient workouts, treatments, or relevant activities, helping healthcare providers to track and manage patient engagement.</td>
+                </tr>
 
-                        <tr>
-                            <td class="icon-cell">
-                                <div class="requirement-icon">
-                                    <i class="fas fa-save"></i>
-                                </div>
-                            </td>
-                            <td>Store Data into Database</td>
-                            <td class="description-column">Ensures all incoming data is stored securely in a structured database, providing the backbone for analytics and record-keeping.</td>
-                            <td>Data</td>
-                            <td>High</td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
+                <tr>
+                    <td class="icon-cell">
+                        <div class="requirement-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                    </td>
+                    <td>CSV Processing – Summaries, Time Series</td>
+                    <td class="description-column">Processes CSV files to create summary statistics and time-series data, enabling trend analysis and comprehensive reporting within the platform.</td>
+                </tr>
 
-                        <tr>
-                            <td class="icon-cell">
-                                <div class="requirement-icon blue">
-                                    <i class="fas fa-calendar-alt"></i>
-                                </div>
-                            </td>
-                            <td>Create Calendar of Patient Activities</td>
-                            <td class="description-column">Generates a visual schedule of patient workouts, treatments, or relevant activities, helping healthcare providers to track and manage patient engagement.</td>
-                            <td>UX</td>
-                            <td>Medium</td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
+                <tr>
+                    <td class="icon-cell">
+                        <div class="requirement-icon blue">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
+                    </td>
+                    <td>Set Power Min and Max per Patient</td>
+                    <td class="description-column">Allows clinicians or administrators to define individualized power thresholds for patients, tailoring exercise and training guidelines to each person's needs.</td>
+                </tr>
+            </tbody>
+        </table>
 
-                        <tr>
-                            <td class="icon-cell">
-                                <div class="requirement-icon">
-                                    <i class="fas fa-file-alt"></i>
-                                </div>
-                            </td>
-                            <td>CSV Processing – Summaries, Time Series</td>
-                            <td class="description-column">Processes CSV files to create summary statistics and time-series data, enabling trend analysis and comprehensive reporting within the platform.</td>
-                            <td>Data</td>
-                            <td>Medium</td>
-                            <td><span class="status-badge status-completed">Completed</span></td>
-                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
-
-                        <tr>
-                            <td class="icon-cell">
-                                <div class="requirement-icon blue">
-                                    <i class="fas fa-sliders-h"></i>
-                                </div>
-                            </td>
-                            <td>Set Power Min and Max per Patient</td>
-                            <td class="description-column">Allows clinicians or administrators to define individualized power thresholds for patients, tailoring exercise and training guidelines to each person's needs.</td>
-                            <td>Clinical</td>
-                            <td>Medium</td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td class="actions"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <button class="create-button">
-                    Create Requirement <i class="fas fa-plus"></i>
-                </button>
-            </div>
+        <div class="footer">
+            © 2025 Motion Med Sync
         </div>
     </div>
 </body>
