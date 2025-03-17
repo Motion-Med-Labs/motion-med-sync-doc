@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motion Med Sync - Requirements Documentation</title>
+    <style>
+        :root {
+            --primary: #2c6fb8;
+            --secondary: #4a90e2;
+            --accent: #1e88e5;
+            --text: #333333;
+            --light-bg: #f5f9ff;
+            --border: #e6e6e6;
+            --success: #4caf50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #a5d6ff;
+        }
+
+        .header-buttons a {
+            background-color: white;
+            color: var(--primary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-left: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .header-buttons a:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .hero {
+            background-color: var(--light-bg);
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            color: #555;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-content {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .requirement-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            background-color: white;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .requirement-card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            border-color: var(--secondary);
+        }
+
+        .requirement-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .requirement-card h3 span.number {
+            background-color: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+
+        .requirement-card p {
+            color: #666;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .requirement-card .details {
+            background-color: var(--light-bg);
+            border-radius: 4px;
+            padding: 1rem;
+            margin-top: auto;
+        }
+
+        .requirement-card .details h4 {
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .requirement-card .details ul {
+            padding-left: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .requirement-card .tag {
+            display: inline-block;
+            background-color: #e1f5fe;
+            color: #0288d1;
+            font-size: 0.8rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .footer a:hover {
+            color: #a5d6ff;
+        }
+
+        @media (max-width: 768px) {
+            .requirements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header-buttons {
+                margin-top: 1rem;
+            }
+
+            .header-buttons a {
+                display: inline-block;
+                margin: 0.5rem;
+            }
+        }
+
+        /* Additional utility classes */
+        .mb-1 { margin-bottom: 1rem; }
+        .mb-2 { margin-bottom: 2rem; }
+        .text-center { text-align: center; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Motion<span>MedSync</span></div>
+            <div class="header-buttons">
+                <a href="#requirements">Requirements</a>
+                <a href="#contact">Contact</a>
+                <a href="https://github.com/" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <h1>Motion Med Sync</h1>
+            <p>A modern platform designed to streamline patient data management, integrate with Garmin services, and provide comprehensive analytics tools for healthcare professionals.</p>
+            <a href="#requirements" class="cta-button">View Requirements</a>
+        </section>
+
+        <section class="main-content" id="requirements">
+            <h2>System Requirements</h2>
+            <p>The following requirements outline the core functionality of the Motion Med Sync platform. These specifications serve as a guide for development and implementation to ensure the system meets the needs of healthcare providers and researchers.</p>
+
+            <div class="requirements-grid">
+                <!-- Requirement 1 -->
+                <div class="requirement-card">
+                    <h3><span class="number">1</span> User Accounts – Create / Deactivate</h3>
+                    <p>Allows administrators to set up new users or remove existing accounts to maintain proper access control. This ensures only authorized individuals can manage and view patient data.</p>
+                    <div class="details">
+                        <h4>Implementation Details:</h4>
+                        <ul>
+                            <li>Role-based access control system with admin, clinician, and researcher roles</li>
+                            <li>Bulk user import via CSV for organizational onboarding</li>
+                            <li>User activity logs for account creation and deactivation events</li>
+                            <li>Automatic account deactivation after prolonged inactivity (configurable)</li>
+                        </ul>
+                        <div class="mb-1"></div>
+                        <span class="tag">Security</span>
+                        <span class="tag">Admin</span>
+                        <span class="tag">High Priority</span>
+                    </div>
+                </div>
+
+                <!-- Requirement 2 -->
+                <div class="requirement-card">
+                    <h3><span class="number">2</span> Login / Forgot Password</h3>
+                    <p>Provides a secure login flow for users, along with a password reset mechanism to easily recover access if credentials are lost.</p>
+                    <div class="details">
+                        <h4>Implementation Details:</h4>
+                        <ul>
+                            <li>Multi-factor authentication support</li>
+                            <li>Secure password reset via email with time-limited tokens</li>
+                            <li>Account lockout after multiple failed attempts</li>
+                            <li>Password strength requirements enforcement</li>
+                            <li>Session timeout management for security</li>
+                        </ul>
+                        <div class="mb-1"></div>
+                        <span class="tag">Security</span>
+                        <span class="tag">User Experience</span>
+                        <span class="tag">High Priority</span>
+                    </div>
+                </div>
+
+                <!-- Requirement 3 -->
+                <div class="requirement-card">
+                    <h3><span class="number">3</span> Create Study – Edit / Disable</h3>
+                    <p>Enables the creation of research studies or clinical trials within the system. Administrators can update study details and disable them when they are no longer active.</p>
+                    <div class="details">
+                        <h4>Implementation Details:</h4>
+                        <ul>
+                            <li>Study templates for quick setup of common protocols</li>
+                            <li>Customizable data fields per study</li>
+                            <li>Automated study phase transitions based on timeline</li>
+                            <li>Study statistics dashboard for real-time monitoring</li>
+                            <li>Historical archives for completed studies</li>
+                        </ul>
+                        <div class="mb-1"></div>
+                        <span class="tag">Research</span>
+                        <span class="tag">Admin</span>
+                        <span class="tag">Medium Priority</span>
+                    </div>
+                </div>
+
+                <!-- Requirement 4 -->
+                <div class="requirement-card">
+                    <h3><span class="number">4</span> CSV Download</h3>
+                    <p>Allows exporting patient or study data in CSV format for external analysis, reporting, or backup purposes.</p>
+                    <div class="details">
+                        <h4>Implementation Details:</h4>
+                        <ul>
+                            <li>Customizable data field selection for exports</li>
+                            <li>Scheduled automated exports via email</li>
+                            <li>Data anonymization options for research purposes</li>
+                            <li>Export history tracking for audit purposes</li>
+                            <li>Support for additional export formats (Excel, JSON)</li>
+                        </ul>
+                        <div class="mb-1"></div>
+                        <span class="tag">Data Management</span>
+                        <span class="tag">Reporting</span>
+                        <span class="tag">Medium Priority</span>
+                    </div>
+                </div>
+
+                <!-- Requirement 5 -->
+                <div class="requirement-card">
+                    <h3><span class="number">5</span> Create Patient</h3>
+                    <p>Facilitates adding new patients to the system, capturing essential demographic and medical information required for monitoring and analysis.</p>
+                    <div class="details">
+                        <h4>Implementation Details:</h4>
+                        <ul>
+                            <li>HIPAA-compliant patient record management</li>
+                            <li>Customizable intake forms per study protocol</li>
+                            <li>Patient photo and document attachment functionality</li>
+                            <li>Duplicate detection and prevention</li>
+                            <li>Batch import capabilities for clinic transitions</li>
+                        </ul>
+                        <div class="mb-1"></div>
+                        <span class="tag">Patient Management</span>
+                        <span class="tag">Clinical</span>
+                        <span class="tag">High Priority</span>
+                    </div>
+                </div>
+
+                <!-- Requirement 6 -->
+                <div class="requirement-card">
+                    <h3><span class="number">6</span> Connect Patient to Garmin Account</h3>
+                    <p>Links a patient's Garmin account to Motion Med Sync, enabling automatic data retrieval from Garmin's platform for seamless health and fitness tracking.</p>
+                    <div class="details">
+                        <h4>Implementation Details:</h4>
+                        <ul>
+                            <li>OAuth 2.0 secure authorization flow</li>
+                            <li>QR code generation for easy patient device pairing</li>
+                            <li>Connection status monitoring dashboard</li>
+                            <li>Automatic reconnection attempts for disrupted links</li>
+                            <li>Data sync frequency customization</li>
+                        </ul>
+                        <div class="mb-1"></div>
+                        <span class="tag">Integration</span>
+                        <span class="tag">Garmin</span>
+                        <span class="tag">High Priority</span>
+                    </div>
+                </div>
+
+                <!-- Requirement 7 -->
+                <div class="requirement-card">
+                    <h3><span class="number">7</span> View Patient Data</h3>
+                    <p>Displays all relevant patient metrics and historical trends, providing healthcare professionals with actionable insights at a glance.</p>
+                    <div class="details">
+                        <h4>Implementation Details:</h4>
+                        <ul>
+                            <li>Interactive graphs and visualization tools</li>
+                            <li>Customizable metrics dashboard per provider</li>
+                            <li>Comparative analysis against population averages</li>
+                            <li>Anomaly detection and highlighting</li>
+                            <li>Period-over-period comparison views</li>
+                        </ul>
+                        <div class="mb-1"></div>
+                        <span class="tag">Data Visualization</span>
+                        <span class="tag">Clinical</span>
+                        <span class="tag">High Priority</span>
+                    </div>
+                </div>
+
+                <!-- Requirement 8 -->
+                <div class="requirement-card">
+                    <h3><span class="number">8</span> High-Level Dashboard of Data</h3>
+                    <p>Offers an overview of aggregated statistics, such as total studies, active patients, and key performance metrics, to give a quick snapshot of overall system health.</p>
+                    <div class="details">
+                        <h4>Implementation Details:</h4>
+                        <ul>
+                            <li>Customizable KPI cards and visualization widgets</li>
+                            <li>Real-time data updates with refresh options</li>
+                            <li>Multi-level drill-down capabilities</li>
+                            <li>Exportable dashboard reports as PDF/PNG</li>
+                            <li>Alert thresholds for critical metrics</li>
+                        </ul>
+                        <div class="mb-1"></div>
+                        <span class="tag">Analytics</span>
+                        <span class="tag">Reporting</span>
+                        <span class="tag">Medium Priority</span>
+                    </div>
+                </div>
+
+                <!-- Requirement 9 -->
+                <div class="requirement-card">
+                    <h3><span class="number">9</span> Pull Data from Garmin API</h3>
+                    <p>Automates the process of retrieving updated activity and health data from Garmin's servers, ensuring Motion Med Sync stays in sync with real-time information.</p>
+                    <div class="details">
+                        <h4>Implementation Details:</h4>
+                        <ul>
+                            <li>Scheduled background sync jobs</li>
+                            <li>API rate limit management and optimization</li>
+                            <li>Incremental data retrieval to minimize bandwidth</li>
+                            <li>Error handling and retry mechanisms</li>
+                            <li>Sync status monitoring and notification system</li>
+                        </ul>
+                        <div class="mb-1"></div>
+                        <span class="tag">Integration</span>
+                        <span class="tag">Garmin</span>
+                        <span class="tag">High Priority</span>
+                    </div>
+                </div>
+
+                <!-- Requirement 10 -->
+                <div class="requirement-card">
+                    <h3><span class="number">10</span> Backup Raw Data</h3>
+                    <p>Implements a reliable backup process for preserving raw patient information and collected metrics, minimizing data loss risks.</p>
+                    <div class="details">
+                        <h4>Implementation Details:</h4>
+                        <ul>
+                            <li>Automated daily incremental backups</li>
+                            <li>Weekly full system backups</li>
+                            <li>Encrypted backup storage with versioning</li>
+                            <li>Geo-redundant backup storage options</li>
+                            <li>One-click restoration interface for admins</li>
+                        </ul>
+                        <div class="mb-1"></div>
+                        <span class="tag">Security</span>
+                        <span class="tag">Data Management</span>
+                        <span class="tag">High Priority</span>
+                    </div>
+                </div>
+
+                <!-- Requirement 11 -->
+                <div class="requirement-card">
+                    <h3><span class="number">11</span> Store Data into Database</h3>
+                    <p>Ensures all incoming data is stored securely in a structured database, providing the backbone for analytics and record-keeping.</p>
+                    <div class="details">
+                        <h4>Implementation Details:</h4>
+                        <ul>
+                            <li>HIPAA-compliant database encryption</li>
+                            <li>Optimized schema for high-performance queries</li>
+                            <li>Data partitioning for scalability</li>
+                            <li>Audit logging for all data modifications</li>
+                            <li>Database health monitoring and maintenance tools</li>
+                        </ul>
+                        <div class="mb-1"></div>
+                        <span class="tag">Data Storage</span>
+                        <span class="tag">Security</span>
+                        <span class="tag">High Priority</span>
+                    </div>
+                </div>
+
+                <!-- Requirement 12 -->
+                <div class="requirement-card">
+                    <h3><span class="number">12</span> Create Calendar of Patient Activities</h3>
+                    <p>Generates a visual schedule of patient workouts, treatments, or relevant activities, helping healthcare providers to track and manage patient engagement.</p>
+                    <div class="details">
+                        <h4>Implementation Details:</h4>
+                        <ul>
+                            <li>Interactive calendar interface with drag-and-drop</li>
+                            <li>Recurring activity scheduling capabilities</li>
+                            <li>Patient notification and reminder system</li>
+                            <li>Calendar export to iCal/Google Calendar</li>
+                            <li>Activity completion tracking and visualization</li>
+                        </ul>
+                        <div class="mb-1"></div>
+                        <span class="tag">Patient Management</span>
+                        <span class="tag">User Experience</span>
+                        <span class="tag">Medium Priority</span>
+                    </div>
+                </div>
+
+                <!-- Requirement 13 -->
+                <div class="requirement-card">
+                    <h3><span class="number">13</span> CSV Processing – Summaries, Time Series</h3>
+                    <p>Processes CSV files to create summary statistics and time-series data, enabling trend analysis and comprehensive reporting within the platform.</p>
+                    <div class="details">
+                        <h4>Implementation Details:</h4>
+                        <ul>
+                            <li>Automated statistical analysis of imported data</li>
+                            <li>Customizable time-series visualization tools</li>
+                            <li>Outlier detection algorithms</li>
+                            <li>Correlation analysis between different metrics</li>
+                            <li>Export of processed data in multiple formats</li>
+                        </ul>
+                        <div class="mb-1"></div>
+                        <span class="tag">Data Processing</span>
+                        <span class="tag">Analytics</span>
+                        <span class="tag">Medium Priority</span>
+                    </div>
+                </div>
+
+                <!-- Requirement 14 -->
+                <div class="requirement-card">
+                    <h3><span class="number">14</span> Set Power Min and Max per Patient</h3>
+                    <p>Allows clinicians or administrators to define individualized power thresholds for patients, tailoring exercise and training guidelines to each person's needs.</p>
+                    <div class="details">
+                        <h4>Implementation Details:</h4>
+                        <ul>
+                            <li>Customizable threshold settings interface</li>
+                            <li>Automatic calculations based on assessment data</li>
+                            <li>Visual indicators for out-of-range activities</li>
+                            <li>Historical tracking of threshold adjustments</li>
+                            <li>Alert system for consistent threshold violations</li>
+                        </ul>
+                        <div class="mb-1"></div>
+                        <span class="tag">Patient Management</span>
+                        <span class="tag">Clinical</span>
+                        <span class="tag">Medium Priority</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="main-content" id="contact">
+            <h2>Contact Information</h2>
+            <p class="mb-1">Please reach out to our development team for further customization or clarifications regarding these requirements.</p>
+            <p class="mb-1">You can submit issues, feature requests, or contribute to the project directly through our GitHub repository.</p>
+            <p class="text-center mb-2">
+                <a href="https://github.com/" class="cta-button">View on GitHub</a>
+            </p>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Motion Med Sync. All rights reserved.</p>
+            <p>A modern healthcare data management platform</p>
+        </div>
+    </footer>
+</body>
+</html>
