@@ -51,53 +51,49 @@
             color: var(--text);
         }
 
-        .requirements-table {
-            width: 100%;
-            border-collapse: collapse;
+        .requirements-list {
+            list-style: none;
         }
 
-        .requirements-table th {
-            background-color: var(--table-header);
-            padding: 12px 20px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: #6f7880;
+        .requirement-item {
+            padding: 16px 20px;
             border-bottom: 1px solid var(--border);
         }
 
-        .requirements-table td {
-            padding: 12px 20px;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.95rem;
-        }
-
-        .requirements-table tr:hover {
+        .requirement-item:hover {
             background-color: rgba(0, 0, 0, 0.02);
         }
 
-        .icon-cell {
-            width: 40px;
+        .requirement-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
         }
 
-        .requirement-icon {
-            width: 24px;
-            height: 24px;
-            background-color: #e44332;
-            border-radius: 4px;
+        .requirement-number {
             display: flex;
             align-items: center;
             justify-content: center;
+            width: 28px;
+            height: 28px;
+            background-color: var(--primary);
             color: white;
-            font-size: 0.7rem;
+            border-radius: 50%;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 12px;
+            flex-shrink: 0;
         }
 
-        .requirement-icon.blue {
-            background-color: #2470e0;
+        .requirement-title {
+            font-weight: 600;
+            font-size: 1.05rem;
         }
 
-        .description-column {
+        .requirement-description {
+            margin-left: 40px;
             color: #666;
+            font-size: 0.95rem;
         }
 
         .footer {
@@ -112,13 +108,11 @@
                 padding: 10px;
             }
 
-            .requirements-table th:nth-child(1),
-            .requirements-table td:nth-child(1) {
-                display: none;
+            .requirement-description {
+                margin-left: 30px;
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="main-content">
@@ -126,156 +120,147 @@
             <div class="page-title">Motion Med Sync Requirements</div>
         </div>
 
-        <table class="requirements-table">
-            <thead>
-                <tr>
-                    <th class="icon-cell"></th>
-                    <th>Requirement</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="icon-cell">
-                        <div class="requirement-icon">
-                            <i class="fas fa-user"></i>
-                        </div>
-                    </td>
-                    <td>User Accounts – Create / Deactivate</td>
-                    <td class="description-column">Allows administrators to set up new users or remove existing accounts to maintain proper access control. This ensures only authorized individuals can manage and view patient data.</td>
-                </tr>
+        <ul class="requirements-list">
+            <li class="requirement-item">
+                <div class="requirement-header">
+                    <div class="requirement-number">1</div>
+                    <div class="requirement-title">User Accounts – Create / Deactivate</div>
+                </div>
+                <div class="requirement-description">
+                    Allows administrators to set up new users or remove existing accounts to maintain proper access control. This ensures only authorized individuals can manage and view patient data.
+                </div>
+            </li>
 
-                <tr>
-                    <td class="icon-cell">
-                        <div class="requirement-icon">
-                            <i class="fas fa-lock"></i>
-                        </div>
-                    </td>
-                    <td>Login / Forgot Password</td>
-                    <td class="description-column">Provides a secure login flow for users, along with a password reset mechanism to easily recover access if credentials are lost.</td>
-                </tr>
+            <li class="requirement-item">
+                <div class="requirement-header">
+                    <div class="requirement-number">2</div>
+                    <div class="requirement-title">Login / Forgot Password</div>
+                </div>
+                <div class="requirement-description">
+                    Provides a secure login flow for users, along with a password reset mechanism to easily recover access if credentials are lost.
+                </div>
+            </li>
 
-                <tr>
-                    <td class="icon-cell">
-                        <div class="requirement-icon blue">
-                            <i class="fas fa-flask"></i>
-                        </div>
-                    </td>
-                    <td>Create Study – Edit / Disable</td>
-                    <td class="description-column">Enables the creation of research studies or clinical trials within the system. Administrators can update study details and disable them when they are no longer active.</td>
-                </tr>
+            <li class="requirement-item">
+                <div class="requirement-header">
+                    <div class="requirement-number">3</div>
+                    <div class="requirement-title">Create Study – Edit / Disable</div>
+                </div>
+                <div class="requirement-description">
+                    Enables the creation of research studies or clinical trials within the system. Administrators can update study details and disable them when they are no longer active.
+                </div>
+            </li>
 
-                <tr>
-                    <td class="icon-cell">
-                        <div class="requirement-icon">
-                            <i class="fas fa-file-csv"></i>
-                        </div>
-                    </td>
-                    <td>CSV Download</td>
-                    <td class="description-column">Allows exporting patient or study data in CSV format for external analysis, reporting, or backup purposes.</td>
-                </tr>
+            <li class="requirement-item">
+                <div class="requirement-header">
+                    <div class="requirement-number">4</div>
+                    <div class="requirement-title">CSV Download</div>
+                </div>
+                <div class="requirement-description">
+                    Allows exporting patient or study data in CSV format for external analysis, reporting, or backup purposes.
+                </div>
+            </li>
 
-                <tr>
-                    <td class="icon-cell">
-                        <div class="requirement-icon blue">
-                            <i class="fas fa-user-plus"></i>
-                        </div>
-                    </td>
-                    <td>Create Patient</td>
-                    <td class="description-column">Facilitates adding new patients to the system, capturing essential demographic and medical information required for monitoring and analysis.</td>
-                </tr>
+            <li class="requirement-item">
+                <div class="requirement-header">
+                    <div class="requirement-number">5</div>
+                    <div class="requirement-title">Create Patient</div>
+                </div>
+                <div class="requirement-description">
+                    Facilitates adding new patients to the system, capturing essential demographic and medical information required for monitoring and analysis.
+                </div>
+            </li>
 
-                <tr>
-                    <td class="icon-cell">
-                        <div class="requirement-icon blue">
-                            <i class="fas fa-link"></i>
-                        </div>
-                    </td>
-                    <td>Connect Patient to Garmin Account</td>
-                    <td class="description-column">Links a patient's Garmin account to Motion Med Sync, enabling automatic data retrieval from Garmin's platform for seamless health and fitness tracking.</td>
-                </tr>
+            <li class="requirement-item">
+                <div class="requirement-header">
+                    <div class="requirement-number">6</div>
+                    <div class="requirement-title">Connect Patient to Garmin Account</div>
+                </div>
+                <div class="requirement-description">
+                    Links a patient's Garmin account to Motion Med Sync, enabling automatic data retrieval from Garmin's platform for seamless health and fitness tracking.
+                </div>
+            </li>
 
-                <tr>
-                    <td class="icon-cell">
-                        <div class="requirement-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                    </td>
-                    <td>View Patient Data</td>
-                    <td class="description-column">Displays all relevant patient metrics and historical trends, providing healthcare professionals with actionable insights at a glance.</td>
-                </tr>
+            <li class="requirement-item">
+                <div class="requirement-header">
+                    <div class="requirement-number">7</div>
+                    <div class="requirement-title">View Patient Data</div>
+                </div>
+                <div class="requirement-description">
+                    Displays all relevant patient metrics and historical trends, providing healthcare professionals with actionable insights at a glance.
+                </div>
+            </li>
 
-                <tr>
-                    <td class="icon-cell">
-                        <div class="requirement-icon">
-                            <i class="fas fa-tachometer-alt"></i>
-                        </div>
-                    </td>
-                    <td>High-Level Dashboard of Data</td>
-                    <td class="description-column">Offers an overview of aggregated statistics, such as total studies, active patients, and key performance metrics, to give a quick snapshot of overall system health.</td>
-                </tr>
+            <li class="requirement-item">
+                <div class="requirement-header">
+                    <div class="requirement-number">8</div>
+                    <div class="requirement-title">High-Level Dashboard of Data</div>
+                </div>
+                <div class="requirement-description">
+                    Offers an overview of aggregated statistics, such as total studies, active patients, and key performance metrics, to give a quick snapshot of overall system health.
+                </div>
+            </li>
 
-                <tr>
-                    <td class="icon-cell">
-                        <div class="requirement-icon blue">
-                            <i class="fas fa-download"></i>
-                        </div>
-                    </td>
-                    <td>Pull Data from Garmin API</td>
-                    <td class="description-column">Automates the process of retrieving updated activity and health data from Garmin's servers, ensuring Motion Med Sync stays in sync with real-time information.</td>
-                </tr>
+            <li class="requirement-item">
+                <div class="requirement-header">
+                    <div class="requirement-number">9</div>
+                    <div class="requirement-title">Pull Data from Garmin API</div>
+                </div>
+                <div class="requirement-description">
+                    Automates the process of retrieving updated activity and health data from Garmin's servers, ensuring Motion Med Sync stays in sync with real-time information.
+                </div>
+            </li>
 
-                <tr>
-                    <td class="icon-cell">
-                        <div class="requirement-icon">
-                            <i class="fas fa-database"></i>
-                        </div>
-                    </td>
-                    <td>Backup Raw Data</td>
-                    <td class="description-column">Implements a reliable backup process for preserving raw patient information and collected metrics, minimizing data loss risks.</td>
-                </tr>
+            <li class="requirement-item">
+                <div class="requirement-header">
+                    <div class="requirement-number">10</div>
+                    <div class="requirement-title">Backup Raw Data</div>
+                </div>
+                <div class="requirement-description">
+                    Implements a reliable backup process for preserving raw patient information and collected metrics, minimizing data loss risks.
+                </div>
+            </li>
 
-                <tr>
-                    <td class="icon-cell">
-                        <div class="requirement-icon">
-                            <i class="fas fa-save"></i>
-                        </div>
-                    </td>
-                    <td>Store Data into Database</td>
-                    <td class="description-column">Ensures all incoming data is stored securely in a structured database, providing the backbone for analytics and record-keeping.</td>
-                </tr>
+            <li class="requirement-item">
+                <div class="requirement-header">
+                    <div class="requirement-number">11</div>
+                    <div class="requirement-title">Store Data into Database</div>
+                </div>
+                <div class="requirement-description">
+                    Ensures all incoming data is stored securely in a structured database, providing the backbone for analytics and record-keeping.
+                </div>
+            </li>
 
-                <tr>
-                    <td class="icon-cell">
-                        <div class="requirement-icon blue">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                    </td>
-                    <td>Create Calendar of Patient Activities</td>
-                    <td class="description-column">Generates a visual schedule of patient workouts, treatments, or relevant activities, helping healthcare providers to track and manage patient engagement.</td>
-                </tr>
+            <li class="requirement-item">
+                <div class="requirement-header">
+                    <div class="requirement-number">12</div>
+                    <div class="requirement-title">Create Calendar of Patient Activities</div>
+                </div>
+                <div class="requirement-description">
+                    Generates a visual schedule of patient workouts, treatments, or relevant activities, helping healthcare providers to track and manage patient engagement.
+                </div>
+            </li>
 
-                <tr>
-                    <td class="icon-cell">
-                        <div class="requirement-icon">
-                            <i class="fas fa-file-alt"></i>
-                        </div>
-                    </td>
-                    <td>CSV Processing – Summaries, Time Series</td>
-                    <td class="description-column">Processes CSV files to create summary statistics and time-series data, enabling trend analysis and comprehensive reporting within the platform.</td>
-                </tr>
+            <li class="requirement-item">
+                <div class="requirement-header">
+                    <div class="requirement-number">13</div>
+                    <div class="requirement-title">CSV Processing – Summaries, Time Series</div>
+                </div>
+                <div class="requirement-description">
+                    Processes CSV files to create summary statistics and time-series data, enabling trend analysis and comprehensive reporting within the platform.
+                </div>
+            </li>
 
-                <tr>
-                    <td class="icon-cell">
-                        <div class="requirement-icon blue">
-                            <i class="fas fa-sliders-h"></i>
-                        </div>
-                    </td>
-                    <td>Set Power Min and Max per Patient</td>
-                    <td class="description-column">Allows clinicians or administrators to define individualized power thresholds for patients, tailoring exercise and training guidelines to each person's needs.</td>
-                </tr>
-            </tbody>
-        </table>
+            <li class="requirement-item">
+                <div class="requirement-header">
+                    <div class="requirement-number">14</div>
+                    <div class="requirement-title">Set Power Min and Max per Patient</div>
+                </div>
+                <div class="requirement-description">
+                    Allows clinicians or administrators to define individualized power thresholds for patients, tailoring exercise and training guidelines to each person's needs.
+                </div>
+            </li>
+        </ul>
 
         <div class="footer">
             © 2025 Motion Med Sync
