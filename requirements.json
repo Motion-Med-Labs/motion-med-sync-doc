@@ -7,7 +7,7 @@
       "requirements": [
         {
           "id": 1,
-          "title": "User Accounts – Create / Deactivate",
+          "title": "User Accounts",
           "description": [
             "Allows administrators to set up new users in the system",
             "Enables deactivation of existing accounts when needed",
@@ -27,11 +27,12 @@
         },
         {
           "id": 3,
-          "title": "Create Study – Edit / Disable",
+          "title": "Separate Patients by Study",
           "description": [
             "Enables creation of research studies within the system",
             "Allows administrators to update study details as needed",
             "Provides option to disable studies when no longer active",
+            "Assigns patients to studies",
             "Helps maintain organized clinical trials and research"
           ]
         },
@@ -50,9 +51,8 @@
           "title": "Create Patient",
           "description": [
             "Facilitates adding new patients to the system",
-            "Captures essential demographic information",
-            "Records relevant medical history and conditions",
-            "Establishes patient records for monitoring and analysis"
+            "Establishes patient records for monitoring and analysis",
+            "Allows patients to be deactivated"
           ]
         },
         {
@@ -61,8 +61,7 @@
           "description": [
             "Links patient profiles with their Garmin accounts",
             "Enables automatic data retrieval from Garmin's platform",
-            "Facilitates seamless health and fitness tracking",
-            "Provides real-time activity monitoring capabilities"
+            "Facilitates seamless health and fitness tracking"
           ]
         },
         {
@@ -136,7 +135,7 @@
           "description": [
             "Processes uploaded CSV files for analysis",
             "Creates statistical summaries of patient data",
-            "Generates time-series visualizations",
+            "Generates time-series data",
             "Enables trend analysis and reporting"
           ]
         },
