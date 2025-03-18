@@ -33,6 +33,88 @@
         min-height: 100vh;
       }
 
+      /* Navigation styles */
+      .nav-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        height: 60px;
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-logo-icon {
+        width: 36px;
+        height: 36px;
+        background-color: var(--primary);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      .nav-logo-text {
+        font-weight: 600;
+        font-size: 1.2rem;
+        color: var(--primary-dark);
+      }
+
+      .nav-links {
+        display: flex;
+      }
+
+      .nav-link {
+        padding: 0 15px;
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        position: relative;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        transition: color 0.2s ease;
+      }
+
+      .nav-link:hover {
+        color: var(--primary);
+      }
+
+      .nav-link.active {
+        color: var(--primary);
+      }
+
+      .nav-link.active:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 15px;
+        right: 15px;
+        height: 3px;
+        background-color: var(--primary);
+        border-radius: 3px 3px 0 0;
+      }
+
+      /* Adjust body padding to account for fixed header */
+      body {
+        padding-top: 90px;
+      }
+
       .main-content {
         max-width: 1000px;
         margin: 0 auto;
@@ -216,6 +298,20 @@
     </style>
   </head>
   <body>
+    <!-- Navigation Header -->
+    <div class="nav-header">
+      <div class="nav-logo">
+        <div class="nav-logo-icon">M</div>
+        <div class="nav-logo-text">MotionMedSync</div>
+      </div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">Requirements</a>
+        <a href="data_fields.html" class="nav-link">Data Fields</a>
+        <a href="system_diagram.html" class="nav-link">System Diagram</a>
+        <a href="process_flow.html" class="nav-link">Process Flow</a>
+      </div>
+    </div>
+
     <div class="main-content">
       <div class="header" id="header">
         <!-- Header content will be loaded dynamically -->
@@ -236,195 +332,174 @@
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        // Function to load requirements from JSON file
         async function loadRequirements() {
           try {
-            // In a real implementation, you would fetch from a server
-            // Since we're just demonstrating, we'll use a simulated fetch
-            // that returns our predefined data
-            const response = await simulateFetch('requirements.json');
-            const data = await response.json();
+            // Embed the requirements data directly instead of fetching
+            const data = {
+              title: 'Motion Med Sync',
+              subtitle:
+                'A modern platform designed to streamline patient data management, integrate with Garmin services, and provide comprehensive analytics tools for healthcare professionals.',
+              sections: [
+                {
+                  name: 'Core Requirements',
+                  requirements: [
+                    {
+                      id: 1,
+                      title: 'User Accounts',
+                      description: [
+                        'Allows administrators to set up new users in the system',
+                        'Enables deactivation of existing accounts when needed',
+                        'Maintains proper access control through user management',
+                        'Ensures only authorized individuals can access patient data',
+                      ],
+                    },
+                    {
+                      id: 2,
+                      title: 'Login / Forgot Password',
+                      description: [
+                        'Provides a secure authentication system for users',
+                        'Includes password reset functionality via email',
+                        'Helps users recover access when credentials are lost',
+                        'Ensures system security while maintaining accessibility',
+                      ],
+                    },
+                    {
+                      id: 3,
+                      title: 'Separate Patients by Study',
+                      description: [
+                        'Enables creation of research studies within the system',
+                        'Allows administrators to update study details as needed',
+                        'Provides option to disable studies when no longer active',
+                        'Assigns patients to studies',
+                        'Helps maintain organized clinical trials and research',
+                      ],
+                    },
+                    {
+                      id: 4,
+                      title: 'CSV Download',
+                      description: [
+                        'Allows exporting patient data in CSV format',
+                        'Enables researchers to download study results',
+                        'Supports external analysis and reporting needs',
+                        'Provides data backup functionality for critical information',
+                      ],
+                    },
+                    {
+                      id: 5,
+                      title: 'Create Patient',
+                      description: [
+                        'Facilitates adding new patients to the system',
+                        'Establishes patient records for monitoring and analysis',
+                        'Allows patients to be deactivated',
+                      ],
+                    },
+                    {
+                      id: 6,
+                      title: 'Connect Patient to Garmin Account',
+                      description: [
+                        'Links patient profiles with their Garmin accounts',
+                        "Enables automatic data retrieval from Garmin's platform",
+                        'Facilitates seamless health and fitness tracking',
+                      ],
+                    },
+                    {
+                      id: 7,
+                      title: 'View Patient Data',
+                      description: [
+                        'Displays comprehensive patient metrics in an intuitive interface',
+                        'Shows historical trends and patterns over time',
+                        'Provides healthcare professionals with actionable insights',
+                        'Enables informed clinical decision-making',
+                      ],
+                    },
+                  ],
+                },
+                {
+                  name: 'Analytics & Data Management',
+                  requirements: [
+                    {
+                      id: 8,
+                      title: 'High-Level Dashboard of Data',
+                      description: [
+                        'Offers an overview of aggregated statistics',
+                        'Displays total studies and active patients',
+                        'Shows key performance metrics at a glance',
+                        'Provides snapshot of overall system health',
+                      ],
+                    },
+                    {
+                      id: 9,
+                      title: 'Pull Data from Garmin API',
+                      description: [
+                        'Automates retrieval of activity data from Garmin',
+                        'Synchronizes health metrics with the platform',
+                        'Ensures up-to-date patient information',
+                        'Maintains real-time data accuracy',
+                      ],
+                    },
+                    {
+                      id: 10,
+                      title: 'Backup Raw Data',
+                      description: [
+                        'Implements reliable backup processes',
+                        'Preserves raw patient information securely',
+                        'Safeguards collected metrics from loss',
+                        'Minimizes data integrity risks',
+                      ],
+                    },
+                    {
+                      id: 11,
+                      title: 'Store Data into Database',
+                      description: [
+                        'Securely stores all incoming patient data',
+                        'Maintains structured database organization',
+                        'Provides foundation for analytics capabilities',
+                        'Ensures reliable record-keeping',
+                      ],
+                    },
+                    {
+                      id: 12,
+                      title: 'Create Calendar of Patient Activities',
+                      description: [
+                        'Generates visual schedule of patient workouts',
+                        'Tracks treatment regimens and therapies',
+                        'Helps healthcare providers monitor engagement',
+                        'Supports adherence to care plans',
+                      ],
+                    },
+                    {
+                      id: 13,
+                      title: 'CSV Processing – Summaries, Time Series',
+                      description: [
+                        'Processes uploaded CSV files for analysis',
+                        'Creates statistical summaries of patient data',
+                        'Generates time-series data',
+                        'Enables trend analysis and reporting',
+                      ],
+                    },
+                    {
+                      id: 14,
+                      title: 'Set Power Min and Max per Patient',
+                      description: [
+                        'Allows defining individualized power thresholds',
+                        'Customizes exercise parameters for each patient',
+                        'Tailors training guidelines to specific needs',
+                        'Supports personalized care approaches',
+                      ],
+                    },
+                  ],
+                },
+              ],
+            };
 
-            // Render the page with the loaded data
+            // Remove the fetch and just render the data directly
             renderPage(data);
           } catch (error) {
             console.error('Error loading requirements:', error);
             document.getElementById('loading').innerHTML = `
-                        <p style="color: #e74c3c;">Error loading requirements. Please try again later.</p>
-                    `;
+              <p style="color: #e74c3c;">Error loading requirements: ${error.message}</p>
+            `;
           }
-        }
-
-        // Function to simulate fetching the JSON file
-        // In a real implementation, this would be replaced with fetch()
-        function simulateFetch(url) {
-          return new Promise((resolve) => {
-            // Simulate network delay
-            setTimeout(() => {
-              // This is our predefined JSON data
-              const jsonData = {
-                title: 'Motion Med Sync',
-                subtitle:
-                  'A modern platform designed to streamline patient data management, integrate with Garmin services, and provide comprehensive analytics tools for healthcare professionals.',
-                sections: [
-                  {
-                    name: 'Core Requirements',
-                    requirements: [
-                      {
-                        id: 1,
-                        title: 'User Accounts – Create / Deactivate',
-                        description: [
-                          'Allows administrators to set up new users in the system',
-                          'Enables deactivation of existing accounts when needed',
-                          'Maintains proper access control through user management',
-                          'Ensures only authorized individuals can access patient data',
-                        ],
-                      },
-                      {
-                        id: 2,
-                        title: 'Login / Forgot Password',
-                        description: [
-                          'Provides a secure authentication system for users',
-                          'Includes password reset functionality via email',
-                          'Helps users recover access when credentials are lost',
-                          'Ensures system security while maintaining accessibility',
-                        ],
-                      },
-                      {
-                        id: 3,
-                        title: 'Create Study – Edit / Disable',
-                        description: [
-                          'Enables creation of research studies within the system',
-                          'Allows administrators to update study details as needed',
-                          'Provides option to disable studies when no longer active',
-                          'Helps maintain organized clinical trials and research',
-                        ],
-                      },
-                      {
-                        id: 4,
-                        title: 'CSV Download',
-                        description: [
-                          'Allows exporting patient data in CSV format',
-                          'Enables researchers to download study results',
-                          'Supports external analysis and reporting needs',
-                          'Provides data backup functionality for critical information',
-                        ],
-                      },
-                      {
-                        id: 5,
-                        title: 'Create Patient',
-                        description: [
-                          'Facilitates adding new patients to the system',
-                          'Captures essential demographic information',
-                          'Records relevant medical history and conditions',
-                          'Establishes patient records for monitoring and analysis',
-                        ],
-                      },
-                      {
-                        id: 6,
-                        title: 'Connect Patient to Garmin Account',
-                        description: [
-                          'Links patient profiles with their Garmin accounts',
-                          "Enables automatic data retrieval from Garmin's platform",
-                          'Facilitates seamless health and fitness tracking',
-                          'Provides real-time activity monitoring capabilities',
-                        ],
-                      },
-                      {
-                        id: 7,
-                        title: 'View Patient Data',
-                        description: [
-                          'Displays comprehensive patient metrics in an intuitive interface',
-                          'Shows historical trends and patterns over time',
-                          'Provides healthcare professionals with actionable insights',
-                          'Enables informed clinical decision-making',
-                        ],
-                      },
-                    ],
-                  },
-                  {
-                    name: 'Analytics & Data Management',
-                    requirements: [
-                      {
-                        id: 8,
-                        title: 'High-Level Dashboard of Data',
-                        description: [
-                          'Offers an overview of aggregated statistics',
-                          'Displays total studies and active patients',
-                          'Shows key performance metrics at a glance',
-                          'Provides snapshot of overall system health',
-                        ],
-                      },
-                      {
-                        id: 9,
-                        title: 'Pull Data from Garmin API',
-                        description: [
-                          'Automates retrieval of activity data from Garmin',
-                          'Synchronizes health metrics with the platform',
-                          'Ensures up-to-date patient information',
-                          'Maintains real-time data accuracy',
-                        ],
-                      },
-                      {
-                        id: 10,
-                        title: 'Backup Raw Data',
-                        description: [
-                          'Implements reliable backup processes',
-                          'Preserves raw patient information securely',
-                          'Safeguards collected metrics from loss',
-                          'Minimizes data integrity risks',
-                        ],
-                      },
-                      {
-                        id: 11,
-                        title: 'Store Data into Database',
-                        description: [
-                          'Securely stores all incoming patient data',
-                          'Maintains structured database organization',
-                          'Provides foundation for analytics capabilities',
-                          'Ensures reliable record-keeping',
-                        ],
-                      },
-                      {
-                        id: 12,
-                        title: 'Create Calendar of Patient Activities',
-                        description: [
-                          'Generates visual schedule of patient workouts',
-                          'Tracks treatment regimens and therapies',
-                          'Helps healthcare providers monitor engagement',
-                          'Supports adherence to care plans',
-                        ],
-                      },
-                      {
-                        id: 13,
-                        title: 'CSV Processing – Summaries, Time Series',
-                        description: [
-                          'Processes uploaded CSV files for analysis',
-                          'Creates statistical summaries of patient data',
-                          'Generates time-series visualizations',
-                          'Enables trend analysis and reporting',
-                        ],
-                      },
-                      {
-                        id: 14,
-                        title: 'Set Power Min and Max per Patient',
-                        description: [
-                          'Allows defining individualized power thresholds',
-                          'Customizes exercise parameters for each patient',
-                          'Tailors training guidelines to specific needs',
-                          'Supports personalized care approaches',
-                        ],
-                      },
-                    ],
-                  },
-                ],
-              };
-
-              resolve({
-                json: () => Promise.resolve(jsonData),
-              });
-            }, 1000); // Simulate 1 second loading time
-          });
         }
 
         // Function to render the page with the loaded data
