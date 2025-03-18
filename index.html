@@ -1,457 +1,468 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Motion Med Sync - Requirements Documentation</title>
     <style>
-        :root {
-            --primary: #2470e0;
-            --primary-light: #ebf2ff;
-            --primary-dark: #1a5bc0;
-            --secondary: #50b9ff;
-            --text: #333333;
-            --text-light: #666666;
-            --light-bg: #f8f9fd;
-            --border: #e6e6e6;
-            --success: #00c875;
-        }
+      :root {
+        --primary: #2470e0;
+        --primary-light: #ebf2ff;
+        --primary-dark: #1a5bc0;
+        --secondary: #50b9ff;
+        --text: #333333;
+        --text-light: #666666;
+        --light-bg: #f8f9fd;
+        --border: #e6e6e6;
+        --success: #00c875;
+      }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Arial, sans-serif;
+      }
 
+      body {
+        background-color: var(--light-bg);
+        background-image: linear-gradient(135deg, #f8f9fd 0%, #e9effd 100%);
+        color: var(--text);
+        line-height: 1.5;
+        padding: 30px;
+        min-height: 100vh;
+      }
+
+      .main-content {
+        max-width: 1000px;
+        margin: 0 auto;
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+      }
+
+      .header {
+        padding: 30px;
+        background: linear-gradient(
+          120deg,
+          var(--primary) 0%,
+          var(--primary-dark) 100%
+        );
+        color: white;
+        text-align: center;
+      }
+
+      .page-title {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .page-subtitle {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .requirements-list {
+        list-style: none;
+      }
+
+      .requirement-item {
+        padding: 24px 30px;
+        border-bottom: 1px solid var(--border);
+        transition: all 0.3s ease;
+      }
+
+      .requirement-item:last-child {
+        border-bottom: none;
+      }
+
+      .requirement-item:hover {
+        background-color: var(--primary-light);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(36, 112, 224, 0.1);
+      }
+
+      .requirement-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+
+      .requirement-number {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--primary-dark) 100%
+        );
+        color: white;
+        border-radius: 50%;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-right: 15px;
+        flex-shrink: 0;
+        box-shadow: 0 3px 8px rgba(36, 112, 224, 0.2);
+      }
+
+      .requirement-title {
+        font-weight: 600;
+        font-size: 1.2rem;
+        color: var(--primary-dark);
+      }
+
+      .requirement-description {
+        margin-left: 50px;
+        color: var(--text-light);
+      }
+
+      .description-bullets {
+        list-style: none;
+        margin-top: 5px;
+      }
+
+      .description-bullet {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 6px;
+        line-height: 1.5;
+      }
+
+      .description-bullet:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 9px;
+        width: 8px;
+        height: 8px;
+        background-color: var(--secondary);
+        border-radius: 50%;
+      }
+
+      .section-divider {
+        display: flex;
+        align-items: center;
+        padding: 0 30px;
+        background-color: #f5f7fa;
+      }
+
+      .divider-text {
+        padding: 12px 0;
+        font-weight: 600;
+        color: var(--primary);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .footer {
+        text-align: center;
+        padding: 25px;
+        font-size: 0.9rem;
+        color: #6f7880;
+        background-color: #f5f7fa;
+        border-top: 1px solid var(--border);
+      }
+
+      #loading {
+        text-align: center;
+        padding: 50px;
+        font-size: 1.2rem;
+        color: var(--text-light);
+      }
+
+      .loading-spinner {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        border: 5px solid rgba(36, 112, 224, 0.2);
+        border-radius: 50%;
+        border-top-color: var(--primary);
+        animation: spin 1s ease-in-out infinite;
+        margin-bottom: 15px;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @media (max-width: 768px) {
         body {
-            background-color: var(--light-bg);
-            background-image: linear-gradient(135deg, #f8f9fd 0%, #e9effd 100%);
-            color: var(--text);
-            line-height: 1.5;
-            padding: 30px;
-            min-height: 100vh;
-        }
-
-        .main-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-        }
-
-        .header {
-            padding: 30px;
-            background: linear-gradient(120deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .page-title {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .page-subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .requirements-list {
-            list-style: none;
-        }
-
-        .requirement-item {
-            padding: 24px 30px;
-            border-bottom: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .requirement-item:last-child {
-            border-bottom: none;
-        }
-
-        .requirement-item:hover {
-            background-color: var(--primary-light);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(36, 112, 224, 0.1);
-        }
-
-        .requirement-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .requirement-number {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            border-radius: 50%;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-right: 15px;
-            flex-shrink: 0;
-            box-shadow: 0 3px 8px rgba(36, 112, 224, 0.2);
-        }
-
-        .requirement-title {
-            font-weight: 600;
-            font-size: 1.2rem;
-            color: var(--primary-dark);
+          padding: 15px;
         }
 
         .requirement-description {
-            margin-left: 50px;
-            color: var(--text-light);
+          margin-left: 30px;
         }
 
-        .description-bullets {
-            list-style: none;
-            margin-top: 5px;
+        .page-title {
+          font-size: 1.6rem;
         }
 
-        .description-bullet {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 6px;
-            line-height: 1.5;
+        .requirement-header {
+          flex-wrap: wrap;
         }
-
-        .description-bullet:before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 9px;
-            width: 8px;
-            height: 8px;
-            background-color: var(--secondary);
-            border-radius: 50%;
-        }
-
-        .section-divider {
-            display: flex;
-            align-items: center;
-            padding: 0 30px;
-            background-color: #f5f7fa;
-        }
-
-        .divider-text {
-            padding: 12px 0;
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 25px;
-            font-size: 0.9rem;
-            color: #6f7880;
-            background-color: #f5f7fa;
-            border-top: 1px solid var(--border);
-        }
-
-        #loading {
-            text-align: center;
-            padding: 50px;
-            font-size: 1.2rem;
-            color: var(--text-light);
-        }
-
-        .loading-spinner {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(36, 112, 224, 0.2);
-            border-radius: 50%;
-            border-top-color: var(--primary);
-            animation: spin 1s ease-in-out infinite;
-            margin-bottom: 15px;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 15px;
-            }
-
-            .requirement-description {
-                margin-left: 30px;
-            }
-
-            .page-title {
-                font-size: 1.6rem;
-            }
-
-            .requirement-header {
-                flex-wrap: wrap;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="main-content">
-        <div class="header" id="header">
-            <!-- Header content will be loaded dynamically -->
-        </div>
+      <div class="header" id="header">
+        <!-- Header content will be loaded dynamically -->
+      </div>
 
-        <div id="requirements-container">
-            <!-- Section dividers and requirements will be loaded dynamically -->
-            <div id="loading">
-                <div class="loading-spinner"></div>
-                <p>Loading requirements...</p>
-            </div>
+      <div id="requirements-container">
+        <!-- Section dividers and requirements will be loaded dynamically -->
+        <div id="loading">
+          <div class="loading-spinner"></div>
+          <p>Loading requirements...</p>
         </div>
+      </div>
 
-        <div class="footer">
-            © 2025 Motion Med Sync | A modern healthcare data management platform
-        </div>
+      <div class="footer">
+        © 2025 Motion Med Sync | A modern healthcare data management platform
+      </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Function to load requirements from JSON file
-            async function loadRequirements() {
-                try {
-                    // In a real implementation, you would fetch from a server
-                    // Since we're just demonstrating, we'll use a simulated fetch
-                    // that returns our predefined data
-                    const response = await simulateFetch('requirements.json');
-                    const data = await response.json();
+      document.addEventListener('DOMContentLoaded', () => {
+        // Function to load requirements from JSON file
+        async function loadRequirements() {
+          try {
+            // In a real implementation, you would fetch from a server
+            // Since we're just demonstrating, we'll use a simulated fetch
+            // that returns our predefined data
+            const response = await simulateFetch('requirements.json');
+            const data = await response.json();
 
-                    // Render the page with the loaded data
-                    renderPage(data);
-                } catch (error) {
-                    console.error('Error loading requirements:', error);
-                    document.getElementById('loading').innerHTML = `
+            // Render the page with the loaded data
+            renderPage(data);
+          } catch (error) {
+            console.error('Error loading requirements:', error);
+            document.getElementById('loading').innerHTML = `
                         <p style="color: #e74c3c;">Error loading requirements. Please try again later.</p>
                     `;
-                }
-            }
+          }
+        }
 
-            // Function to simulate fetching the JSON file
-            // In a real implementation, this would be replaced with fetch()
-            function simulateFetch(url) {
-                return new Promise((resolve) => {
-                    // Simulate network delay
-                    setTimeout(() => {
-                        // This is our predefined JSON data
-                        const jsonData = {
-                            "title": "Motion Med Sync",
-                            "subtitle": "A modern platform designed to streamline patient data management, integrate with Garmin services, and provide comprehensive analytics tools for healthcare professionals.",
-                            "sections": [
-                                {
-                                    "name": "Core Requirements",
-                                    "requirements": [
-                                        {
-                                            "id": 1,
-                                            "title": "User Accounts – Create / Deactivate",
-                                            "description": [
-                                                "Allows administrators to set up new users in the system",
-                                                "Enables deactivation of existing accounts when needed",
-                                                "Maintains proper access control through user management",
-                                                "Ensures only authorized individuals can access patient data"
-                                            ]
-                                        },
-                                        {
-                                            "id": 2,
-                                            "title": "Login / Forgot Password",
-                                            "description": [
-                                                "Provides a secure authentication system for users",
-                                                "Includes password reset functionality via email",
-                                                "Helps users recover access when credentials are lost",
-                                                "Ensures system security while maintaining accessibility"
-                                            ]
-                                        },
-                                        {
-                                            "id": 3,
-                                            "title": "Create Study – Edit / Disable",
-                                            "description": [
-                                                "Enables creation of research studies within the system",
-                                                "Allows administrators to update study details as needed",
-                                                "Provides option to disable studies when no longer active",
-                                                "Helps maintain organized clinical trials and research"
-                                            ]
-                                        },
-                                        {
-                                            "id": 4,
-                                            "title": "CSV Download",
-                                            "description": [
-                                                "Allows exporting patient data in CSV format",
-                                                "Enables researchers to download study results",
-                                                "Supports external analysis and reporting needs",
-                                                "Provides data backup functionality for critical information"
-                                            ]
-                                        },
-                                        {
-                                            "id": 5,
-                                            "title": "Create Patient",
-                                            "description": [
-                                                "Facilitates adding new patients to the system",
-                                                "Captures essential demographic information",
-                                                "Records relevant medical history and conditions",
-                                                "Establishes patient records for monitoring and analysis"
-                                            ]
-                                        },
-                                        {
-                                            "id": 6,
-                                            "title": "Connect Patient to Garmin Account",
-                                            "description": [
-                                                "Links patient profiles with their Garmin accounts",
-                                                "Enables automatic data retrieval from Garmin's platform",
-                                                "Facilitates seamless health and fitness tracking",
-                                                "Provides real-time activity monitoring capabilities"
-                                            ]
-                                        },
-                                        {
-                                            "id": 7,
-                                            "title": "View Patient Data",
-                                            "description": [
-                                                "Displays comprehensive patient metrics in an intuitive interface",
-                                                "Shows historical trends and patterns over time",
-                                                "Provides healthcare professionals with actionable insights",
-                                                "Enables informed clinical decision-making"
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "name": "Analytics & Data Management",
-                                    "requirements": [
-                                        {
-                                            "id": 8,
-                                            "title": "High-Level Dashboard of Data",
-                                            "description": [
-                                                "Offers an overview of aggregated statistics",
-                                                "Displays total studies and active patients",
-                                                "Shows key performance metrics at a glance",
-                                                "Provides snapshot of overall system health"
-                                            ]
-                                        },
-                                        {
-                                            "id": 9,
-                                            "title": "Pull Data from Garmin API",
-                                            "description": [
-                                                "Automates retrieval of activity data from Garmin",
-                                                "Synchronizes health metrics with the platform",
-                                                "Ensures up-to-date patient information",
-                                                "Maintains real-time data accuracy"
-                                            ]
-                                        },
-                                        {
-                                            "id": 10,
-                                            "title": "Backup Raw Data",
-                                            "description": [
-                                                "Implements reliable backup processes",
-                                                "Preserves raw patient information securely",
-                                                "Safeguards collected metrics from loss",
-                                                "Minimizes data integrity risks"
-                                            ]
-                                        },
-                                        {
-                                            "id": 11,
-                                            "title": "Store Data into Database",
-                                            "description": [
-                                                "Securely stores all incoming patient data",
-                                                "Maintains structured database organization",
-                                                "Provides foundation for analytics capabilities",
-                                                "Ensures reliable record-keeping"
-                                            ]
-                                        },
-                                        {
-                                            "id": 12,
-                                            "title": "Create Calendar of Patient Activities",
-                                            "description": [
-                                                "Generates visual schedule of patient workouts",
-                                                "Tracks treatment regimens and therapies",
-                                                "Helps healthcare providers monitor engagement",
-                                                "Supports adherence to care plans"
-                                            ]
-                                        },
-                                        {
-                                            "id": 13,
-                                            "title": "CSV Processing – Summaries, Time Series",
-                                            "description": [
-                                                "Processes uploaded CSV files for analysis",
-                                                "Creates statistical summaries of patient data",
-                                                "Generates time-series visualizations",
-                                                "Enables trend analysis and reporting"
-                                            ]
-                                        },
-                                        {
-                                            "id": 14,
-                                            "title": "Set Power Min and Max per Patient",
-                                            "description": [
-                                                "Allows defining individualized power thresholds",
-                                                "Customizes exercise parameters for each patient",
-                                                "Tailors training guidelines to specific needs",
-                                                "Supports personalized care approaches"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        };
+        // Function to simulate fetching the JSON file
+        // In a real implementation, this would be replaced with fetch()
+        function simulateFetch(url) {
+          return new Promise((resolve) => {
+            // Simulate network delay
+            setTimeout(() => {
+              // This is our predefined JSON data
+              const jsonData = {
+                title: 'Motion Med Sync',
+                subtitle:
+                  'A modern platform designed to streamline patient data management, integrate with Garmin services, and provide comprehensive analytics tools for healthcare professionals.',
+                sections: [
+                  {
+                    name: 'Core Requirements',
+                    requirements: [
+                      {
+                        id: 1,
+                        title: 'User Accounts – Create / Deactivate',
+                        description: [
+                          'Allows administrators to set up new users in the system',
+                          'Enables deactivation of existing accounts when needed',
+                          'Maintains proper access control through user management',
+                          'Ensures only authorized individuals can access patient data',
+                        ],
+                      },
+                      {
+                        id: 2,
+                        title: 'Login / Forgot Password',
+                        description: [
+                          'Provides a secure authentication system for users',
+                          'Includes password reset functionality via email',
+                          'Helps users recover access when credentials are lost',
+                          'Ensures system security while maintaining accessibility',
+                        ],
+                      },
+                      {
+                        id: 3,
+                        title: 'Create Study – Edit / Disable',
+                        description: [
+                          'Enables creation of research studies within the system',
+                          'Allows administrators to update study details as needed',
+                          'Provides option to disable studies when no longer active',
+                          'Helps maintain organized clinical trials and research',
+                        ],
+                      },
+                      {
+                        id: 4,
+                        title: 'CSV Download',
+                        description: [
+                          'Allows exporting patient data in CSV format',
+                          'Enables researchers to download study results',
+                          'Supports external analysis and reporting needs',
+                          'Provides data backup functionality for critical information',
+                        ],
+                      },
+                      {
+                        id: 5,
+                        title: 'Create Patient',
+                        description: [
+                          'Facilitates adding new patients to the system',
+                          'Captures essential demographic information',
+                          'Records relevant medical history and conditions',
+                          'Establishes patient records for monitoring and analysis',
+                        ],
+                      },
+                      {
+                        id: 6,
+                        title: 'Connect Patient to Garmin Account',
+                        description: [
+                          'Links patient profiles with their Garmin accounts',
+                          "Enables automatic data retrieval from Garmin's platform",
+                          'Facilitates seamless health and fitness tracking',
+                          'Provides real-time activity monitoring capabilities',
+                        ],
+                      },
+                      {
+                        id: 7,
+                        title: 'View Patient Data',
+                        description: [
+                          'Displays comprehensive patient metrics in an intuitive interface',
+                          'Shows historical trends and patterns over time',
+                          'Provides healthcare professionals with actionable insights',
+                          'Enables informed clinical decision-making',
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    name: 'Analytics & Data Management',
+                    requirements: [
+                      {
+                        id: 8,
+                        title: 'High-Level Dashboard of Data',
+                        description: [
+                          'Offers an overview of aggregated statistics',
+                          'Displays total studies and active patients',
+                          'Shows key performance metrics at a glance',
+                          'Provides snapshot of overall system health',
+                        ],
+                      },
+                      {
+                        id: 9,
+                        title: 'Pull Data from Garmin API',
+                        description: [
+                          'Automates retrieval of activity data from Garmin',
+                          'Synchronizes health metrics with the platform',
+                          'Ensures up-to-date patient information',
+                          'Maintains real-time data accuracy',
+                        ],
+                      },
+                      {
+                        id: 10,
+                        title: 'Backup Raw Data',
+                        description: [
+                          'Implements reliable backup processes',
+                          'Preserves raw patient information securely',
+                          'Safeguards collected metrics from loss',
+                          'Minimizes data integrity risks',
+                        ],
+                      },
+                      {
+                        id: 11,
+                        title: 'Store Data into Database',
+                        description: [
+                          'Securely stores all incoming patient data',
+                          'Maintains structured database organization',
+                          'Provides foundation for analytics capabilities',
+                          'Ensures reliable record-keeping',
+                        ],
+                      },
+                      {
+                        id: 12,
+                        title: 'Create Calendar of Patient Activities',
+                        description: [
+                          'Generates visual schedule of patient workouts',
+                          'Tracks treatment regimens and therapies',
+                          'Helps healthcare providers monitor engagement',
+                          'Supports adherence to care plans',
+                        ],
+                      },
+                      {
+                        id: 13,
+                        title: 'CSV Processing – Summaries, Time Series',
+                        description: [
+                          'Processes uploaded CSV files for analysis',
+                          'Creates statistical summaries of patient data',
+                          'Generates time-series visualizations',
+                          'Enables trend analysis and reporting',
+                        ],
+                      },
+                      {
+                        id: 14,
+                        title: 'Set Power Min and Max per Patient',
+                        description: [
+                          'Allows defining individualized power thresholds',
+                          'Customizes exercise parameters for each patient',
+                          'Tailors training guidelines to specific needs',
+                          'Supports personalized care approaches',
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              };
 
-                        resolve({
-                            json: () => Promise.resolve(jsonData)
-                        });
-                    }, 1000); // Simulate 1 second loading time
-                });
-            }
+              resolve({
+                json: () => Promise.resolve(jsonData),
+              });
+            }, 1000); // Simulate 1 second loading time
+          });
+        }
 
-            // Function to render the page with the loaded data
-            function renderPage(data) {
-                // Render the header
-                const headerElement = document.getElementById('header');
-                headerElement.innerHTML = `
+        // Function to render the page with the loaded data
+        function renderPage(data) {
+          // Render the header
+          const headerElement = document.getElementById('header');
+          headerElement.innerHTML = `
                     <div class="page-title">${data.title}</div>
                     <div class="page-subtitle">${data.subtitle}</div>
                 `;
 
-                // Clear loading indicator
-                const container = document.getElementById('requirements-container');
-                container.innerHTML = '';
+          // Clear loading indicator
+          const container = document.getElementById('requirements-container');
+          container.innerHTML = '';
 
-                // Render each section with its requirements
-                data.sections.forEach(section => {
-                    // Add section divider
-                    const sectionDivider = document.createElement('div');
-                    sectionDivider.className = 'section-divider';
-                    sectionDivider.innerHTML = `<div class="divider-text">${section.name}</div>`;
-                    container.appendChild(sectionDivider);
+          // Render each section with its requirements
+          data.sections.forEach((section) => {
+            // Add section divider
+            const sectionDivider = document.createElement('div');
+            sectionDivider.className = 'section-divider';
+            sectionDivider.innerHTML = `<div class="divider-text">${section.name}</div>`;
+            container.appendChild(sectionDivider);
 
-                    // Create requirements list for this section
-                    const requirementsList = document.createElement('ul');
-                    requirementsList.className = 'requirements-list';
+            // Create requirements list for this section
+            const requirementsList = document.createElement('ul');
+            requirementsList.className = 'requirements-list';
 
-                    // Add each requirement to the list
-                    section.requirements.forEach(req => {
-                        const requirementItem = document.createElement('li');
-                        requirementItem.className = 'requirement-item';
+            // Add each requirement to the list
+            section.requirements.forEach((req) => {
+              const requirementItem = document.createElement('li');
+              requirementItem.className = 'requirement-item';
 
-                        // Create bullet points from the description array
-                        const bulletPoints = req.description.map(desc =>
-                            `<li class="description-bullet">${desc}</li>`
-                        ).join('');
+              // Create bullet points from the description array
+              const bulletPoints = req.description
+                .map((desc) => `<li class="description-bullet">${desc}</li>`)
+                .join('');
 
-                        requirementItem.innerHTML = `
+              requirementItem.innerHTML = `
                             <div class="requirement-header">
                                 <div class="requirement-number">${req.id}</div>
                                 <div class="requirement-title">${req.title}</div>
@@ -463,16 +474,16 @@
                             </div>
                         `;
 
-                        requirementsList.appendChild(requirementItem);
-                    });
+              requirementsList.appendChild(requirementItem);
+            });
 
-                    container.appendChild(requirementsList);
-                });
-            }
+            container.appendChild(requirementsList);
+          });
+        }
 
-            // Load the requirements when the page loads
-            loadRequirements();
-        });
+        // Load the requirements when the page loads
+        loadRequirements();
+      });
     </script>
-</body>
+  </body>
 </html>
