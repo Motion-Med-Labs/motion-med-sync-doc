@@ -164,6 +164,28 @@
             border-top: 1px solid var(--border);
         }
 
+        #loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(36, 112, 224, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 15px;
@@ -185,236 +207,272 @@
 </head>
 <body>
     <div class="main-content">
-        <div class="header">
-            <div class="page-title">Motion Med Sync</div>
-            <div class="page-subtitle">A modern platform designed to streamline patient data management, integrate with Garmin services, and provide comprehensive analytics tools for healthcare professionals.</div>
+        <div class="header" id="header">
+            <!-- Header content will be loaded dynamically -->
         </div>
 
-        <div class="section-divider">
-            <div class="divider-text">Core Requirements</div>
+        <div id="requirements-container">
+            <!-- Section dividers and requirements will be loaded dynamically -->
+            <div id="loading">
+                <div class="loading-spinner"></div>
+                <p>Loading requirements...</p>
+            </div>
         </div>
-
-        <ul class="requirements-list">
-            <li class="requirement-item">
-                <div class="requirement-header">
-                    <div class="requirement-number">1</div>
-                    <div class="requirement-title">User Accounts – Create / Deactivate</div>
-                </div>
-                <div class="requirement-description">
-                    <ul class="description-bullets">
-                        <li class="description-bullet">Allows administrators to set up new users in the system</li>
-                        <li class="description-bullet">Enables deactivation of existing accounts when needed</li>
-                        <li class="description-bullet">Maintains proper access control through user management</li>
-                        <li class="description-bullet">Ensures only authorized individuals can access patient data</li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="requirement-item">
-                <div class="requirement-header">
-                    <div class="requirement-number">2</div>
-                    <div class="requirement-title">Login / Forgot Password</div>
-                </div>
-                <div class="requirement-description">
-                    <ul class="description-bullets">
-                        <li class="description-bullet">Provides a secure authentication system for users</li>
-                        <li class="description-bullet">Includes password reset functionality via email</li>
-                        <li class="description-bullet">Helps users recover access when credentials are lost</li>
-                        <li class="description-bullet">Ensures system security while maintaining accessibility</li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="requirement-item">
-                <div class="requirement-header">
-                    <div class="requirement-number">3</div>
-                    <div class="requirement-title">Create Study – Edit / Disable</div>
-                </div>
-                <div class="requirement-description">
-                    <ul class="description-bullets">
-                        <li class="description-bullet">Enables creation of research studies within the system</li>
-                        <li class="description-bullet">Allows administrators to update study details as needed</li>
-                        <li class="description-bullet">Provides option to disable studies when no longer active</li>
-                        <li class="description-bullet">Helps maintain organized clinical trials and research</li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="requirement-item">
-                <div class="requirement-header">
-                    <div class="requirement-number">4</div>
-                    <div class="requirement-title">CSV Download</div>
-                </div>
-                <div class="requirement-description">
-                    <ul class="description-bullets">
-                        <li class="description-bullet">Allows exporting patient data in CSV format</li>
-                        <li class="description-bullet">Enables researchers to download study results</li>
-                        <li class="description-bullet">Supports external analysis and reporting needs</li>
-                        <li class="description-bullet">Provides data backup functionality for critical information</li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="requirement-item">
-                <div class="requirement-header">
-                    <div class="requirement-number">5</div>
-                    <div class="requirement-title">Create Patient</div>
-                </div>
-                <div class="requirement-description">
-                    <ul class="description-bullets">
-                        <li class="description-bullet">Facilitates adding new patients to the system</li>
-                        <li class="description-bullet">Captures essential demographic information</li>
-                        <li class="description-bullet">Records relevant medical history and conditions</li>
-                        <li class="description-bullet">Establishes patient records for monitoring and analysis</li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="requirement-item">
-                <div class="requirement-header">
-                    <div class="requirement-number">6</div>
-                    <div class="requirement-title">Connect Patient to Garmin Account</div>
-                </div>
-                <div class="requirement-description">
-                    <ul class="description-bullets">
-                        <li class="description-bullet">Links patient profiles with their Garmin accounts</li>
-                        <li class="description-bullet">Enables automatic data retrieval from Garmin's platform</li>
-                        <li class="description-bullet">Facilitates seamless health and fitness tracking</li>
-                        <li class="description-bullet">Provides real-time activity monitoring capabilities</li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="requirement-item">
-                <div class="requirement-header">
-                    <div class="requirement-number">7</div>
-                    <div class="requirement-title">View Patient Data</div>
-                </div>
-                <div class="requirement-description">
-                    <ul class="description-bullets">
-                        <li class="description-bullet">Displays comprehensive patient metrics in an intuitive interface</li>
-                        <li class="description-bullet">Shows historical trends and patterns over time</li>
-                        <li class="description-bullet">Provides healthcare professionals with actionable insights</li>
-                        <li class="description-bullet">Enables informed clinical decision-making</li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
-
-        <div class="section-divider">
-            <div class="divider-text">Analytics & Data Management</div>
-        </div>
-
-        <ul class="requirements-list">
-            <li class="requirement-item">
-                <div class="requirement-header">
-                    <div class="requirement-number">8</div>
-                    <div class="requirement-title">High-Level Dashboard of Data</div>
-                </div>
-                <div class="requirement-description">
-                    <ul class="description-bullets">
-                        <li class="description-bullet">Offers an overview of aggregated statistics</li>
-                        <li class="description-bullet">Displays total studies and active patients</li>
-                        <li class="description-bullet">Shows key performance metrics at a glance</li>
-                        <li class="description-bullet">Provides snapshot of overall system health</li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="requirement-item">
-                <div class="requirement-header">
-                    <div class="requirement-number">9</div>
-                    <div class="requirement-title">Pull Data from Garmin API</div>
-                </div>
-                <div class="requirement-description">
-                    <ul class="description-bullets">
-                        <li class="description-bullet">Automates retrieval of activity data from Garmin</li>
-                        <li class="description-bullet">Synchronizes health metrics with the platform</li>
-                        <li class="description-bullet">Ensures up-to-date patient information</li>
-                        <li class="description-bullet">Maintains real-time data accuracy</li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="requirement-item">
-                <div class="requirement-header">
-                    <div class="requirement-number">10</div>
-                    <div class="requirement-title">Backup Raw Data</div>
-                </div>
-                <div class="requirement-description">
-                    <ul class="description-bullets">
-                        <li class="description-bullet">Implements reliable backup processes</li>
-                        <li class="description-bullet">Preserves raw patient information securely</li>
-                        <li class="description-bullet">Safeguards collected metrics from loss</li>
-                        <li class="description-bullet">Minimizes data integrity risks</li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="requirement-item">
-                <div class="requirement-header">
-                    <div class="requirement-number">11</div>
-                    <div class="requirement-title">Store Data into Database</div>
-                </div>
-                <div class="requirement-description">
-                    <ul class="description-bullets">
-                        <li class="description-bullet">Securely stores all incoming patient data</li>
-                        <li class="description-bullet">Maintains structured database organization</li>
-                        <li class="description-bullet">Provides foundation for analytics capabilities</li>
-                        <li class="description-bullet">Ensures reliable record-keeping</li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="requirement-item">
-                <div class="requirement-header">
-                    <div class="requirement-number">12</div>
-                    <div class="requirement-title">Create Calendar of Patient Activities</div>
-                </div>
-                <div class="requirement-description">
-                    <ul class="description-bullets">
-                        <li class="description-bullet">Generates visual schedule of patient workouts</li>
-                        <li class="description-bullet">Tracks treatment regimens and therapies</li>
-                        <li class="description-bullet">Helps healthcare providers monitor engagement</li>
-                        <li class="description-bullet">Supports adherence to care plans</li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="requirement-item">
-                <div class="requirement-header">
-                    <div class="requirement-number">13</div>
-                    <div class="requirement-title">CSV Processing – Summaries, Time Series</div>
-                </div>
-                <div class="requirement-description">
-                    <ul class="description-bullets">
-                        <li class="description-bullet">Processes uploaded CSV files for analysis</li>
-                        <li class="description-bullet">Creates statistical summaries of patient data</li>
-                        <li class="description-bullet">Generates time-series visualizations</li>
-                        <li class="description-bullet">Enables trend analysis and reporting</li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="requirement-item">
-                <div class="requirement-header">
-                    <div class="requirement-number">14</div>
-                    <div class="requirement-title">Set Power Min and Max per Patient</div>
-                </div>
-                <div class="requirement-description">
-                    <ul class="description-bullets">
-                        <li class="description-bullet">Allows defining individualized power thresholds</li>
-                        <li class="description-bullet">Customizes exercise parameters for each patient</li>
-                        <li class="description-bullet">Tailors training guidelines to specific needs</li>
-                        <li class="description-bullet">Supports personalized care approaches</li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
 
         <div class="footer">
             © 2025 Motion Med Sync | A modern healthcare data management platform
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Function to load requirements from JSON file
+            async function loadRequirements() {
+                try {
+                    // In a real implementation, you would fetch from a server
+                    // Since we're just demonstrating, we'll use a simulated fetch
+                    // that returns our predefined data
+                    const response = await simulateFetch('requirements.json');
+                    const data = await response.json();
+
+                    // Render the page with the loaded data
+                    renderPage(data);
+                } catch (error) {
+                    console.error('Error loading requirements:', error);
+                    document.getElementById('loading').innerHTML = `
+                        <p style="color: #e74c3c;">Error loading requirements. Please try again later.</p>
+                    `;
+                }
+            }
+
+            // Function to simulate fetching the JSON file
+            // In a real implementation, this would be replaced with fetch()
+            function simulateFetch(url) {
+                return new Promise((resolve) => {
+                    // Simulate network delay
+                    setTimeout(() => {
+                        // This is our predefined JSON data
+                        const jsonData = {
+                            "title": "Motion Med Sync",
+                            "subtitle": "A modern platform designed to streamline patient data management, integrate with Garmin services, and provide comprehensive analytics tools for healthcare professionals.",
+                            "sections": [
+                                {
+                                    "name": "Core Requirements",
+                                    "requirements": [
+                                        {
+                                            "id": 1,
+                                            "title": "User Accounts – Create / Deactivate",
+                                            "description": [
+                                                "Allows administrators to set up new users in the system",
+                                                "Enables deactivation of existing accounts when needed",
+                                                "Maintains proper access control through user management",
+                                                "Ensures only authorized individuals can access patient data"
+                                            ]
+                                        },
+                                        {
+                                            "id": 2,
+                                            "title": "Login / Forgot Password",
+                                            "description": [
+                                                "Provides a secure authentication system for users",
+                                                "Includes password reset functionality via email",
+                                                "Helps users recover access when credentials are lost",
+                                                "Ensures system security while maintaining accessibility"
+                                            ]
+                                        },
+                                        {
+                                            "id": 3,
+                                            "title": "Create Study – Edit / Disable",
+                                            "description": [
+                                                "Enables creation of research studies within the system",
+                                                "Allows administrators to update study details as needed",
+                                                "Provides option to disable studies when no longer active",
+                                                "Helps maintain organized clinical trials and research"
+                                            ]
+                                        },
+                                        {
+                                            "id": 4,
+                                            "title": "CSV Download",
+                                            "description": [
+                                                "Allows exporting patient data in CSV format",
+                                                "Enables researchers to download study results",
+                                                "Supports external analysis and reporting needs",
+                                                "Provides data backup functionality for critical information"
+                                            ]
+                                        },
+                                        {
+                                            "id": 5,
+                                            "title": "Create Patient",
+                                            "description": [
+                                                "Facilitates adding new patients to the system",
+                                                "Captures essential demographic information",
+                                                "Records relevant medical history and conditions",
+                                                "Establishes patient records for monitoring and analysis"
+                                            ]
+                                        },
+                                        {
+                                            "id": 6,
+                                            "title": "Connect Patient to Garmin Account",
+                                            "description": [
+                                                "Links patient profiles with their Garmin accounts",
+                                                "Enables automatic data retrieval from Garmin's platform",
+                                                "Facilitates seamless health and fitness tracking",
+                                                "Provides real-time activity monitoring capabilities"
+                                            ]
+                                        },
+                                        {
+                                            "id": 7,
+                                            "title": "View Patient Data",
+                                            "description": [
+                                                "Displays comprehensive patient metrics in an intuitive interface",
+                                                "Shows historical trends and patterns over time",
+                                                "Provides healthcare professionals with actionable insights",
+                                                "Enables informed clinical decision-making"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Analytics & Data Management",
+                                    "requirements": [
+                                        {
+                                            "id": 8,
+                                            "title": "High-Level Dashboard of Data",
+                                            "description": [
+                                                "Offers an overview of aggregated statistics",
+                                                "Displays total studies and active patients",
+                                                "Shows key performance metrics at a glance",
+                                                "Provides snapshot of overall system health"
+                                            ]
+                                        },
+                                        {
+                                            "id": 9,
+                                            "title": "Pull Data from Garmin API",
+                                            "description": [
+                                                "Automates retrieval of activity data from Garmin",
+                                                "Synchronizes health metrics with the platform",
+                                                "Ensures up-to-date patient information",
+                                                "Maintains real-time data accuracy"
+                                            ]
+                                        },
+                                        {
+                                            "id": 10,
+                                            "title": "Backup Raw Data",
+                                            "description": [
+                                                "Implements reliable backup processes",
+                                                "Preserves raw patient information securely",
+                                                "Safeguards collected metrics from loss",
+                                                "Minimizes data integrity risks"
+                                            ]
+                                        },
+                                        {
+                                            "id": 11,
+                                            "title": "Store Data into Database",
+                                            "description": [
+                                                "Securely stores all incoming patient data",
+                                                "Maintains structured database organization",
+                                                "Provides foundation for analytics capabilities",
+                                                "Ensures reliable record-keeping"
+                                            ]
+                                        },
+                                        {
+                                            "id": 12,
+                                            "title": "Create Calendar of Patient Activities",
+                                            "description": [
+                                                "Generates visual schedule of patient workouts",
+                                                "Tracks treatment regimens and therapies",
+                                                "Helps healthcare providers monitor engagement",
+                                                "Supports adherence to care plans"
+                                            ]
+                                        },
+                                        {
+                                            "id": 13,
+                                            "title": "CSV Processing – Summaries, Time Series",
+                                            "description": [
+                                                "Processes uploaded CSV files for analysis",
+                                                "Creates statistical summaries of patient data",
+                                                "Generates time-series visualizations",
+                                                "Enables trend analysis and reporting"
+                                            ]
+                                        },
+                                        {
+                                            "id": 14,
+                                            "title": "Set Power Min and Max per Patient",
+                                            "description": [
+                                                "Allows defining individualized power thresholds",
+                                                "Customizes exercise parameters for each patient",
+                                                "Tailors training guidelines to specific needs",
+                                                "Supports personalized care approaches"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        };
+
+                        resolve({
+                            json: () => Promise.resolve(jsonData)
+                        });
+                    }, 1000); // Simulate 1 second loading time
+                });
+            }
+
+            // Function to render the page with the loaded data
+            function renderPage(data) {
+                // Render the header
+                const headerElement = document.getElementById('header');
+                headerElement.innerHTML = `
+                    <div class="page-title">${data.title}</div>
+                    <div class="page-subtitle">${data.subtitle}</div>
+                `;
+
+                // Clear loading indicator
+                const container = document.getElementById('requirements-container');
+                container.innerHTML = '';
+
+                // Render each section with its requirements
+                data.sections.forEach(section => {
+                    // Add section divider
+                    const sectionDivider = document.createElement('div');
+                    sectionDivider.className = 'section-divider';
+                    sectionDivider.innerHTML = `<div class="divider-text">${section.name}</div>`;
+                    container.appendChild(sectionDivider);
+
+                    // Create requirements list for this section
+                    const requirementsList = document.createElement('ul');
+                    requirementsList.className = 'requirements-list';
+
+                    // Add each requirement to the list
+                    section.requirements.forEach(req => {
+                        const requirementItem = document.createElement('li');
+                        requirementItem.className = 'requirement-item';
+
+                        // Create bullet points from the description array
+                        const bulletPoints = req.description.map(desc =>
+                            `<li class="description-bullet">${desc}</li>`
+                        ).join('');
+
+                        requirementItem.innerHTML = `
+                            <div class="requirement-header">
+                                <div class="requirement-number">${req.id}</div>
+                                <div class="requirement-title">${req.title}</div>
+                            </div>
+                            <div class="requirement-description">
+                                <ul class="description-bullets">
+                                    ${bulletPoints}
+                                </ul>
+                            </div>
+                        `;
+
+                        requirementsList.appendChild(requirementItem);
+                    });
+
+                    container.appendChild(requirementsList);
+                });
+            }
+
+            // Load the requirements when the page loads
+            loadRequirements();
+        });
+    </script>
 </body>
 </html>
