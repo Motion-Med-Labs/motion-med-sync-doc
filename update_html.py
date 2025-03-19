@@ -6,8 +6,9 @@ def replace_markdown_data():
     with open('data/data_fields.MD', 'r') as md_file:
         md_data = md_file.read()
 
-    # Use the markdown content directly without modifications
-    processed_md = md_data
+    # IMPORTANT: Escape backticks in the markdown content
+    # This prevents them from breaking the JavaScript template literal
+    processed_md = md_data.replace('`', '\\`')
 
     # Read the data_fields.html file
     with open('data_fields.html', 'r') as html_file:

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -45,15 +45,34 @@
       document.addEventListener('DOMContentLoaded', function () {
         // Function to convert markdown to HTML
         function convertMarkdownToHTML(markdown) {
-          // This is a very simplified markdown converter
-          // In a production environment, use a proper library like marked.js
+          // Process the markdown in stages
 
-          // Convert headers
+          // 1. Extract and protect code blocks (to prevent formatting inside them)
+          let codeBlocks = [];
+          markdown = markdown.replace(/`([^`]+)`/g, function (match, code) {
+            codeBlocks.push(code);
+            return '%%CODE_BLOCK_' + (codeBlocks.length - 1) + '%%';
+          });
+
+          // 2. Process formatting: bold, italic, headers, etc.
+          // Bold (double asterisks)
+          markdown = markdown.replace(
+            /\*\*([^*]+)\*\*/g,
+            '<strong>$1</strong>'
+          );
+
+          // Italic (single asterisk) - make sure not to match inside already processed bold
+          markdown = markdown.replace(/\*([^*<>]+)\*/g, '<em>$1</em>');
+
+          // Headers
           markdown = markdown.replace(/^# (.*$)/gm, '<h1>$1</h1>');
           markdown = markdown.replace(/^## (.*$)/gm, '<h2>$1</h2>');
           markdown = markdown.replace(/^### (.*$)/gm, '<h3>$1</h3>');
 
-          // Convert tables (simplified - requires specific format)
+          // Horizontal rules
+          markdown = markdown.replace(/^---$/gm, '<hr>');
+
+          // 3. Process tables
           let inTable = false;
           let tableHTML = '';
           let lines = markdown.split('\n');
@@ -65,7 +84,7 @@
             // Table start detection
             if (line.startsWith('|') && !inTable) {
               inTable = true;
-              tableHTML = '<table>';
+              tableHTML = '<table class="data-table">';
 
               // Add header row
               tableHTML += '<thead><tr>';
@@ -112,13 +131,28 @@
             result.push(tableHTML);
           }
 
-          // Join the result and return
-          return result.join('\n');
+          // Join everything back
+          let html = result.join('\n');
+
+          // 4. Replace our code block placeholders with actual code tags
+          html = html.replace(/%%CODE_BLOCK_(\d+)%%/g, function (match, index) {
+            return '<code>' + codeBlocks[parseInt(index)] + '</code>';
+          });
+
+          // 5. Finalize the HTML - handle line breaks and paragraphs
+          // Break up text into paragraphs where there are blank lines
+          html = '<p>' + html.replace(/\n\n+/g, '</p><p>') + '</p>';
+
+          // Convert remaining newlines to <br> tags within paragraphs
+          html = html.replace(/\n/g, '<br>');
+
+          return html;
         }
 
         // Simulate loading markdown file
         // In a real implementation, you would fetch the file from the server
         setTimeout(function () {
+          // This is just a placeholder - your Python script will replace this entire string
           const markdownContent = `Below are the **Menstrual Cycle Tracking (MCT) Summaries** response fields from Garmin’s Women’s Health API, formatted as Markdown tables. The first table covers the top-level fields; the second table covers the **pregnancySnapshot** object (only present if the user is in a pregnant phase), and the third table covers the structure of each item in the **bloodGlucoseList** array.
 
 ---
@@ -569,6 +603,7 @@ If the activity contains laps (e.g. user triggered or auto-lap), each lap is ind
 
           // Insert the HTML content
           document.getElementById('markdown-content').innerHTML = htmlContent;
+          document.getElementById('loading').style.display = 'none';
         }, 500);
       });
     </script>
