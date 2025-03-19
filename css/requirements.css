@@ -1,0 +1,106 @@
+/* Styles specific to requirements page */
+.requirements-list {
+  list-style: none;
+}
+
+.requirement-item {
+  padding: 24px 30px;
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.requirement-item:last-child {
+  border-bottom: none;
+}
+
+.requirement-item:hover {
+  background-color: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(36, 112, 224, 0.1);
+}
+
+.requirement-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.requirement-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-dark) 100%
+  );
+  color: white;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-right: 15px;
+  flex-shrink: 0;
+  box-shadow: 0 3px 8px rgba(36, 112, 224, 0.2);
+}
+
+.requirement-title {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--primary-dark);
+}
+
+.requirement-description {
+  margin-left: 50px;
+  color: var(--text-light);
+}
+
+.description-bullets {
+  list-style: none;
+  margin-top: 5px;
+}
+
+.description-bullet {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.description-bullet:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--secondary);
+  border-radius: 50%;
+}
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  background-color: #f5f7fa;
+}
+
+.divider-text {
+  padding: 12px 0;
+  font-weight: 600;
+  color: var(--primary);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .requirement-description {
+    margin-left: 30px;
+  }
+
+  .requirement-header {
+    flex-wrap: wrap;
+  }
+}
