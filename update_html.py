@@ -6,12 +6,15 @@ def replace_markdown_data():
     with open('data/data_fields.MD', 'r') as md_file:
         md_data = md_file.read()
 
+    # Escape backticks in the markdown content
+    escaped_md_data = md_data.replace('`', '\\`')
+
     # Read the data_fields.html file
     with open('data_fields.html', 'r') as html_file:
         html_content = html_file.read()
 
-    # Create the replacement string with the markdown content
-    replacement = f"const markdownContent = `{md_data}`;"
+    # Create the replacement string with the escaped markdown content
+    replacement = f"const markdownContent = `{escaped_md_data}`;"
 
     # Define the pattern to match the existing markdownContent declaration
     pattern = r'const\s+markdownContent\s*=\s*`[\s\S]*?`;'
