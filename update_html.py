@@ -1,5 +1,5 @@
-import json
 import re
+import subprocess
 
 def replace_requirements_data():
     # Read the requirements.json file
@@ -22,6 +22,13 @@ def replace_requirements_data():
     # Write the modified content back to index.html
     with open('index.html', 'w') as html_file:
         html_file.write(new_content)
+
+    # Run Prettier on the updated file
+    try:
+        subprocess.run(['npx', 'prettier', '--write', 'index.html'], check=True)
+        print("Successfully formatted index.html with Prettier")
+    except subprocess.CalledProcessError as e:
+        print(f"Error running Prettier: {str(e)}")
 
 if __name__ == "__main__":
     try:
