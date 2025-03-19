@@ -1,4 +1,6 @@
-Below are the **Menstrual Cycle Tracking (MCT) Summaries** response fields from Garmin’s Women’s Health API, formatted as Markdown tables. The first table covers the top-level fields; the second table covers the **pregnancySnapshot** object (only present if the user is in a pregnant phase), and the third table covers the structure of each item in the **bloodGlucoseList** array.
+Below are the **Menstrual Cycle Tracking (MCT) Summaries** response fields from Garmin’s Women’s Health API, formatted as Markdown tables.
+
+The first table covers the top-level fields; the second table covers the **pregnancySnapshot** object (only present if the user is in a pregnant phase), and the third table covers the structure of each item in the **bloodGlucoseList** array.
 
 ---
 
@@ -24,7 +26,7 @@ Below are the **Menstrual Cycle Tracking (MCT) Summaries** response fields from 
 
 ---
 
-## pregnancySnapshot Fields
+## Pregnancy Snapshot Fields
 
 If the user is in a pregnant phase, the `pregnancySnapshot` object will be populated with the following properties:
 
