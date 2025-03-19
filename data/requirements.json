@@ -141,9 +141,9 @@
         },
         {
           "id": 14,
-          "title": "Set HR / Cadence Targets per Patient",
+          "title": "Set Power Min and Max per Patient",
           "description": [
-            "Allows defining individualized HR / Cadence targets",
+            "Allows defining individualized power thresholds",
             "Customizes exercise parameters for each patient",
             "Tailors training guidelines to specific needs",
             "Supports personalized care approaches"
