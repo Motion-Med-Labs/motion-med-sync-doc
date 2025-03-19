@@ -307,3 +307,137 @@ Below is the **Workouts** field‑definition content from section **3.2.1 Field 
 | **weightDisplayUnit**        | String     | The user‑display unit for the weight in STRENGTH_TRAINING steps. Does not affect the numeric `weightValue` stored in the API. Valid values: `KILOGRAM`, `POUND`.                                                                                                                                                                                                                                                                                                                                                                         |
 
 ---
+
+## Activity Summaries
+
+Below is a Markdown version of the **Activity Summaries** response table (from section **7.1 Activity Summaries** in the document). Each property returned in the JSON array is presented with its type and description.
+
+| **Property**                           | **Type** | **Description**                                                                                                                              |
+| -------------------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `summaryId`                            | string   | Unique identifier for the summary.                                                                                                           |
+| `activityId`                           | string   | Unique identifier of the activity at Garmin Connect.                                                                                         |
+| `startTimeInSeconds`                   | integer  | Start time of the activity in seconds since January 1, 1970, 00:00:00 UTC (Unix timestamp).                                                  |
+| `startTimeOffsetInSeconds`             | integer  | Offset in seconds to add to `startTimeInSeconds` to derive the “local” time of the device that captured the data.                            |
+| `activityType`                         | string   | Text description of the activity type. Refer to **Appendix A** in the document for a complete list of possible values.                       |
+| `durationInSeconds`                    | integer  | Length of the monitoring period in seconds.                                                                                                  |
+| `pushes`                               | integer  | **Only present if the user’s watch is in wheelchair mode.** Represents the total number of wheelchair pushes.                                |
+| `averageBikeCadenceInRoundsPerMinute`  | float    | Average cycling cadence in revolutions per minute.                                                                                           |
+| `averageHeartRateInBeatsPerMinute`     | integer  | Average heart rate (in beats per minute).                                                                                                    |
+| `averageRunCadenceInStepsPerMinute`    | float    | Average running cadence in steps per minute.                                                                                                 |
+| `averagePushCadenceInPushesPerMinute`  | float    | **Only present if the user’s watch is in wheelchair mode.** Average wheelchair push cadence in pushes per minute.                            |
+| `averageSpeedInMetersPerSecond`        | float    | Average speed in meters per second.                                                                                                          |
+| `averageSwimCadenceInStrokesPerMinute` | float    | Average swim cadence in strokes per minute.                                                                                                  |
+| `averagePaceInMinutesPerKilometer`     | float    | Average pace in minutes per kilometer.                                                                                                       |
+| `activeKilocalories`                   | integer  | Kilocalories (dietary calories) burned during the activity. Includes both exercise and basal metabolic rate (BMR) calories for the duration. |
+| `deviceName`                           | string   | The name of the Garmin device that recorded this activity (e.g. "Forerunner 910XT").                                                         |
+| `distanceInMeters`                     | float    | Total distance covered during the activity, in meters.                                                                                       |
+| `maxBikeCadenceInRoundsPerMinute`      | float    | Maximum cycling cadence in revolutions per minute.                                                                                           |
+| `maxHeartRateInBeatsPerMinute`         | integer  | Maximum heart rate (in beats per minute).                                                                                                    |
+| `maxPaceInMinutesPerKilometer`         | float    | Maximum pace in minutes per kilometer.                                                                                                       |
+| `maxRunCadenceInStepsPerMinute`        | float    | Maximum running cadence in steps per minute.                                                                                                 |
+| `maxPushCadenceInPushesPerMinute`      | float    | **Only present if the user’s watch is in wheelchair mode.** Maximum wheelchair push cadence in pushes per minute.                            |
+| `maxSpeedInMetersPerSecond`            | float    | Maximum speed in meters per second.                                                                                                          |
+| `numberOfActiveLengths`                | integer  | Number of active lengths (primarily for pool swim activities).                                                                               |
+| `startingLatitudeInDegree`             | float    | The latitude, in decimal degrees (DD), where the activity started.                                                                           |
+| `startingLongitudeInDegree`            | float    | The longitude, in decimal degrees (DD), where the activity started.                                                                          |
+| `steps`                                | integer  | The total number of steps taken (if recorded).                                                                                               |
+| `totalElevationGainInMeters`           | float    | The total elevation gained during the activity, in meters.                                                                                   |
+| `totalElevationLossInMeters`           | float    | The total elevation lost during the activity, in meters.                                                                                     |
+| `isParent`                             | boolean  | If `true`, this activity is the parent of one or more child activities (e.g., a MULTI_SPORT parent).                                         |
+| `parentSummaryId`                      | string   | If present, this references the `summaryId` of a parent activity.                                                                            |
+| `manual`                               | boolean  | Indicates that the activity was manually created or updated (i.e., not recorded by a Garmin device).                                         |
+| `isWebUpload`                          | boolean  | Indicates that the activity was uploaded through the Garmin Connect Web app (instead of via device sync).                                    |
+
+## Activity Details Summaries
+
+Below is a Markdown version of the **Activity Details Summaries** response data model (from section **7.3 Activity Details Summaries**). Since each response can contain three main parts—**summary**, **samples**, and **laps**—we’ll provide three separate tables.
+
+---
+
+### 1) **Activity Details** Top-Level Fields
+
+| **Property** | **Type** | **Description**                                                                           |
+| ------------ | -------- | ----------------------------------------------------------------------------------------- |
+| `summaryId`  | string   | Unique identifier for the detailed activity record.                                       |
+| `activityId` | string   | Unique identifier of the activity at Garmin Connect.                                      |
+| `summary`    | object   | Container for high-level activity summary fields (see table below).                       |
+| `samples`    | array    | List of per-sample data records taken at intervals during the activity (see table below). |
+| `laps`       | array    | List of lap data, if any (see table below).                                               |
+
+---
+
+### 2) **`summary` Object Fields**
+
+These are the high-level fields describing the activity’s overall metrics.
+
+| **Property**                           | **Type** | **Description**                                                                                                                                       |
+| -------------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `summaryId`                            | string   | Unique identifier for the summary.                                                                                                                    |
+| `activityId`                           | string   | Unique identifier of the activity at Garmin Connect.                                                                                                  |
+| `startTimeInSeconds`                   | integer  | Start time of the activity in seconds since January 1, 1970, 00:00:00 UTC (Unix timestamp).                                                           |
+| `startTimeOffsetInSeconds`             | integer  | Offset (in seconds) to add to `startTimeInSeconds` to derive the “local” time of the device that captured the data.                                   |
+| `activityType`                         | string   | Text description of the activity type. Refer to **Appendix A** in the document for a complete list of possible values.                                |
+| `durationInSeconds`                    | integer  | Total duration of the activity in seconds.                                                                                                            |
+| `averageBikeCadenceInRoundsPerMinute`  | float    | Average cycling cadence in revolutions per minute.                                                                                                    |
+| `averageHeartRateInBeatsPerMinute`     | integer  | Average heart rate (in beats per minute).                                                                                                             |
+| `averageRunCadenceInStepsPerMinute`    | float    | Average running cadence in steps per minute.                                                                                                          |
+| `averagePushCadenceInPushesPerMinute`  | float    | **Only present if the user’s watch is in wheelchair mode.** Average wheelchair push cadence (pushes per minute).                                      |
+| `averageSpeedInMetersPerSecond`        | float    | Average speed in meters per second.                                                                                                                   |
+| `averageSwimCadenceInStrokesPerMinute` | float    | Average swim cadence in strokes per minute. (Not applicable for all devices/activities.)                                                              |
+| `averagePaceInMinutesPerKilometer`     | float    | Average pace in minutes per kilometer.                                                                                                                |
+| `activeKilocalories`                   | integer  | Kilocalories (dietary calories) burned during the activity (exercise + basal metabolic rate).                                                         |
+| `deviceName`                           | string   | The name of the Garmin device that recorded the activity (e.g. “Forerunner 935”).                                                                     |
+| `distanceInMeters`                     | float    | Total distance covered during the activity, in meters.                                                                                                |
+| `maxBikeCadenceInRoundsPerMinute`      | float    | Maximum cycling cadence in revolutions per minute.                                                                                                    |
+| `maxHeartRateInBeatsPerMinute`         | integer  | Maximum heart rate (in beats per minute).                                                                                                             |
+| `maxPaceInMinutesPerKilometer`         | float    | Maximum pace in minutes per kilometer.                                                                                                                |
+| `maxRunCadenceInStepsPerMinute`        | float    | Maximum running cadence in steps per minute.                                                                                                          |
+| `maxPushCadenceInPushesPerMinute`      | float    | **Only present if the user’s watch is in wheelchair mode.** Maximum wheelchair push cadence (pushes per minute).                                      |
+| `maxSpeedInMetersPerSecond`            | float    | Maximum speed in meters per second.                                                                                                                   |
+| `numberOfActiveLengths`                | integer  | Number of active lengths (e.g., pool lengths for swimming).                                                                                           |
+| `startingLatitudeInDegree`             | float    | The latitude, in decimal degrees, where the activity started.                                                                                         |
+| `startingLongitudeInDegree`            | float    | The longitude, in decimal degrees, where the activity started.                                                                                        |
+| `steps`                                | integer  | The total number of steps (if recorded).                                                                                                              |
+| `pushes`                               | integer  | **Only present if the user’s watch is in wheelchair mode.** Total wheelchair pushes.                                                                  |
+| `totalElevationGainInMeters`           | float    | Total elevation gained, in meters.                                                                                                                    |
+| `totalElevationLossInMeters`           | float    | Total elevation lost, in meters.                                                                                                                      |
+| `isParent`                             | boolean  | If `true`, this activity is the parent of one or more child activities (e.g., a MULTI_SPORT parent).                                                  |
+| `parentSummaryId`                      | string   | If present, the `summaryId` of a parent activity. For example, a cycling activity might have a parent summary ID referring to a MULTI_SPORT activity. |
+| `manual`                               | boolean  | Indicates that the activity was not recorded by a Garmin device but created/updated manually in Garmin Connect.                                       |
+
+---
+
+### 3) **`samples` Array Fields**
+
+Each activity detail record may include a `samples` array, containing time-series data points recorded during the activity. The device typically records these samples at intervals (e.g., per second or per few seconds). Not all fields are provided for every activity type.
+
+| **Property**                    | **Type** | **Description**                                                                                                                                         |
+| ------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `startTimeInSeconds`            | integer  | Start time of the sample in seconds since January 1, 1970, 00:00:00 UTC (Unix timestamp).                                                               |
+| `latitudeInDegree`              | float    | Latitude in decimal degrees (DD) for this sample, if available (e.g., GPS-enabled activity).                                                            |
+| `longitudeInDegree`             | float    | Longitude in decimal degrees (DD), if available.                                                                                                        |
+| `elevationInMeters`             | float    | Elevation in meters, if recorded.                                                                                                                       |
+| `airTemperatureCelcius`         | float    | Air temperature in Celsius, if recorded by the device.                                                                                                  |
+| `heartRate`                     | integer  | Heart rate in beats per minute, if recorded.                                                                                                            |
+| `speedMetersPerSecond`          | float    | Speed in meters per second, if supported by the device and relevant to the activity (not supported for pool swimming).                                  |
+| `stepsPerMinute`                | float    | Steps per minute, if applicable.                                                                                                                        |
+| `totalDistanceInMeters`         | float    | Total distance covered at this sample’s timestamp.                                                                                                      |
+| `timerDurationInSeconds`        | integer  | The amount of “timer time” up to this point in the activity (i.e., the cumulative time for which the activity timer was running, as opposed to paused). |
+| `clockDurationInSeconds`        | integer  | The amount of actual (real-world) “clock time” that has elapsed since the activity started.                                                             |
+| `movingDurationInSeconds`       | integer  | The amount of “timer time” during which the athlete was moving (above a threshold speed). Not supported for pool swimming.                              |
+| `powerInWatts`                  | float    | Power in watts, if recorded (e.g. for cycling activities with power meter).                                                                             |
+| `bikeCadenceInRPM`              | float    | Cycling cadence in revolutions per minute, if applicable.                                                                                               |
+| `directWheelchairCadence`       | float    | Wheelchair cadence in pushes per minute, **if the watch is in wheelchair mode**.                                                                        |
+| `swimCadenceInStrokesPerMinute` | float    | Swimming strokes per minute, if recorded (not supported for pool swimming activities in some devices).                                                  |
+
+---
+
+### 4) **`laps` Array Fields**
+
+If the activity contains laps (e.g. user triggered or auto-lap), each lap is indicated with these fields.
+
+| **Property**         | **Type** | **Description**                                                                        |
+| -------------------- | -------- | -------------------------------------------------------------------------------------- |
+| `startTimeInSeconds` | integer  | Start time of the lap in seconds since January 1, 1970, 00:00:00 UTC (Unix timestamp). |
+
+---
