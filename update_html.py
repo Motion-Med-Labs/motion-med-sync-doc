@@ -3,7 +3,7 @@ import re
 
 def replace_requirements_data():
     # Read the requirements.json file
-    with open('requirements.json', 'r') as json_file:
+    with open('data/requirements.json', 'r') as json_file:
         json_data = json_file.read()
 
     # Read the index.html file
