@@ -224,6 +224,9 @@
           const container = document.getElementById('requirements-container');
           container.innerHTML = '';
 
+          // Initialize a counter for requirements
+          let requirementCounter = 1;
+
           // Render each section with its requirements
           data.sections.forEach((section) => {
             // Add section divider
@@ -248,7 +251,7 @@
 
               requirementItem.innerHTML = `
                             <div class="requirement-header">
-                                <div class="requirement-number">${req.id}</div>
+                                <div class="requirement-number">GARMIN-${requirementCounter}</div>
                                 <div class="requirement-title">${req.title}</div>
                             </div>
                             <div class="requirement-description">
@@ -259,6 +262,7 @@
                         `;
 
               requirementsList.appendChild(requirementItem);
+              requirementCounter++; // Increment the counter for the next requirement
             });
 
             container.appendChild(requirementsList);
