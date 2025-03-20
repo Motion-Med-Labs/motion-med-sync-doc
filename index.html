@@ -51,7 +51,6 @@
             name: 'Core Requirements',
             requirements: [
               {
-                id: 1,
                 title: 'User Accounts',
                 description: [
                   'Allows administrators to set up new users in the system',
@@ -61,7 +60,22 @@
                 ],
               },
               {
-                id: 2,
+                title: 'User Authentication through Magic Links',
+                description: [
+                  'Allows users to sign in to the system using a magic link sent to their email address',
+                ],
+              },
+              {
+                title: 'User Roles',
+                description: [
+                  'Defines different user roles with varying levels of access',
+                  'Includes administrators, researchers, and patients',
+                  'Administrators can create studies, and manage users',
+                  'Researchers can view studies, and analyze data, and create patient profiles',
+                  'Patients have no direct access to the system, only through a Garmin device',
+                ],
+              },
+              {
                 title: 'Login / Forgot Password',
                 description: [
                   'Provides a secure authentication system for users',
@@ -71,7 +85,6 @@
                 ],
               },
               {
-                id: 3,
                 title: 'Separate Patients by Study',
                 description: [
                   'Enables creation of research studies within the system',
@@ -82,7 +95,14 @@
                 ],
               },
               {
-                id: 4,
+                title: 'Allow Study and Patient to be marked as completed',
+                description: [
+                  'Allows administrators to mark a study and patient as completed',
+                  'Disables the ability to add or modify data for the patient after completion',
+                  'Stops Garmin data sync for the patient / study after completion',
+                ],
+              },
+              {
                 title: 'CSV Download',
                 description: [
                   'Allows exporting patient data in CSV format',
@@ -92,7 +112,6 @@
                 ],
               },
               {
-                id: 5,
                 title: 'Create Patient',
                 description: [
                   'Facilitates adding new patients to the system',
@@ -101,7 +120,6 @@
                 ],
               },
               {
-                id: 6,
                 title: 'Connect Patient to Garmin Account',
                 description: [
                   'Links patient profiles with their Garmin accounts',
@@ -110,7 +128,12 @@
                 ],
               },
               {
-                id: 7,
+                title: 'Allow garmin access to be revoked and re-granted',
+                description: [
+                  "Allows researchers to revoke and re-grant access to a patient's Garmin account",
+                ],
+              },
+              {
                 title: 'View Patient Data',
                 description: [
                   'Displays comprehensive patient metrics in an intuitive interface',
@@ -125,7 +148,6 @@
             name: 'Analytics & Data Management',
             requirements: [
               {
-                id: 8,
                 title: 'High-Level Dashboard of Data',
                 description: [
                   'Offers an overview of aggregated statistics',
@@ -135,17 +157,16 @@
                 ],
               },
               {
-                id: 9,
                 title: 'Pull Data from Garmin API',
                 description: [
                   'Automates retrieval of activity data from Garmin',
+                  'Verify patient has granted access to Garmin',
                   'Synchronizes health metrics with the platform',
                   'Ensures up-to-date patient information',
                   'Maintains real-time data accuracy',
                 ],
               },
               {
-                id: 10,
                 title: 'Backup Raw Data',
                 description: [
                   'Implements reliable backup processes',
@@ -155,7 +176,6 @@
                 ],
               },
               {
-                id: 11,
                 title: 'Store Data into Database',
                 description: [
                   'Securely stores all incoming patient data',
@@ -165,7 +185,6 @@
                 ],
               },
               {
-                id: 12,
                 title: 'Create Calendar of Patient Activities',
                 description: [
                   'Generates visual schedule of patient workouts',
@@ -175,7 +194,6 @@
                 ],
               },
               {
-                id: 13,
                 title: 'CSV Processing – Summaries, Time Series',
                 description: [
                   'Processes uploaded CSV files for analysis',
@@ -185,7 +203,6 @@
                 ],
               },
               {
-                id: 14,
                 title: 'Set Power Min and Max per Patient',
                 description: [
                   'Allows defining individualized power thresholds',

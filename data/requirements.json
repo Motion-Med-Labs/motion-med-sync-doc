@@ -15,6 +15,22 @@
           ]
         },
         {
+          "title": "User Authentication through Magic Links",
+          "description": [
+            "Allows users to sign in to the system using a magic link sent to their email address"
+          ]
+        },
+        {
+          "title": "User Roles",
+          "description": [
+            "Defines different user roles with varying levels of access",
+            "Includes administrators, researchers, and patients",
+            "Administrators can create studies, and manage users",
+            "Researchers can view studies, and analyze data, and create patient profiles",
+            "Patients have no direct access to the system, only through a Garmin device"
+          ]
+        },
+        {
           "title": "Login / Forgot Password",
           "description": [
             "Provides a secure authentication system for users",
@@ -31,6 +47,14 @@
             "Provides option to disable studies when no longer active",
             "Assigns patients to studies",
             "Helps maintain organized clinical trials and research"
+          ]
+        },
+        {
+          "title": "Allow Study and Patient to be marked as completed",
+          "description": [
+            "Allows administrators to mark a study and patient as completed",
+            "Disables the ability to add or modify data for the patient after completion",
+            "Stops Garmin data sync for the patient / study after completion"
           ]
         },
         {
@@ -56,6 +80,12 @@
             "Links patient profiles with their Garmin accounts",
             "Enables automatic data retrieval from Garmin's platform",
             "Facilitates seamless health and fitness tracking"
+          ]
+        },
+        {
+          "title": "Allow garmin access to be revoked and re-granted",
+          "description": [
+            "Allows researchers to revoke and re-grant access to a patient's Garmin account"
           ]
         },
         {
@@ -85,6 +115,7 @@
           "title": "Pull Data from Garmin API",
           "description": [
             "Automates retrieval of activity data from Garmin",
+            "Verify patient has granted access to Garmin",
             "Synchronizes health metrics with the platform",
             "Ensures up-to-date patient information",
             "Maintains real-time data accuracy"
