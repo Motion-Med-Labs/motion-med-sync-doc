@@ -6,7 +6,7 @@ Motion Med Sync is a web application designed to help medical professionals sync
 
 ## 🔗 Documentation
 
-[Visit Motion Med Sync](https://markgustetic.github.io/Motion-Med-Sync)
+[Visit Motion Med Sync](https://motion-med-labs.github.io/motion-med-sync-doc/)
 
 ## 🚀 Getting Started
 
@@ -37,7 +37,7 @@ git clone https://github.com/markgustetic/Motion-Med-Sync.git
 ```bash
 cd Motion-Med-Sync
 python3 -m venv venv
-source venv/bin/activate  # On macOS/Linux
+source venv/bin/activate
 ```
 
 ### Updating Files
