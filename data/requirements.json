@@ -1,100 +1,82 @@
 {
   "title": "Motion Med Sync",
-  "subtitle": "A modern platform designed to streamline patient data management, integrate with Garmin services, and provide comprehensive analytics tools for healthcare professionals.",
+  "subtitle": "A modern platform designed to streamline participant data management, integrate with Garmin services, and provide robust analytics tools for researchers.",
   "sections": [
     {
       "name": "Core Requirements",
       "requirements": [
         {
-          "title": "User Accounts",
+          "title": "User Account Management",
           "description": [
-            "Allows administrators to set up new users in the system",
-            "Enables deactivation of existing accounts when needed",
-            "Maintains proper access control through user management",
-            "Ensures only authorized individuals can access patient data"
+            "Administrators must be able to create, manage, and deactivate user accounts.",
+            "The system must enforce role-based access to protect participant data."
           ]
         },
         {
-          "title": "User Authentication through Magic Links",
+          "title": "User Authentication via Magic Links",
           "description": [
-            "Allows users to sign in to the system using a magic link sent to their email address"
+            "Users must authenticate through magic links sent to their registered email addresses."
           ]
         },
         {
-          "title": "User Roles",
+          "title": "User Roles and Permissions",
           "description": [
-            "Defines different user roles with varying levels of access",
-            "Includes administrators, researchers, and patients",
-            "Administrators can create studies, and manage users",
-            "Researchers can view studies, and analyze data, and create patient profiles",
-            "Patients have no direct access to the system, only through a Garmin device"
+            "The system must define two roles: administrators and researchers.",
+            "Administrators must have full system access, including creating studies and managing user access.",
+            "Researchers must only view and analyze data for studies they are explicitly granted access to.",
+            "Participants will not have direct system access and interact only via Garmin devices."
           ]
         },
         {
-          "title": "Login / Forgot Password",
+          "title": "Login and Password Recovery",
           "description": [
-            "Provides a secure authentication system for users",
-            "Includes password reset functionality via email",
-            "Helps users recover access when credentials are lost",
-            "Ensures system security while maintaining accessibility"
+            "Users must be able to securely log in and reset forgotten passwords via email."
           ]
         },
         {
-          "title": "Separate Patients by Study",
+          "title": "Study Management and Access Control",
           "description": [
-            "Enables creation of research studies within the system",
-            "Allows administrators to update study details as needed",
-            "Provides option to disable studies when no longer active",
-            "Assigns patients to studies",
-            "Helps maintain organized clinical trials and research"
+            "Administrators must be able to create new studies and manage access permissions.",
+            "Researchers must only access studies assigned to them.",
+            "The system must allow administrators to disable inactive studies.",
+            "Participants must be assigned to specific studies for organization and tracking."
           ]
         },
         {
-          "title": "Allow Study and Patient to be marked as completed",
+          "title": "Study and Participant Completion",
           "description": [
-            "Allows administrators to mark a study and patient as completed",
-            "Disables the ability to add or modify data for the patient after completion",
-            "Stops Garmin data sync for the patient / study after completion"
+            "Administrators must be able to mark both studies and participants as completed.",
+            "Once completed, no new data can be added or modified.",
+            "Garmin data sync must stop for completed participants and studies."
           ]
         },
         {
-          "title": "CSV Download",
+          "title": "CSV Download Options",
           "description": [
-            "Allows exporting patient data in CSV format",
-            "Enables researchers to download study results",
-            "Supports external analysis and reporting needs",
-            "Provides data backup functionality for critical information"
+            "Researchers must be able to export participant data in CSV format for studies they have access to.",
+            "The system must provide download options for either detailed data or summary data only.",
+            "Bulk CSV downloads must be available for entire studies."
           ]
         },
         {
-          "title": "Create Patient",
+          "title": "Participant Profile Creation",
           "description": [
-            "Facilitates adding new patients to the system",
-            "Establishes patient records for monitoring and analysis",
-            "Allows patients to be deactivated"
+            "Researchers must be able to create and manage participant profiles.",
+            "Participants must be able to be deactivated if needed."
           ]
         },
         {
-          "title": "Connect Patient to Garmin Account",
+          "title": "Garmin Account Integration",
           "description": [
-            "Links patient profiles with their Garmin accounts",
-            "Enables automatic data retrieval from Garmin's platform",
-            "Facilitates seamless health and fitness tracking"
+            "The system must support linking participant profiles to Garmin accounts for automatic data syncing.",
+            "Researchers must be able to revoke and re-grant Garmin access as needed."
           ]
         },
         {
-          "title": "Allow garmin access to be revoked and re-granted",
+          "title": "View Participant Data",
           "description": [
-            "Allows researchers to revoke and re-grant access to a patient's Garmin account"
-          ]
-        },
-        {
-          "title": "View Patient Data",
-          "description": [
-            "Displays comprehensive patient metrics in an intuitive interface",
-            "Shows historical trends and patterns over time",
-            "Provides healthcare professionals with actionable insights",
-            "Enables informed clinical decision-making"
+            "Researchers must be able to view participant data for studies they are assigned to.",
+            "The system must display historical trends and metrics in an intuitive interface to support analysis."
           ]
         }
       ]
@@ -103,67 +85,52 @@
       "name": "Analytics & Data Management",
       "requirements": [
         {
-          "title": "High-Level Dashboard of Data",
+          "title": "Dashboard Overview",
           "description": [
-            "Offers an overview of aggregated statistics",
-            "Displays total studies and active patients",
-            "Shows key performance metrics at a glance",
-            "Provides snapshot of overall system health"
+            "The system must provide a high-level dashboard showing total studies, active participants, and key performance metrics."
           ]
         },
         {
-          "title": "Pull Data from Garmin API",
+          "title": "Garmin Data Synchronization",
           "description": [
-            "Automates retrieval of activity data from Garmin",
-            "Verify patient has granted access to Garmin",
-            "Synchronizes health metrics with the platform",
-            "Ensures up-to-date patient information",
-            "Maintains real-time data accuracy"
+            "The system must automatically pull activity and health data from Garmin accounts.",
+            "The system must verify Garmin access is granted before syncing data.",
+            "Data synchronization must maintain up-to-date participant information."
           ]
         },
         {
-          "title": "Backup Raw Data",
+          "title": "Raw Data Backup",
           "description": [
-            "Implements reliable backup processes",
-            "Preserves raw patient information securely",
-            "Safeguards collected metrics from loss",
-            "Minimizes data integrity risks"
+            "The system must back up raw participant data securely.",
+            "Backups must include both raw JSON files and original .fit files from Garmin.",
+            "The backup process must minimize data loss and preserve data integrity."
           ]
         },
         {
-          "title": "Store Data into Database",
+          "title": "Database Storage",
           "description": [
-            "Securely stores all incoming patient data",
-            "Maintains structured database organization",
-            "Provides foundation for analytics capabilities",
-            "Ensures reliable record-keeping"
+            "All participant data must be securely stored in a structured database to support long-term storage and analytics."
           ]
         },
         {
-          "title": "Create Calendar of Patient Activities",
+          "title": "Participant Activity Calendar",
           "description": [
-            "Generates visual schedule of patient workouts",
-            "Tracks treatment regimens and therapies",
-            "Helps healthcare providers monitor engagement",
-            "Supports adherence to care plans"
+            "The system must generate a visual calendar of participant activities, including workouts and therapies.",
+            "Researchers must be able to use the calendar to monitor engagement and adherence to study protocols."
           ]
         },
         {
-          "title": "CSV Processing – Summaries, Time Series",
+          "title": "CSV Processing for Summaries and Time Series",
           "description": [
-            "Processes uploaded CSV files for analysis",
-            "Creates statistical summaries of patient data",
-            "Generates time-series data",
-            "Enables trend analysis and reporting"
+            "The system must process uploaded CSV files to generate statistical summaries and time-series data.",
+            "Researchers must be able to analyze trends and generate reports from this data."
           ]
         },
         {
-          "title": "Set Power Min and Max per Patient",
+          "title": "Participant Profile Settings",
           "description": [
-            "Allows defining individualized power thresholds",
-            "Customizes exercise parameters for each patient",
-            "Tailors training guidelines to specific needs",
-            "Supports personalized care approaches"
+            "Clinicians must be able to configure individual participant profiles with target heart rate and cadence ranges.",
+            "These profile settings must be used to calculate summary metrics and customize participant analysis."
           ]
         }
       ]
