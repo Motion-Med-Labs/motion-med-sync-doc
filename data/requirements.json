@@ -15,7 +15,11 @@
         {
           "title": "User Authentication via Magic Links",
           "description": [
-            "Users must authenticate through magic links sent to their registered email addresses."
+            "Users must authenticate through magic links sent to their registered email addresses.",
+            "Magic links must expire 10 minutes after they are issued.",
+            "Each magic link must be valid for a single use only.",
+            "Requesting a new magic link must immediately invalidate any previously issued, unused links.",
+            "The system must enforce a rate limit of 20 magic link requests per user per hour."
           ]
         },
         {
@@ -131,6 +135,21 @@
           "description": [
             "Clinicians must be able to configure individual participant profiles with target heart rate and cadence ranges.",
             "These profile settings must be used to calculate summary metrics and customize participant analysis."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Security and Session Management",
+      "requirements": [
+        {
+          "title": "Session Timeout and Security",
+          "description": [
+            "Users must be automatically logged out after 15 minutes of inactivity.",
+            "Sessions must expire after a maximum of 12 hours, regardless of user activity.",
+            "Users must be logged out when they close their browser.",
+            "A warning must be displayed to users 1 minute before automatic logout.",
+            "Users must reauthenticate via magic link after session expiration or browser closure."
           ]
         }
       ]
