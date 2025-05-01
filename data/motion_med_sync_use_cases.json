@@ -1,0 +1,111 @@
+{
+  "title": "Motion Med Sync Use Cases",
+  "subtitle": "Functional use cases based on system requirements for user authentication, study access, data synchronization, and session management.",
+  "use_cases": [
+    {
+      "id": "UC01",
+      "title": "Authenticate via Magic Link",
+      "actor": "User (Administrator or Researcher)",
+      "goal": "Securely access the platform without a password",
+      "preconditions": [
+        "User's email is registered in the system"
+      ],
+      "main_flow": [
+        "User enters email address on login page",
+        "System sends a single-use, time-limited magic link",
+        "User clicks the link within 10 minutes",
+        "User is authenticated and redirected to the dashboard"
+      ],
+      "success_criteria": "User is logged in, session is established, and access is logged"
+    },
+    {
+      "id": "UC02",
+      "title": "Manage Users (Administrator Only)",
+      "actor": "Administrator",
+      "goal": "Create, deactivate, or assign roles to users",
+      "preconditions": [
+        "Admin is logged in"
+      ],
+      "main_flow": [
+        "Admin navigates to user management section",
+        "Admin creates or deactivates a user",
+        "Admin assigns user to relevant studies"
+      ],
+      "success_criteria": "User is created or deactivated, and their access is scoped correctly"
+    },
+    {
+      "id": "UC03",
+      "title": "Study Access Restriction",
+      "actor": "Researcher",
+      "goal": "View only the studies the researcher is assigned to",
+      "preconditions": [
+        "Researcher is logged in and assigned to at least one study"
+      ],
+      "main_flow": [
+        "Researcher logs in",
+        "Researcher views assigned studies",
+        "Attempting to view unauthorized study results in error"
+      ],
+      "success_criteria": "Researcher can only see data for authorized studies"
+    },
+    {
+      "id": "UC04",
+      "title": "Assign and Complete Participants",
+      "actor": "Administrator",
+      "goal": "Assign participants to studies and mark them complete when done",
+      "preconditions": [
+        "Participant and study exist"
+      ],
+      "main_flow": [
+        "Admin assigns a participant to a study",
+        "When study or participant ends, admin marks them as completed",
+        "System disables further data updates and Garmin sync"
+      ],
+      "success_criteria": "Participant and study are no longer editable; sync stops"
+    },
+    {
+      "id": "UC05",
+      "title": "Sync Participant Data from Garmin",
+      "actor": "Researcher",
+      "goal": "Automatically retrieve health and activity data from Garmin",
+      "preconditions": [
+        "Participant is linked to a Garmin account"
+      ],
+      "main_flow": [
+        "Researcher links participant to Garmin",
+        "System verifies access and pulls data",
+        "Data is displayed and stored in the database"
+      ],
+      "success_criteria": "Accurate Garmin data appears in participant profile"
+    },
+    {
+      "id": "UC06",
+      "title": "Download Participant Data as CSV",
+      "actor": "Researcher",
+      "goal": "Export study or participant data for offline analysis",
+      "preconditions": [
+        "Researcher is assigned to the study"
+      ],
+      "main_flow": [
+        "Researcher selects study or participant",
+        "Chooses between summary or full data export",
+        "System generates CSV and initiates download"
+      ],
+      "success_criteria": "Download completes, data matches expected format and calculations"
+    },
+    {
+      "id": "UC07",
+      "title": "Automatic Logout",
+      "actor": "User (Administrator or Researcher)",
+      "goal": "Maintain secure access by timing out idle or long-running sessions",
+      "preconditions": [],
+      "main_flow": [
+        "User logs in via magic link",
+        "After 15 minutes of inactivity, system shows warning",
+        "After 12 hours of total session time, system logs out regardless of activity",
+        "Closing the browser also triggers logout"
+      ],
+      "success_criteria": "Session is terminated and user must reauthenticate"
+    }
+  ]
+}

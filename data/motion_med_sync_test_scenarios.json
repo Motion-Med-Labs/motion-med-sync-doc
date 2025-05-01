@@ -1,0 +1,78 @@
+{
+  "title": "Motion Med Sync Test Scenarios",
+  "subtitle": "Test scenarios mapped to functional use cases for authentication, user management, data synchronization, and session behavior.",
+  "test_scenarios": [
+    {
+      "use_case_id": "UC01",
+      "title": "Authenticate via Magic Link",
+      "scenarios": [
+        "TS01-001: Verify magic link is sent to valid email address",
+        "TS01-002: Validate single-use behavior of magic link",
+        "TS01-003: Verify expiration of magic link after 10 minutes",
+        "TS01-004: Enforce rate limit of 20 magic link requests per hour",
+        "TS01-005: Deny login using a magic link from an unregistered email"
+      ]
+    },
+    {
+      "use_case_id": "UC02",
+      "title": "Manage Users (Admin Only)",
+      "scenarios": [
+        "TS02-001: Administrator can create a new researcher account",
+        "TS02-002: Administrator can deactivate an existing user",
+        "TS02-003: Administrator can assign a researcher to a study",
+        "TS02-004: Researcher cannot access user management features"
+      ]
+    },
+    {
+      "use_case_id": "UC03",
+      "title": "Study Access Restriction",
+      "scenarios": [
+        "TS03-001: Researcher can view only assigned studies",
+        "TS03-002: Researcher is denied access to unassigned study",
+        "TS03-003: Attempting to access restricted study logs an audit trail entry"
+      ]
+    },
+    {
+      "use_case_id": "UC04",
+      "title": "Assign and Complete Participants",
+      "scenarios": [
+        "TS04-001: Admin assigns participant to study",
+        "TS04-002: Admin marks participant as completed",
+        "TS04-003: Participant marked as completed does not receive new Garmin syncs",
+        "TS04-004: Completed participants' data cannot be modified"
+      ]
+    },
+    {
+      "use_case_id": "UC05",
+      "title": "Sync Participant Data from Garmin",
+      "scenarios": [
+        "TS05-001: System pulls data from valid Garmin-linked participant",
+        "TS05-002: Sync fails and logs error if Garmin access is revoked",
+        "TS05-003: Verify timestamp and completeness of Garmin data after sync",
+        "TS05-004: Data pulled matches Garmin Connect display for same period"
+      ]
+    },
+    {
+      "use_case_id": "UC06",
+      "title": "Download Participant Data as CSV",
+      "scenarios": [
+        "TS06-001: Researcher can download summary data CSV",
+        "TS06-002: Researcher can download detailed time-series CSV",
+        "TS06-003: CSV data matches offline-calculated values",
+        "TS06-004: Unauthorized user cannot download CSV",
+        "TS06-005: CSV downloads include proper headers and study metadata"
+      ]
+    },
+    {
+      "use_case_id": "UC07",
+      "title": "Automatic Logout",
+      "scenarios": [
+        "TS07-001: User is logged out after 15 minutes of inactivity",
+        "TS07-002: User receives a warning 1 minute before auto-logout",
+        "TS07-003: Session expires after 12 hours of use, even with activity",
+        "TS07-004: Closing the browser ends the session",
+        "TS07-005: Attempting to interact after timeout requires reauthentication"
+      ]
+    }
+  ]
+}
