@@ -1,0 +1,530 @@
+{
+  "title": "Motion Med Sync Test Scripts",
+  "subtitle": "Complete test scripts with setup, execution steps, and teardown for each functional scenario.",
+  "test_scripts": [
+    {
+      "test_id": "TS01-001",
+      "title": "Send Magic Link to Valid Email",
+      "use_case": "UC01 \u2013 Authenticate via Magic Link",
+      "type": "Automated",
+      "setup": [
+        "Ensure test email is registered",
+        "Clear existing magic links for this email"
+      ],
+      "steps": [
+        "Navigate to login page",
+        "Enter valid email",
+        "Click 'Send Magic Link'"
+      ],
+      "expected_result": [
+        "Confirmation message is shown",
+        "Email is received within 30 seconds"
+      ],
+      "teardown": [
+        "Log out",
+        "Reset test user state if necessary"
+      ]
+    },
+    {
+      "test_id": "TS01-002",
+      "title": "Validate Single-Use Magic Link",
+      "use_case": "UC01",
+      "type": "Manual",
+      "setup": [
+        "Generate and store a valid magic link"
+      ],
+      "steps": [
+        "Use magic link to log in",
+        "Re-use same link in a new browser tab"
+      ],
+      "expected_result": [
+        "First use logs in successfully",
+        "Second use fails with 'link used' message"
+      ],
+      "teardown": [
+        "Log out",
+        "Invalidate used link if not already"
+      ]
+    },
+    {
+      "test_id": "TS01-003",
+      "title": "Verify Magic Link Expiration",
+      "use_case": "UC01",
+      "type": "Manual",
+      "setup": [
+        "Generate a valid magic link"
+      ],
+      "steps": [
+        "Wait 11 minutes",
+        "Click the magic link"
+      ],
+      "expected_result": [
+        "System shows 'link expired' error"
+      ],
+      "teardown": [
+        "Generate new link to restore access"
+      ]
+    },
+    {
+      "test_id": "TS01-004",
+      "title": "Enforce Magic Link Rate Limit",
+      "use_case": "UC01",
+      "type": "Automated",
+      "setup": [
+        "Ensure rate limiting is enabled for the environment"
+      ],
+      "steps": [
+        "Request magic link 21 times within 1 hour"
+      ],
+      "expected_result": [
+        "21st request is denied with rate limit warning"
+      ],
+      "teardown": [
+        "Reset rate limit counter for test user"
+      ]
+    },
+    {
+      "test_id": "TS01-005",
+      "title": "Deny Unregistered Email Magic Link",
+      "use_case": "UC01",
+      "type": "Manual",
+      "setup": [
+        "Use an email address not in system"
+      ],
+      "steps": [
+        "Enter unregistered email and request link"
+      ],
+      "expected_result": [
+        "System shows 'email not found' or similar error"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS02-001",
+      "title": "Admin Creates Researcher Account",
+      "use_case": "UC02",
+      "type": "Manual",
+      "setup": [
+        "Log in as administrator"
+      ],
+      "steps": [
+        "Go to user management",
+        "Fill out and submit new researcher form"
+      ],
+      "expected_result": [
+        "New user appears in list",
+        "User receives onboarding email"
+      ],
+      "teardown": [
+        "Delete test researcher account"
+      ]
+    },
+    {
+      "test_id": "TS02-002",
+      "title": "Admin Deactivates User",
+      "use_case": "UC02",
+      "type": "Manual",
+      "setup": [
+        "Log in as administrator",
+        "Ensure user is active"
+      ],
+      "steps": [
+        "Go to user management",
+        "Click 'Deactivate' on target user"
+      ],
+      "expected_result": [
+        "User is marked as inactive",
+        "User can no longer log in"
+      ],
+      "teardown": [
+        "Reactivate user or delete permanently"
+      ]
+    },
+    {
+      "test_id": "TS02-003",
+      "title": "Admin Assigns Researcher to Study",
+      "use_case": "UC02",
+      "type": "Manual",
+      "setup": [
+        "Create user and study"
+      ],
+      "steps": [
+        "Go to user settings",
+        "Assign researcher to study"
+      ],
+      "expected_result": [
+        "Researcher sees assigned study on next login"
+      ],
+      "teardown": [
+        "Unassign user or delete study"
+      ]
+    },
+    {
+      "test_id": "TS02-004",
+      "title": "Researcher Cannot Access Admin Functions",
+      "use_case": "UC02",
+      "type": "Manual",
+      "setup": [
+        "Log in as researcher"
+      ],
+      "steps": [
+        "Attempt to access user management screen"
+      ],
+      "expected_result": [
+        "Access is denied or screen is hidden"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS03-001",
+      "title": "Researcher Sees Only Assigned Studies",
+      "use_case": "UC03",
+      "type": "Manual",
+      "setup": [
+        "Assign researcher to Study A only"
+      ],
+      "steps": [
+        "Log in as researcher",
+        "Navigate to study list"
+      ],
+      "expected_result": [
+        "Only Study A is shown"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS03-002",
+      "title": "Deny Researcher Access to Unauthorized Study",
+      "use_case": "UC03",
+      "type": "Manual",
+      "setup": [
+        "Ensure researcher is not assigned to Study B"
+      ],
+      "steps": [
+        "Attempt to access Study B via direct link"
+      ],
+      "expected_result": [
+        "Access is denied with error message"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS03-003",
+      "title": "Log Unauthorized Access Attempt",
+      "use_case": "UC03",
+      "type": "Manual",
+      "setup": [
+        "Ensure audit logging is active"
+      ],
+      "steps": [
+        "Attempt unauthorized study access"
+      ],
+      "expected_result": [
+        "Access denied",
+        "Event is logged in audit system"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS04-001",
+      "title": "Admin Assigns Participant to Study",
+      "use_case": "UC04",
+      "type": "Manual",
+      "setup": [
+        "Ensure participant and study exist"
+      ],
+      "steps": [
+        "Go to participant profile",
+        "Assign to study"
+      ],
+      "expected_result": [
+        "Participant appears in study roster"
+      ],
+      "teardown": [
+        "Unassign participant if needed"
+      ]
+    },
+    {
+      "test_id": "TS04-002",
+      "title": "Admin Marks Participant as Completed",
+      "use_case": "UC04",
+      "type": "Manual",
+      "setup": [
+        "Participant is active in a study"
+      ],
+      "steps": [
+        "Mark participant as completed"
+      ],
+      "expected_result": [
+        "Participant is locked from editing",
+        "Sync is disabled"
+      ],
+      "teardown": [
+        "Reset participant to active if needed"
+      ]
+    },
+    {
+      "test_id": "TS04-003",
+      "title": "No Sync for Completed Participant",
+      "use_case": "UC04",
+      "type": "Automated",
+      "setup": [
+        "Mark participant as completed"
+      ],
+      "steps": [
+        "Attempt Garmin sync for participant"
+      ],
+      "expected_result": [
+        "No data is retrieved",
+        "System logs sync skip"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS04-004",
+      "title": "Lock Editing for Completed Participant",
+      "use_case": "UC04",
+      "type": "Manual",
+      "setup": [
+        "Mark participant as completed"
+      ],
+      "steps": [
+        "Attempt to edit participant profile or data"
+      ],
+      "expected_result": [
+        "UI prevents changes",
+        "Save button is disabled or blocked"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS05-001",
+      "title": "Garmin Sync with Valid Token",
+      "use_case": "UC05",
+      "type": "Automated",
+      "setup": [
+        "Link Garmin account to participant"
+      ],
+      "steps": [
+        "Trigger sync process"
+      ],
+      "expected_result": [
+        "Data is pulled and visible in dashboard"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS05-002",
+      "title": "Handle Revoked Garmin Access",
+      "use_case": "UC05",
+      "type": "Automated",
+      "setup": [
+        "Link and then revoke Garmin access"
+      ],
+      "steps": [
+        "Trigger sync"
+      ],
+      "expected_result": [
+        "Sync fails gracefully with error message"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS05-003",
+      "title": "Validate Garmin Data Timestamp",
+      "use_case": "UC05",
+      "type": "Manual",
+      "setup": [
+        "Ensure recent activity in Garmin account"
+      ],
+      "steps": [
+        "Sync participant",
+        "Compare data timestamps"
+      ],
+      "expected_result": [
+        "Timestamps match expected event times"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS05-004",
+      "title": "Compare Garmin Data to Connect App",
+      "use_case": "UC05",
+      "type": "Manual",
+      "setup": [
+        "Participant has Garmin activity history"
+      ],
+      "steps": [
+        "Sync and compare with Garmin Connect app"
+      ],
+      "expected_result": [
+        "Metrics match across platforms"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS06-001",
+      "title": "Download Summary CSV",
+      "use_case": "UC06",
+      "type": "Manual",
+      "setup": [
+        "Log in as researcher",
+        "Select a study"
+      ],
+      "steps": [
+        "Download summary CSV"
+      ],
+      "expected_result": [
+        "CSV includes participant summaries with headers"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS06-002",
+      "title": "Download Detailed CSV",
+      "use_case": "UC06",
+      "type": "Manual",
+      "setup": [
+        "Log in as researcher",
+        "Select a study"
+      ],
+      "steps": [
+        "Download detailed CSV"
+      ],
+      "expected_result": [
+        "CSV includes time-series data with correct formatting"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS06-003",
+      "title": "Validate CSV Against Offline Metrics",
+      "use_case": "UC06",
+      "type": "Manual",
+      "setup": [
+        "Obtain offline benchmark data"
+      ],
+      "steps": [
+        "Download and compare CSV"
+      ],
+      "expected_result": [
+        "Values match within defined tolerances"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS06-004",
+      "title": "Restrict CSV Download for Unauthorized User",
+      "use_case": "UC06",
+      "type": "Manual",
+      "setup": [
+        "User is not assigned to study"
+      ],
+      "steps": [
+        "Attempt to download CSV"
+      ],
+      "expected_result": [
+        "Access is denied or option is hidden"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS06-005",
+      "title": "Validate CSV Metadata and Headers",
+      "use_case": "UC06",
+      "type": "Manual",
+      "setup": [
+        "Prepare study with known values"
+      ],
+      "steps": [
+        "Download CSV",
+        "Open file and verify format"
+      ],
+      "expected_result": [
+        "Correct study metadata and column headers present"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS07-001",
+      "title": "Logout After Inactivity",
+      "use_case": "UC07",
+      "type": "Automated",
+      "setup": [
+        "Log in as any user"
+      ],
+      "steps": [
+        "Remain idle for 15 minutes"
+      ],
+      "expected_result": [
+        "Session times out and user is logged out"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS07-002",
+      "title": "Inactivity Warning Message",
+      "use_case": "UC07",
+      "type": "Manual",
+      "setup": [
+        "Remain idle for 14 minutes"
+      ],
+      "steps": [
+        "Observe UI after 14 minutes"
+      ],
+      "expected_result": [
+        "Warning message shown at 14-minute mark"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS07-003",
+      "title": "Logout After Max Session Time",
+      "use_case": "UC07",
+      "type": "Automated",
+      "setup": [
+        "Log in and remain active"
+      ],
+      "steps": [
+        "Continue working for 12+ hours"
+      ],
+      "expected_result": [
+        "Session expires and login is required"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS07-004",
+      "title": "Logout on Browser Close",
+      "use_case": "UC07",
+      "type": "Manual",
+      "setup": [
+        "Log in via browser"
+      ],
+      "steps": [
+        "Close and reopen browser",
+        "Navigate to site"
+      ],
+      "expected_result": [
+        "Session is terminated, user must log in again"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS07-005",
+      "title": "Reauthentication After Timeout",
+      "use_case": "UC07",
+      "type": "Manual",
+      "setup": [
+        "Allow session to expire"
+      ],
+      "steps": [
+        "Attempt any action post-timeout"
+      ],
+      "expected_result": [
+        "Redirected to login with reauthentication prompt"
+      ],
+      "teardown": []
+    }
+  ]
+}
