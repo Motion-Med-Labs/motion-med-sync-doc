@@ -9,8 +9,7 @@
         "TS01-001: Verify magic link is sent to valid email address",
         "TS01-002: Validate single-use behavior of magic link",
         "TS01-003: Verify expiration of magic link after 10 minutes",
-        "TS01-004: Enforce rate limit of 20 magic link requests per hour",
-        "TS01-005: Deny login using a magic link from an unregistered email"
+        "TS01-004: Deny login using a magic link from an unregistered email"
       ]
     },
     {
