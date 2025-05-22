@@ -19,7 +19,6 @@
             "Magic links must expire 10 minutes after they are issued.",
             "Each magic link must be valid for a single use only.",
             "Requesting a new magic link must immediately invalidate any previously issued, unused links.",
-            "The system must enforce a rate limit of 20 magic link requests per user per hour."
           ]
         },
         {
