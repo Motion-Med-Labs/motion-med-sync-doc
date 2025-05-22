@@ -525,6 +525,90 @@
         "Redirected to login with reauthentication prompt"
       ],
       "teardown": []
+    },
+    {
+      "test_id": "TS08-001",
+      "title": "Researcher Deactivates Participant",
+      "use_case": "UC08",
+      "type": "Manual",
+      "setup": [
+        "Log in as researcher",
+        "Ensure participant exists"
+      ],
+      "steps": [
+        "Navigate to participant profile",
+        "Click 'Deactivate'"
+      ],
+      "expected_result": [
+        "Participant is marked as deactivated"
+      ],
+      "teardown": [
+        "Reactivate participant if needed"
+      ]
+    },
+    {
+      "test_id": "TS08-002",
+      "title": "Deactivated Participant is Disconnected from Garmin",
+      "use_case": "UC08",
+      "type": "Automated",
+      "setup": [
+        "Participant is linked to Garmin and then deactivated"
+      ],
+      "steps": [
+        "Check Garmin connection after deactivation"
+      ],
+      "expected_result": [
+        "Garmin is no longer connected to participant profile"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS08-003",
+      "title": "Exclude Deactivated Participant from Adherence List",
+      "use_case": "UC08",
+      "type": "Manual",
+      "setup": [
+        "Participant is deactivated"
+      ],
+      "steps": [
+        "Open adherence report"
+      ],
+      "expected_result": [
+        "Deactivated participant is not listed"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS08-004",
+      "title": "Exclude Deactivated Participant from 8+ Day Compliance List",
+      "use_case": "UC08",
+      "type": "Manual",
+      "setup": [
+        "Participant is deactivated"
+      ],
+      "steps": [
+        "Open compliance report for 8+ day rule"
+      ],
+      "expected_result": [
+        "Deactivated participant is not listed"
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS08-005",
+      "title": "Deactivated Participant at Bottom of Roster",
+      "use_case": "UC08",
+      "type": "Manual",
+      "setup": [
+        "Participant is deactivated"
+      ],
+      "steps": [
+        "View participant roster"
+      ],
+      "expected_result": [
+        "Deactivated participant appears at bottom of list"
+      ],
+      "teardown": []
     }
   ]
 }
