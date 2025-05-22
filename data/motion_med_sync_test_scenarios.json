@@ -73,6 +73,17 @@
         "TS07-004: Closing the browser ends the session",
         "TS07-005: Attempting to interact after timeout requires reauthentication"
       ]
+    },
+    {
+      "use_case_id": "UC08",
+      "title": "Deactivate Participant",
+      "scenarios": [
+        "TS08-001: Researcher deactivates participant successfully",
+        "TS08-002: Deactivated participant is removed from Garmin connection",
+        "TS08-003: Deactivated participant is excluded from adherence list",
+        "TS08-004: Deactivated participant is excluded from 8+ day compliance list",
+        "TS08-005: Deactivated participant appears at bottom of roster"
+      ]
     }
   ]
 }
