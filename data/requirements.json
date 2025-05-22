@@ -82,6 +82,15 @@
             "Researchers must be able to view participant data for studies they are assigned to.",
             "The system must display historical trends and metrics in an intuitive interface to support analysis."
           ]
+        },
+        {
+          "title": "Deactivate Participant",
+          "description": [
+            "Researchers must be able to deactivate a participant when necessary.",
+            "Deactivating a participant must automatically disconnect their Garmin account.",
+            "Deactivated participants must not appear on adherence tracking or 8+ day compliance lists.",
+            "Deactivated participants must be listed at the bottom of the participant roster."
+          ]
         }
       ]
     },
@@ -146,6 +155,7 @@
           "title": "Session Timeout and Security",
           "description": [
             "Users must be automatically logged out after 15 minutes of inactivity.",
+            "Sessions must expire after a maximum of 12 hours, regardless of user activity.",
             "Users must be logged out when they close their browser.",
             "A warning must be displayed to users 1 minute before automatic logout.",
             "Users must reauthenticate via magic link after session expiration or browser closure."
