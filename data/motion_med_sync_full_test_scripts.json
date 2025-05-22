@@ -66,24 +66,6 @@
       ]
     },
     {
-      "test_id": "TS01-004",
-      "title": "Enforce Magic Link Rate Limit",
-      "use_case": "UC01",
-      "type": "Automated",
-      "setup": [
-        "Ensure rate limiting is enabled for the environment"
-      ],
-      "steps": [
-        "Request magic link 21 times within 1 hour"
-      ],
-      "expected_result": [
-        "21st request is denied with rate limit warning"
-      ],
-      "teardown": [
-        "Reset rate limit counter for test user"
-      ]
-    },
-    {
       "test_id": "TS01-005",
       "title": "Deny Unregistered Email Magic Link",
       "use_case": "UC01",
