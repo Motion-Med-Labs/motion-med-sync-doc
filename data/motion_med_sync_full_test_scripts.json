@@ -591,6 +591,70 @@
         "Deactivated participant appears at bottom of list"
       ],
       "teardown": []
+    },
+    {
+      "test_id": "TS09-001",
+      "title": "Display 30-Day Wear Days for Participant",
+      "use_case": "UC09 \u2013 Participant 30-Day Metrics",
+      "type": "Manual",
+      "setup": [
+        "Ensure participant has step data recorded on multiple days in the past 30 days."
+      ],
+      "steps": [
+        "Navigate to the participant detail page."
+      ],
+      "expected_result": [
+        "The number of days with step data is displayed correctly."
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS09-002",
+      "title": "Display Average Wear Time for Participant",
+      "use_case": "UC09 \u2013 Participant 30-Day Metrics",
+      "type": "Manual",
+      "setup": [
+        "Ensure participant has wearable data with time duration recorded for multiple days."
+      ],
+      "steps": [
+        "Navigate to the participant detail page."
+      ],
+      "expected_result": [
+        "Average wear time per day (in hours) is calculated and displayed correctly."
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS09-003",
+      "title": "Display 30-Day Ride Count for Participant",
+      "use_case": "UC09 \u2013 Participant 30-Day Metrics",
+      "type": "Manual",
+      "setup": [
+        "Ensure participant has recorded rides in the last 30 days."
+      ],
+      "steps": [
+        "Navigate to the participant detail page."
+      ],
+      "expected_result": [
+        "The number of rides in the past 30 days is shown."
+      ],
+      "teardown": []
+    },
+    {
+      "test_id": "TS09-004",
+      "title": "Display Days Since Last Upload for Participant",
+      "use_case": "UC09 \u2013 Participant 30-Day Metrics",
+      "type": "Manual",
+      "setup": [
+        "Ensure participant has a known last upload date."
+      ],
+      "steps": [
+        "Navigate to the participant detail page."
+      ],
+      "expected_result": [
+        "Days since the last upload is shown and is accurate."
+      ],
+      "teardown": []
     }
   ]
 }
