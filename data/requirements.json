@@ -19,7 +19,6 @@
             "Magic links must expire 10 minutes after they are issued.",
             "Each magic link must be valid for a single use only.",
             "Requesting a new magic link must immediately invalidate any previously issued, unused links.",
-            "The system must enforce a rate limit of 20 magic link requests per user per hour."
           ]
         },
         {
@@ -82,6 +81,15 @@
             "Researchers must be able to view participant data for studies they are assigned to.",
             "The system must display historical trends and metrics in an intuitive interface to support analysis."
           ]
+        },
+        {
+          "title": "Deactivate Participant",
+          "description": [
+            "Researchers must be able to deactivate a participant when necessary.",
+            "Deactivating a participant must automatically disconnect their Garmin account.",
+            "Deactivated participants must not appear on adherence tracking or 8+ day compliance lists.",
+            "Deactivated participants must be listed at the bottom of the participant roster."
+          ]
         }
       ]
     },
@@ -136,6 +144,35 @@
             "Clinicians must be able to configure individual participant profiles with target heart rate and cadence ranges.",
             "These profile settings must be used to calculate summary metrics and customize participant analysis."
           ]
+        },
+        {
+          "title": "Heart Rate Calculation and Export",
+          "description": [
+            "Researchers must be able to define resting and maximum heart rate per participant.",
+            "The system must calculate heart rate percentage per ride using the Karvonen formula: HR% = ((HR - Resting HR) / (Max HR - Resting HR)) * 100.",
+            "Calculated HR% values must be written to exported CSV files for each recorded ride."
+          ]
+        },
+        {
+          "title": "Study Analytics View",
+          "description": [
+            "The study page must display the following metrics for each participant over the past 30 days:",
+            "- Number of days the participant wore the device (any steps recorded = worn)",
+            "- Average wear time per day (in hours)",
+            "- Number of recorded rides",
+            "- Days since last upload",
+            "Each column must be sortable, defaulting to ascending or descending as noted: worn days (low to high), wear time (low to high), ride count (low to high), and days since last upload (high to low)."
+          ]
+        },
+        {
+          "title": "Participant 30-Day Metrics",
+          "description": [
+            "The participant detail page must display the following metrics for that participant over the past 30 days:",
+            "- Number of days the device was worn (based on any step data)",
+            "- Average wear time per day (in hours)",
+            "- Number of rides recorded",
+            "- Days since last upload"
+          ]
         }
       ]
     },
@@ -146,6 +183,7 @@
           "title": "Session Timeout and Security",
           "description": [
             "Users must be automatically logged out after 15 minutes of inactivity.",
+            "Sessions must expire after a maximum of 12 hours, regardless of user activity.",
             "Users must be logged out when they close their browser.",
             "A warning must be displayed to users 1 minute before automatic logout.",
             "Users must reauthenticate via magic link after session expiration or browser closure."

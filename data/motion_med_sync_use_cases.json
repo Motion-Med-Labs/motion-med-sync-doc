@@ -106,6 +106,23 @@
         "Closing the browser also triggers logout"
       ],
       "success_criteria": "Session is terminated and user must reauthenticate"
+    },
+    {
+      "id": "UC08",
+      "title": "Deactivate Participant",
+      "actor": "Researcher",
+      "goal": "Deactivate a participant and ensure related system changes occur",
+      "preconditions": [
+        "Participant exists in the system"
+      ],
+      "main_flow": [
+        "Researcher navigates to participant management screen",
+        "Researcher deactivates a participant",
+        "System removes Garmin account link for the participant",
+        "System hides the participant from adherence and 8+ day compliance lists",
+        "System moves the participant to the bottom of the roster"
+      ],
+      "success_criteria": "Participant is deactivated, Garmin is disconnected, and participant is excluded from key views"
     }
   ]
 }
