@@ -144,6 +144,35 @@
             "Clinicians must be able to configure individual participant profiles with target heart rate and cadence ranges.",
             "These profile settings must be used to calculate summary metrics and customize participant analysis."
           ]
+        },
+        {
+          "title": "Heart Rate Calculation and Export",
+          "description": [
+            "Researchers must be able to define resting and maximum heart rate per participant.",
+            "The system must calculate heart rate percentage per ride using the Karvonen formula: HR% = ((HR - Resting HR) / (Max HR - Resting HR)) * 100.",
+            "Calculated HR% values must be written to exported CSV files for each recorded ride."
+          ]
+        },
+        {
+          "title": "Study Analytics View",
+          "description": [
+            "The study page must display the following metrics for each participant over the past 30 days:",
+            "- Number of days the participant wore the device (any steps recorded = worn)",
+            "- Average wear time per day (in hours)",
+            "- Number of recorded rides",
+            "- Days since last upload",
+            "Each column must be sortable, defaulting to ascending or descending as noted: worn days (low to high), wear time (low to high), ride count (low to high), and days since last upload (high to low)."
+          ]
+        },
+        {
+          "title": "Participant 30-Day Metrics",
+          "description": [
+            "The participant detail page must display the following metrics for that participant over the past 30 days:",
+            "- Number of days the device was worn (based on any step data)",
+            "- Average wear time per day (in hours)",
+            "- Number of rides recorded",
+            "- Days since last upload"
+          ]
         }
       ]
     },
