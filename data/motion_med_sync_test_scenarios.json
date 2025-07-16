@@ -33,12 +33,11 @@
     },
     {
       "use_case_id": "UC04",
-      "title": "Assign and Complete Participants",
+      "title": "Assign participants",
       "scenarios": [
         "TS04-001: Admin assigns participant to study",
-        "TS04-002: Admin marks participant as completed",
-        "TS04-003: Participant marked as completed does not receive new Garmin syncs",
-        "TS04-004: Completed participants' data cannot be modified"
+        "TS04-003: Participant marked as deactive does not receive new Garmin syncs",
+        "TS04-004: Deactivate participants' data cannot be modified"
       ]
     },
     {
@@ -67,7 +66,6 @@
       "title": "Automatic Logout",
       "scenarios": [
         "TS07-001: User is logged out after 15 minutes of inactivity",
-        "TS07-002: User receives a warning 1 minute before auto-logout",
         "TS07-003: Session expires after 12 hours of use, even with activity",
         "TS07-004: Closing the browser ends the session",
         "TS07-005: Attempting to interact after timeout requires reauthentication"
