@@ -50,15 +50,15 @@
     },
     {
       "id": "UC04",
-      "title": "Assign and Complete Participants",
+      "title": "Assign Participants",
       "actor": "Administrator",
-      "goal": "Assign participants to studies and mark them complete when done",
+      "goal": "Assign participants to studies",
       "preconditions": [
         "Participant and study exist"
       ],
       "main_flow": [
         "Admin assigns a participant to a study",
-        "When study or participant ends, admin marks them as completed",
+        "When study or participant ends, admin marks them as deactivated",
         "System disables further data updates and Garmin sync"
       ],
       "success_criteria": "Participant and study are no longer editable; sync stops"
