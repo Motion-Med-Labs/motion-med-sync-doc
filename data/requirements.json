@@ -46,11 +46,11 @@
           ]
         },
         {
-          "title": "Study and Participant Completion",
+          "title": "Study and Participant Deactivation",
           "description": [
-            "Administrators must be able to mark both studies and participants as completed.",
-            "Once completed, no new data can be added or modified.",
-            "Garmin data sync must stop for completed participants and studies."
+            "Administrators must be able to mark both studies and participants as deactive.",
+            "Once deactivated, no new data can be added or modified.",
+            "Garmin data sync must stop for deactivated participants and studies."
           ]
         },
         {
