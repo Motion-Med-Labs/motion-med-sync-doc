@@ -119,7 +119,7 @@
         "User can no longer log in"
       ],
       "teardown": [
-        "Reactivate user or delete permanently"
+        "Reactivate user "
       ]
     },
     {
@@ -227,31 +227,13 @@
       ]
     },
     {
-      "test_id": "TS04-002",
-      "title": "Admin Marks Participant as Completed",
-      "use_case": "UC04",
-      "type": "Manual",
-      "setup": [
-        "Participant is active in a study"
-      ],
-      "steps": [
-        "Mark participant as completed"
-      ],
-      "expected_result": [
-        "Participant is locked from editing",
-        "Sync is disabled"
-      ],
-      "teardown": [
-        "Reset participant to active if needed"
-      ]
-    },
-    {
+      
       "test_id": "TS04-003",
-      "title": "No Sync for Completed Participant",
+      "title": "No Sync for deactivated participant ",
       "use_case": "UC04",
       "type": "Automated",
       "setup": [
-        "Mark participant as completed"
+        "Mark participant as deactivated "
       ],
       "steps": [
         "Attempt Garmin sync for participant"
@@ -264,11 +246,11 @@
     },
     {
       "test_id": "TS04-004",
-      "title": "Lock Editing for Completed Participant",
+      "title": "Lock Editing for deactive Participant",
       "use_case": "UC04",
       "type": "Manual",
       "setup": [
-        "Mark participant as completed"
+        "Mark participant as deactive"
       ],
       "steps": [
         "Attempt to edit participant profile or data"
