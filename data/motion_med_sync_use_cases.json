@@ -119,7 +119,7 @@
         "Researcher navigates to participant management screen",
         "Researcher deactivates a participant",
         "System removes Garmin account link for the participant",
-        "System hides the participant from adherence and 8+ day compliance lists",
+        "System hides the participant from adherence",
         "System moves the participant to the bottom of the roster"
       ],
       "success_criteria": "Participant is deactivated, Garmin is disconnected, and participant is excluded from key views"
