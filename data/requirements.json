@@ -87,7 +87,7 @@
           "description": [
             "Researchers must be able to deactivate a participant when necessary.",
             "Deactivating a participant must automatically disconnect their Garmin account.",
-            "Deactivated participants must not appear on adherence tracking or 8+ day compliance lists.",
+            "Deactivated participants must not appear on adherence tracking.",
             "Deactivated participants must be listed at the bottom of the participant roster."
           ]
         }
