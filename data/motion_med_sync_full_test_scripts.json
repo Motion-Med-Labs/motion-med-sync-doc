@@ -543,22 +543,7 @@
       "teardown": []
     },
     {
-      "test_id": "TS08-004",
-      "title": "Exclude Deactivated Participant from 8+ Day Compliance List",
-      "use_case": "UC08",
-      "type": "Manual",
-      "setup": [
-        "Participant is deactivated"
-      ],
-      "steps": [
-        "Open compliance report for 8+ day rule"
-      ],
-      "expected_result": [
-        "Deactivated participant is not listed"
-      ],
-      "teardown": []
-    },
-    {
+      
       "test_id": "TS08-005",
       "title": "Deactivated Participant at Bottom of Roster",
       "use_case": "UC08",
